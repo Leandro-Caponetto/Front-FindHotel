@@ -1,0 +1,53 @@
+{
+  "usesTypeScript": false,
+  "usesStyledComponents": true,
+  "usesCssModule": true,
+  "cssPreprocessor": "css",
+  "testLibrary": "test",
+  "component": {
+    "default": {
+      "path": "src/components",
+      "withStyle": true,
+      "withTest": false,
+      "withStory": false,
+      "withLazy": false
+    },
+    "function": {
+      "path": "src/components",
+      "withStyle": true,
+      "withTest": false,
+      "withStory": false,
+      "withLazy": false,
+      "customTemplates": {
+        "component": "templates/function/TemplateName.jsx",
+        "style": "templates/TemplateName.module.css",
+        "styled": "templates/TemplateName.styled.jsx",
+        "test": "templates/TemplateName.test.jsx"
+      }
+    },
+    "services": {
+      "path": "src/services",
+      "withStyle": false,
+      "withTest": false,
+      "withStory": false,
+      "withLazy": false,
+      "customTemplates": {
+        "component": "templates/function/TemplateName.js"
+      }
+    },
+    "pages": {
+      "path": "src/views",
+      "withStyle": true,
+      "withTest": false,
+      "withStory": false,
+      "withLazy": false,
+      "widthIndex": false,
+      "customTemplates": {
+        "component": "templates/function/TemplateName.jsx",
+        "style": "templates/TemplateName.module.css",
+        "styled": "templates/TemplateName.styled.jsx",
+        "test": "templates/TemplateName.test.jsx"
+      }
+    }
+  }
+}
