@@ -26,12 +26,17 @@ NavLink:-webkit-any-link {
   cursor: pointer;
 }
 
-/* @font-face {
-  font-family: Olivia;
-  src: url(./assets/tipografia/Olivia.ttf) format(truetype);
+@font-face {
+  font-family: Cocogoose;
+  src: url(./assets/tipografia/Cocogoose.ttf) format(truetype);
 }
 
 @font-face {
-  font-family: Ratatouille;
-  src: url(./assets/tipografia/Ratatouille.otf) format(opentype);
-} */
+  font-family: CocoSharp;
+  src: url(./assets/tipografia/Coco-Sharp-Bold.ttf) format(truetype);
+} 
+
+@font-face {
+  font-family: CocoSharpBold;
+  src: url(./assets/tipografia/Coco-Sharp-Extrabold.ttf) format(truetype);
+} 
