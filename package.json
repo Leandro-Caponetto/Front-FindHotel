@@ -7,11 +7,22 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "grc": "npx generate-react-cli component $comp --type=function",
+    "grs": "npx generate-react-cli component $comp --type=services",
+    "grv": "npx generate-react-cli component $comp --type=pages"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.5",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "axios": "^1.4.0",
+    "react-icons": "^4.10.1",
+    "react-redux": "^8.1.1",
+    "react-router-dom": "^6.13.0",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.4.2",
+    "sweetalert2": "^11.7.23"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
@@ -21,6 +32,7 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "generate-react-cli": "^8.3.0",
     "vite": "^4.4.5"
   }
 }
