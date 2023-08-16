@@ -1,6 +1,6 @@
 .conteiner{
   display: flex;
-  height: 120px;
+  height: 90px;
   width: 100%;
   justify-content: center;
   align-items: center;
@@ -30,18 +30,17 @@
 }
 
 .navbar_button {
-  background: #000;
+  background: #101010;
   display: flex;
-  width: 200px;
-  height: 70px;
+  width: 150px;
+  height: 50px;
   border-radius: 50px;
   text-decoration: none;
-  box-shadow: 0 9px 7px #00000052;
+  box-shadow: 0 px 7px #00000052;
   justify-content: center;
   align-items: center;
-  
-  font-size: 24px;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: bold;
   color: white;
   cursor: pointer;
 }
