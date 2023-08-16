@@ -1,5 +1,18 @@
 .Home {
     font-family: Cocogoose;
-/* color: black;
+    /* color: black;
 background-color: black; */
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    font-family: CocoSharpBold;
+    /* color: black;
+background-color: black; */
+}
+
+.Footer {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    bottom: 0px;
 }
