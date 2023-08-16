@@ -8,9 +8,9 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "grc": "npx generate-react-cli component $comp --type=function",
-    "grs": "npx generate-react-cli component $comp --type=services",
-    "grv": "npx generate-react-cli component $comp --type=pages"
+    "grc": "npx generate-react-cli component  --type=function",
+    "grs": "npx generate-react-cli component  --type=services",
+    "grv": "npx generate-react-cli component  --type=pages"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
