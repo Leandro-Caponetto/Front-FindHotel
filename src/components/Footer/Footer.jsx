@@ -14,22 +14,24 @@ const redesSociales = {
 const Footer = () => {
   return (
     <div className={styles.Container}>
-      <label className={styles.Copyright}>
-        Copyright © FindBook.com™. All rights reserved
-      </label>
+      <div className={styles.box}>
       <div className={styles.LinksContact}>
         <NavLink to=''>About</NavLink>
         <NavLink to=''><label>Customer Care</label></NavLink>
         <NavLink to=''><label>Contact</label></NavLink>
       </div>
+
       <div className={styles.RedSocial}>
-        <SocialNetworks redSocial={redesSociales} size={45} gap={20} />
+        <SocialNetworks redSocial={redesSociales} size={40} gap={15} />
       </div>
-      <div className={styles.PayLogoIcons}>
-        <div className={styles.Pay} />
-        <div className={styles.FindHotel} />
-      </div>
-      <div className={styles.Footer}></div>
+
+    <div className={styles.baseline}>
+      <label className={styles.Copyright}>
+        Copyright © FindBook.com™. All rights reserved
+      </label>
+
+    </div>
+    </div>
     </div>
   )
 }
