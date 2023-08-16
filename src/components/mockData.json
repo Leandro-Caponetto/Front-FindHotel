@@ -1,0 +1,28 @@
+ [
+    {
+        "id":1,
+        "Ciudad": "Cancun",
+        "pais": "Mexico",
+        "img": "https://blog.vivaaerobus.com/wp-content/uploads/2019/12/Mejores-Playas-de-Canc%C3%BAn.jpg"
+    },
+    {
+        "id":2,
+        "Ciudad": "Cartagena",
+        "pais": "Colombia",
+        "img": "https://travelshelper.com/wp-content/uploads/2021/11/Cartagena-Travel-Guide-Travel-S-Helper.jpg"
+    },
+    {
+        "id":3,
+        "Ciudad": "Buenos Aires",
+        "pais": "Argentina",
+        "img": "https://blogskystorage.s3.amazonaws.com/2021/07/skyairline_skyairline_image_182.jpeg"
+    },
+    {
+        "id":4,
+        "Ciudad": "Lima",
+        "pais": "Peru",
+        "img": "https://www.andbeyond.com/wp-content/uploads/sites/5/Peru-capital-city-Lima-Colonial.jpg"
+    }
+
+]
+
