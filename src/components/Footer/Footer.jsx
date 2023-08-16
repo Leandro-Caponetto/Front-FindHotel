@@ -30,6 +30,11 @@ const Footer = () => {
         Copyright © FindBook.com™. All rights reserved
       </label>
 
+      {/* <div className={styles.PayLogoIcons}>
+        <div className={styles.Pay} />
+        <div className={styles.FindHotel} />
+      </div> */}
+
     </div>
     </div>
     </div>

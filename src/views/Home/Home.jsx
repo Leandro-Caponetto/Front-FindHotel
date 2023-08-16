@@ -4,6 +4,7 @@ import NavBar from '../../components/NavBar/NavBar'
 import styles from './Home.module.css';
 import Footer from '../../components/Footer/Footer';
 import TrendDestinations from '../../components/TrendDestination/trendDestinations';
+import Header from '../../components/Header/Header';
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
 
     <div className={styles.container}>
      <NavBar/>
+     <Header/>
      <TrendDestinations/>
      <TrendDestinations/>
      <Footer />
