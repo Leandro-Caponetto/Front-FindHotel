@@ -1,0 +1,58 @@
+.SocialNetworks {
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+}
+
+.SocialNetworks a {
+    color: #ffffff;
+    display: inline-block;
+    position: relative;
+    transition: transform 0.3s, color 0.3s;
+}
+
+.FaFacebook:hover {
+    transform: scale(1.1);
+    color: #4267B2;
+}
+
+.FaTwitter:hover {
+    color: #1DA1F2;
+    transform: scale(1.1);
+}
+
+.FaInstagram:hover {
+    transform: scale(1.1);
+    box-shadow: #0288D1;
+    border-radius: 15%;
+    color: #fff;
+    background: #d6249f;
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, .1);
+}
+
+.FaLinkedin:hover {
+    transform: scale(1.1);
+    background: #fff;
+    color: #0288D1;
+    border-radius: 15%;
+}
+
+.FaGithub:hover {
+    transform: scale(1.1);
+    color: #fff;
+    background-color: #3876b4;
+    border-radius: 50%;
+}
+
+.FaWhatsapp:hover {
+    transform: scale(1.1);
+    color: #fff;
+    background-color: #25D366;
+    border-radius: 50%;
+}
