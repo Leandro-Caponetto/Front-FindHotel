@@ -7,20 +7,18 @@ import TrendDestinations from '../../components/TrendDestination/trendDestinatio
 import Header from '../../components/Header/Header';
 import HotelTrend from '../../components/HotelTrend/hotelTrend';
 
+
 const Home = () => {
   return (
-
-
     <div className={styles.container}>
      <NavBar/>
      <Header/>
      <TrendDestinations/>
      <HotelTrend/>
      <Footer />
+
     </div>
-
-
-  )
-}
+  );
+};
 
 export default Home;
