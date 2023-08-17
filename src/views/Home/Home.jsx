@@ -5,6 +5,7 @@ import styles from './Home.module.css';
 import Footer from '../../components/Footer/Footer';
 import TrendDestinations from '../../components/TrendDestination/trendDestinations';
 import Header from '../../components/Header/Header';
+import HotelTrend from '../../components/HotelTrend/hotelTrend';
 
 const Home = () => {
   return (
@@ -14,7 +15,7 @@ const Home = () => {
      <NavBar/>
      <Header/>
      <TrendDestinations/>
-     <TrendDestinations/>
+     <HotelTrend/>
      <Footer />
     </div>
 

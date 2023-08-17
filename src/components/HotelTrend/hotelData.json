@@ -1,0 +1,162 @@
+[
+  {
+    "id": 1,
+    "name": "Hard Rock",
+    "city": "Cancun",
+    "country": "Mexico",
+    "price": "30 usd",
+    "typeRoom": "Habitacion matrimonial",
+    "score": 5.5,
+    "img": "https://www.ahstatic.com/photos/1276_ho_00_p_1024x768.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Hard Rock",
+    "city": "Cartagena",
+    "country": "Colombia",
+    "price": "30 usd",
+    "typeRoom": "Habitacion matrimonial",
+    "score": 5.5,
+    "img": "https://www.ahstatic.com/photos/1276_ho_00_p_1024x768.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Hard Rock",
+    "city": "Buenos Aires",
+    "country": "Argentina",
+    "price": "30 usd",
+    "typeRoom": "Habitacion matrimonial",
+    "score": 5.5,
+    "img": "https://www.ahstatic.com/photos/1276_ho_00_p_1024x768.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Hard Rock",
+    "city": "Lima",
+    "country": "Peru",
+    "price": "30 usd",
+    "typeRoom": "Habitacion matrimonial",
+    "score": 5.5,
+    "img": "https://www.ahstatic.com/photos/1276_ho_00_p_1024x768.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Hard Rock",
+    "city": "Paris",
+    "country": "Francia",
+    "price": "30 usd",
+    "typeRoom": "Habitacion matrimonial",
+    "score": 5.5,
+    "img": "https://www.ahstatic.com/photos/1276_ho_00_p_1024x768.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Hard Rock",
+    "city": "Tokio",
+    "country": "Japón",
+    "price": "30 usd",
+    "typeRoom": "Habitacion matrimonial",
+    "score": 5.5,
+    "img": "https://www.ahstatic.com/photos/1276_ho_00_p_1024x768.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Hard Rock",
+    "city": "Nueva York",
+    "country": "Estados Unidos",
+    "price": "30 usd",
+    "typeRoom": "Habitacion matrimonial",
+    "score": 5.5,
+    "img": "https://www.ahstatic.com/photos/1276_ho_00_p_1024x768.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Hard Rock",
+    "city": "Roma",
+    "country": "Italia",
+    "price": "30 usd",
+    "typeRoom": "Habitacion matrimonial",
+    "score": 5.5,
+    "img": "https://www.ahstatic.com/photos/1276_ho_00_p_1024x768.jpg"
+  },
+  {
+    "id": 9,
+    "name": "Hard Rock",
+    "city": "Sídney",
+    "country": "Australia",
+    "price": "30 usd",
+    "typeRoom": "Habitacion matrimonial",
+    "score": 5.5,
+    "img": "https://www.ahstatic.com/photos/1276_ho_00_p_1024x768.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Hard Rock",
+    "city": "Cairo",
+    "country": "Egipto",
+    "price": "30 usd",
+    "typeRoom": "Habitacion matrimonial",
+    "score": 5.5,
+    "img": "https://www.ahstatic.com/photos/1276_ho_00_p_1024x768.jpg"
+  },
+  {
+    "id": 11,
+    "name": "Hard Rock",
+    "city": "Río de Janeiro",
+    "country": "Brasil",
+    "price": "30 usd",
+    "typeRoom": "Habitacion matrimonial",
+    "score": 5.5,
+    "img": "https://www.ahstatic.com/photos/1276_ho_00_p_1024x768.jpg"
+  },
+  {
+    "id": 12,
+    "name": "Hard Rock",
+    "city": "Moscú",
+    "country": "Rusia",
+    "price": "30 usd",
+    "typeRoom": "Habitacion matrimonial",
+    "score": 5.5,
+    "img": "https://www.ahstatic.com/photos/1276_ho_00_p_1024x768.jpg"
+  },
+  {
+    "id": 13,
+    "name": "Hard Rock",
+    "city": "city del Cabo",
+    "country": "Sudáfrica",
+    "price": "30 usd",
+    "typeRoom": "Habitacion matrimonial",
+    "score": 5.5,
+    "img": "https://www.ahstatic.com/photos/1276_ho_00_p_1024x768.jpg"
+  },
+  {
+    "id": 14,
+    "name": "Hard Rock",
+    "city": "Bangkok",
+    "country": "Tailandia",
+    "price": "30 usd",
+    "typeRoom": "Habitacion matrimonial",
+    "score": 5.5,
+    "img": "https://www.ahstatic.com/photos/1276_ho_00_p_1024x768.jpg"
+  },
+  {
+    "id": 15,
+    "name": "Hard Rock",
+    "city": "Dubái",
+    "country": "Emiratos Árabes Unidos",
+    "price": "30 usd",
+    "typeRoom": "Habitacion matrimonial",
+    "score": 5.5,
+    "img": "https://www.arabianbusiness.com/cloud/2023/01/04/dubai-real-estate.jpg"
+  },
+  {
+    "id": 16,
+    "name": "Hard Rock",
+    "city": "Toronto",
+    "country": "Canadá",
+    "price": "30 usd",
+    "typeRoom": "Habitacion matrimonial",
+    "score": 5.5,
+    "img": "https://www.ahstatic.com/photos/1276_ho_00_p_1024x768.jpg"
+  }
+]

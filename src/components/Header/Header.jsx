@@ -9,7 +9,7 @@ const Header = () =>{
                 <h1>Magic Experience For Your Trip!</h1>
             </div>
             <div className={styles.boxFind}>
-                <h2>Box Find</h2>
+                <h2>Book Now</h2>
 
                 <div className={styles.search}>
                     <div className={styles.searchInfo}>
@@ -18,11 +18,12 @@ const Header = () =>{
                     </div>
                     <div className={styles.searchInfo}>
                         <h3>Dates</h3>
-                        <input type="text" />
+                        <input type="date"/>
+                        
                     </div>
                     <div className={styles.searchInfo}>
                         <h3>Guests</h3>
-                        <input type="text" />
+                        <input type="number" />
                     </div>
                     <div className={styles.searchInfo}>
                         <h3></h3>

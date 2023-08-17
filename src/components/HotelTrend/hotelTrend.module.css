@@ -7,8 +7,8 @@
 
     margin-top: 40px;
   }
-  
 
+    
 .card {
   position: relative;
   width: 260px;
@@ -16,7 +16,9 @@
   display: flex;
   flex-direction: column;
   cursor: pointer;
+
 }
+
     
 .card img {
   border-radius: 25px;
