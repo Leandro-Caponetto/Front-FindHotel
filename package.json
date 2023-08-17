@@ -14,14 +14,16 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
+    "axios": "^1.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "axios": "^1.4.0",
     "react-icons": "^4.10.1",
     "react-redux": "^8.1.1",
     "react-router-dom": "^6.13.0",
+    "react-slick": "^0.29.0",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.2",
+    "slick-carousel": "^1.8.1",
     "sweetalert2": "^11.7.23"
   },
   "devDependencies": {

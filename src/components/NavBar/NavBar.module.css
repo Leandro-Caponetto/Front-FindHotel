@@ -42,6 +42,14 @@
   color: white;
   cursor: pointer;
   padding: 0;
+  transition: 1s;
+
+}
+
+.navbar_button:hover{
+  background-color: #2CC2B4;
+  color: #101010;
+  transition: 1s;
 }
 
 @media screen and (max-width: 768px) {

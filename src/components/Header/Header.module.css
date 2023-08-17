@@ -92,6 +92,14 @@
     height: 45px;
     border-radius: 10px;
     background-color: #2CC2B4;
+    cursor: pointer;
+    transition: 1s;
+
+}
+
+.searchInfo button:hover{
+    transition: 1s;
+    background-color: #101010;
 }
 
 

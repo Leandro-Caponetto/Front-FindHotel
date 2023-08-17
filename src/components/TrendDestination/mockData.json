@@ -1,7 +1,7 @@
- [
+[
     {
         "id":1,
-        "Ciudad": "Cancún",
+        "Ciudad": "Cancun",
         "pais": "Mexico",
         "img": "https://blog.vivaaerobus.com/wp-content/uploads/2019/12/Mejores-Playas-de-Canc%C3%BAn.jpg"
     },
@@ -22,7 +22,88 @@
         "Ciudad": "Lima",
         "pais": "Peru",
         "img": "https://www.andbeyond.com/wp-content/uploads/sites/5/Peru-capital-city-Lima-Colonial.jpg"
-    }
+    },{
+        "id": 5,
+        "Ciudad": "Paris",
+        "pais": "Francia",
+        "img": "https://turismo.org/wp-content/uploads/2015/05/Torre-Eiffel-vista-panoramica-760x500.jpg"
+        },
+        
+        {
+        "id": 6,
+        "Ciudad": "Tokio",
+        "pais": "Japón",
+        "img": "https://www.civitatis.com/blog/wp-content/uploads/2022/11/calle-akihabara-tokio.jpg"
+        },
+        
+        {
+        "id": 7,
+        "Ciudad": "Nueva York",
+        "pais": "Estados Unidos",
+        "img": "https://media.admagazine.com/photos/61e5acc706c10ae95c71b902/16:9/w_2992,h_1683,c_limit/New-York-skyline.jpg"
+        },
+        
+        {
+        "id": 8,
+        "Ciudad": "Roma",
+        "pais": "Italia",
+        "img": "https://historia.nationalgeographic.com.es/medio/2019/12/11/coliseo-roma_2924b6ae_1280x720.jpg"
+        },
+        
+        {
+        "id": 9,
+        "Ciudad": "Sídney",
+        "pais": "Australia",
+        "img": "https://viajes.nationalgeographic.com.es/medio/2017/02/13/shutterstock-209684521_fd608903.jpg"
+        },
+        
+        {
+        "id": 10,
+        "Ciudad": "Cairo",
+        "pais": "Egipto",
+        "img": "https://static.nationalgeographic.es/files/styles/image_3200/public/resized-gettyimages-1411179963.jpg?w=1600&h=900"
+        },
+        
+        {
+        "id": 11,
+        "Ciudad": "Río de Janeiro",
+        "pais": "Brasil",
+        "img": "https://www.civitatis.com/blog/wp-content/uploads/2022/10/panoramica-rio-janeiro-brasil.jpg"
+        },
+        
+        {
+        "id": 12,
+        "Ciudad": "Moscú",
+        "pais": "Rusia",
+        "img": "https://www.civitatis.com/blog/wp-content/uploads/2019/09/invierno-moscu.jpg"
+        },
+        
+        {
+        "id":13,
+        "Ciudad": "Ciudad del Cabo",
+        "pais": "Sudáfrica",
+        "img": "https://resources.formula-e.pulselive.com/photo-resources/2023/02/20/042dd057-7157-4069-beb8-2aa3af8b21ba/Cape-Town.jpg?width=1440&height=810"
+        },
+        
+        {
+        "id": 14,
+        "Ciudad": "Bangkok",
+        "pais": "Tailandia",
+        "img": "https://images.contentstack.io/v3/assets/blt00454ccee8f8fe6b/blt1b6c4533f8a775c0/61bae73dd628d527ff440420/AU_Bangkok_TH_Header.jpg"
+        },
+        
+        {
+        "id": 15,
+        "Ciudad": "Dubái",
+        "pais": "Emiratos Árabes Unidos",
+        "img": "https://www.arabianbusiness.com/cloud/2023/01/04/dubai-real-estate.jpg"
+        },
+        
+        {
+        "id": 16,
+        "Ciudad": "Toronto",
+        "pais": "Canadá",
+        "img": "https://planetofhotels.com/guide/sites/default/files/styles/node__blog_post__bp_banner__blog_post_banner/public/2021-05/Nathan%20-Phillips-Square.jpg"
+        }
 
 ]
-
