@@ -1,14 +1,31 @@
 import axios from 'axios';
 import styles from "./CreateHotel.module.css";
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCountries, fetchCity } from '../../redux/countries';
 
 const CreateHotel = () => {
+
+    const countries = useSelector(state => state.countries);
+    const citys = useSelector(state => state.countries.city)
+
+    const dispatch = useDispatch();
+    
+    useEffect(() => {
+        dispatch(fetchCountries()); // Llama a la acción para obtener los países al cargar el componente
+    }, [dispatch]);
+
+    const [curCountry, setCurCountry] = useState("")
+
+
+    useEffect(() =>{
+        dispatch(fetchCity(curCountry))
+    }, [dispatch, curCountry])
+
 
     const [selectedRoomTypes, setSelectedRoomTypes] = useState([]);
     const [selectedServices, setSelectedServices] = useState([]);
     const [selectedFacilities, setSelectedFacilities] = useState([]);
-
-
 
     const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -63,13 +80,6 @@ const CreateHotel = () => {
         console.log(selectedRoomType);
 
         if (selectedRoomType === "standar") {
-            // setHotelData((prevData) => ({
-            //   ...prevData,
-            //   room: {
-            //     ...prevData.room,
-            //     name: selectedRoomType
-            //   }
-            // }));
             setHotelData({...hotelData,
             room: {
                 ...hotelData.room, name:selectedRoomType
@@ -99,6 +109,25 @@ const CreateHotel = () => {
           );
         }
       };
+
+      const handleCountry = (event) =>{
+        const {value} = event.target;
+        setCurCountry(value)
+        setHotelData((prevData) => ({
+            ...prevData,
+            country: value,
+        }))
+        
+      }
+
+      const handleCity = (event) => {
+        const { value } = event.target;
+        setHotelData((prevData) => ({
+            ...prevData,
+            city: value,
+        }));
+    };
+    
 
 
       // Función para manejar el envío del formulario
@@ -184,13 +213,31 @@ const CreateHotel = () => {
     
             <div>
             <label>Country:</label>
-            <input type="text" name="country" value={hotelData.country} onChange={handleOnChange}/>
+            <select name="country" id="country" onChange={handleCountry} >
+            <option value="none" selected disabled hidden>Select an Option</option>
+            {
+                countries.countries.map((data, index) =>{
+                    return (
+                        <option value={data} key={index}>{data}</option>
+                    )
+                })
+            }
+            </select>            
             {errors.country && <p className={styles.error}>{errors.country}</p>}
             </div>
     
             <div>
             <label>City:</label>
-            <input type="text" name="city" value={hotelData.city} onChange={handleOnChange}/>
+            <select name="city" id="city" onChange={handleCity} >
+            <option value="none" selected disabled hidden>Select an Option</option>
+            {
+                citys.map((data, index) =>{
+                    return (
+                        <option value={data} key={index}>{data}</option>
+                    )
+                })
+            }
+            </select>            
             {errors.city && <p className={styles.error}>{errors.city}</p>}
             </div>
 

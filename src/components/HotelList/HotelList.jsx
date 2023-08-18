@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./HotelList.module.css";
 import { FaStar } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 
 console.log(styles.container)
@@ -202,7 +202,7 @@ const HotelList = () => {
   <div className={styles.cardsContainer}>
     <span className={styles.resultsText}>Results Hotels</span>
     {hotels.map((hotel) => (
-        <Link key={hotel.id} to={`/detail/${hotel.id}`} className={styles.card}>
+        <NavLink key={hotel.id} to={`/detail/${hotel.id}`} className={styles.card}>
           <img
             src={hotel.img}
             alt="hotel image"
@@ -222,7 +222,7 @@ const HotelList = () => {
             </div>
             <h5 className={styles.text}>{hotel.typeRoom}</h5>
           </div>
-        </Link>
+        </NavLink>
       ))}
   </div>
 </div>
