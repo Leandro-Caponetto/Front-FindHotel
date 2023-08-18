@@ -13,7 +13,7 @@
     color: #ffffff;
     display: inline-block;
     position: relative;
-    transition: transform 0.3s, color 0.3s;
+    transition: transform 0.5s ease-in-out, color 0.5s ease-in-out;
 }
 
 .FaFacebook:hover {
@@ -55,4 +55,87 @@
     color: #fff;
     background-color: #25D366;
     border-radius: 50%;
+}
+
+.FaPinterest:hover {
+    transform: scale(1.1);
+    color: #E60023;
+    background-color: #ffffff;
+    border-radius: 50%;
+}
+
+.FaYoutube:hover {
+    transform: scale(1.1);
+    color: #FF0000;
+    background-color: transparent;
+    border-radius: 50%;
+}
+
+.FaApple:hover {
+    transform: scale(1.1);
+    color: black;
+    background-color: transparent;
+    border-radius: 50%;
+}
+
+.FaMessenger:hover {
+    transform: scale(1.1);
+    color: #006AFF;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.FaDiscord:hover {
+    transform: scale(1.1);
+    color: #8c9eff;
+    background-color: transparent;
+    border-radius: 50%;
+}
+
+
+/** TIKTOK **/
+.Tiktok {
+    position: relative;
+}
+
+.TiktokIni {
+    color: #ffffff;
+    z-index: 3;
+}
+
+.TiktokMid,
+.TiktokEnd {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none;
+}
+
+.Tiktok:hover {
+    transform: scale(1.1);
+    border-top-color: transparent;
+}
+
+.Tiktok:hover .TiktokIni {
+    color: #fe2d52;
+    display: block;
+    opacity: 80%;
+}
+
+.Tiktok:hover .TiktokMid {
+    color: #ffffff;
+    top: 0px;
+    right: 3px;
+    z-index: 1;
+    display: block;
+    opacity: 80%;
+}
+
+.Tiktok:hover .TiktokEnd {
+    color: #28ffff;
+    top: -5px;
+    right: 5px;
+    z-index: 0;
+    display: block;
+    opacity: 80%;
 }
