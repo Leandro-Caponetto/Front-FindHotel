@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "./HotelList.module.css";
 import { FaStar } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
+
 
 const HotelList = () => {
   const hotels = [
@@ -204,22 +206,28 @@ const HotelList = () => {
   <div className={styles.cardsContainer}>
     <span className={styles.resultsText}>Results Hotels</span>
     {hotels.map((hotel) => (
-      <div key={hotel.id} className={styles.card}>
-        <img src={hotel.img} alt="hotel image" className={styles.cardImage} />
-        <div className={styles.cardContent}>
-          <h1 className={styles.title}>{hotel.name}</h1>
-          <div className={styles.location}>
-            <h5 className={styles.textCity}>{hotel.city}, {hotel.country}</h5>
+        <Link key={hotel.id} to={`/detail/${hotel.id}`} className={styles.card}>
+          <img
+            src={hotel.img}
+            alt="hotel image"
+            className={styles.cardImage}
+          />
+          <div className={styles.cardContent}>
+            <h1 className={styles.title}>{hotel.name}</h1>
+            <div className={styles.location}>
+              <h5 className={styles.textCity}>
+                {hotel.city}, {hotel.country}
+              </h5>
+            </div>
+            <div className={styles.starIcon}>
+              {Array.from({ length: hotel.category }, (_, index) => (
+                <FaStar key={index} />
+              ))}
+            </div>
+            <h5 className={styles.text}>{hotel.typeRoom}</h5>
           </div>
-          <div className={styles.starIcon}>
-            {Array.from({ length: hotel.category }, (_, index) => (
-              <FaStar key={index} />
-            ))}
-          </div>
-          <h5 className={styles.text}>{hotel.typeRoom}</h5>
-        </div>
-      </div>
-    ))}
+        </Link>
+      ))}
   </div>
 </div>
 );

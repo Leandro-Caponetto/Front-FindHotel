@@ -13,6 +13,7 @@ const TrendDestinations = () => {
     slidesToShow: 4, // Cantidad de tarjetas visibles a la vez
     slidesToScroll: 1,
     
+    
   };
 
   return (
