@@ -4,6 +4,7 @@ import { FaStar } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
 
+console.log(styles.container)
 const HotelList = () => {
   const hotels = [
     {
@@ -51,69 +52,63 @@ const HotelList = () => {
       score: 5.5,
       category: 3,
       img: "https://www.infobae.com/new-resizer/r8gfDonqfwbvJkfGOfoZMKpM7GQ=/1200x900/filters:format(webp):quality(85)/s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2018/05/30122005/hoteles-lujo-destacada-1.jpg",
-    },
-    {
-      id: 5,
-
-      name: "Hard Rock",
-      city: "Paris",
-      country: "Francia",
-      price: "30 usd",
-      typeRoom: "Habitacion matrimonial",
-      score: 5.5,
-      category: 1,
-      img: "https://www.momondo.com.co/himg/62/c0/84/ice-85676218-68620422_3XL-430714.jpg",}
+    }
+    
+    //   name: "Hard Rock",
+    //   city: "Paris",
+    //   country: "Francia",
+    //   price: "30 usd",
+    //   typeRoom: "Habitacion matrimonial",
+    //   score: 5.5,
+    //   category: 1,
+    //   img: "https://www.momondo.com.co/himg/62/c0/84/ice-85676218-68620422_3XL-430714.jpg",
     // },
 
     // {
     //   id: 6,
-
     //   name: "Hard Rock",
     //   city: "Tokio",
     //   country: "Japón",
     //   price: "30 usd",
     //   typeRoom: "Habitacion matrimonial",
     //   score: 5.5,
-    // // category: 3,
+    // category: 3,
     //   img: "https://www.eltiempo.com/files/image_640_428/files/crop/uploads/2022/05/06/62752986a0b9f.r_1651848957740.0-73-1500-823.jpeg",
     // },
 
     // {
     //   id: 7,
-
     //   name: "Hard Rock",
     //   city: "Nueva York",
     //   country: "Estados Unidos",
     //   price: "30 usd",
     //   typeRoom: "Habitacion matrimonial",
     //   score: 5.5,
-    // // category: 3,
+    // category: 3,
     //   img: "https://cdn.forbes.com.mx/2020/06/Hoteles-Hilton-1-e1591048643462.jpg",
     // },
 
     // {
     //   id: 8,
-
     //   name: "Hard Rock",
     //   city: "Roma",
     //   country: "Italia",
     //   price: "30 usd",
     //   typeRoom: "Habitacion matrimonial",
     //   score: 5.5,
-    // // category: 3,
+    // category: 3,
     //   img: "https://www.hotelwyndhambogota.com/wp-content/uploads/2022/03/Fachada-Wyndham-bogota-1.jpg",
     // },
 
     // {
     //   id: 9,
-
     //   name: "Hard Rock",
     //   city: "Sídney",
     //   country: "Australia",
     //   price: "30 usd",
     //   typeRoom: "Habitacion matrimonial",
     //   score: 5.5,
-    // // category: 3,
+    // category: 3,
     //   img: "https://www.infobae.com/new-resizer/TeqEZeHVjdF1hjS6KPLpdk9cw0g=/filters:format(webp):quality(85)/arc-anglerfish-arc2-prod-infobae.s3.amazonaws.com/public/PSRMPOWYTZC5HHJR5CUVXVVVQU.jpg",
     // },
 
@@ -125,7 +120,7 @@ const HotelList = () => {
     //   price: "30 usd",
     //   typeRoom: "Habitacion matrimonial",
     //   score: 5.5,
-    // // category: 3,
+    // category: 3,
     //   img: "https://www.infobae.com/new-resizer/aZmX5OQ0IQYdnt_KvQgTCVTP-yM=/filters:format(webp):quality(85)/arc-anglerfish-arc2-prod-infobae.s3.amazonaws.com/public/ERBFSFSFAVGSFOEAEMORNX6YMI.jpg",
     // },
 
@@ -137,7 +132,7 @@ const HotelList = () => {
     //   price: "30 usd",
     //   typeRoom: "Habitacion matrimonial",
     //   score: 5.5,
-    // // category: 3,
+    // category: 3,
     //   img: "https://www.momondo.cl/kimg/e5/52/27d748ac-616d91c9-118.jpeg",
     // },
 
@@ -199,8 +194,9 @@ const HotelList = () => {
     //   score: 5.5,
     // category: 3,
     //   img: "https://cdn.forbes.com.mx/2020/07/hoteles-Grand-Velas-Resorts-e1596047698604.jpg",
-    // },
+    // }
   ];
+
   return (
   <div className={styles.container}>
   <div className={styles.cardsContainer}>

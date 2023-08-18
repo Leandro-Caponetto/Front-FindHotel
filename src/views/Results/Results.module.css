@@ -1,0 +1,19 @@
+.conten {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: flex-start;
+  align-items: stretch;
+  gap: 30px;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+}
