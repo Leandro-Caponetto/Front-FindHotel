@@ -15,8 +15,6 @@ const Home = () => {
      <Header/>
      <TrendDestinations/>
      <HotelTrend/>
-     <Footer />
-
     </div>
   );
 };
