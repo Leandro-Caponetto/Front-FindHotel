@@ -1,11 +1,30 @@
-import React from "react";
+import React , { useEffect, useState } from "react";
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import mockData from "./mockData.json";
 import styles from "./trendDestinations.module.css";
+import axios from "axios";
+
 
 const TrendDestinations = () => {
+
+  const [stateData, setStateData] = useState([]); 
+
+  useEffect(() => {
+
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:3001/trending/state');
+        setStateData(response.data); 
+        console.log(response.data);
+      } catch (error) {
+        console.error('Error fetching hotel data:', error);
+      }
+    };
+
+    fetchData(); // Call the fetchData function
+  }, []);
+
   const settings = {
     dots: true, // Muestra los indicadores (puntitos)
     infinite: false,
@@ -22,17 +41,17 @@ const TrendDestinations = () => {
 
       <div className={styles.carouselContainer}>
         <Slider {...settings}>
-        {mockData.map((d) => (
+        {stateData.map((d) => (
           <div className={styles.cardContainer} key={d.id}>
            <div className={styles.card}>
             <img
               className={styles.image}
-              src={d.img}
-              alt={`Imagen de ${d.Ciudad}, ${d.pais}`}
+              src={d.image}
+              alt={`Imagen de ${d.country}, ${d.state}`}
             />
             <div className={styles.info}>
-              <h3>{d.Ciudad}</h3>
-              <p>{d.pais}</p>
+              <h3>{d.country}</h3>
+              <p>{d.state}</p>
             </div>
             </div>
           </div>
