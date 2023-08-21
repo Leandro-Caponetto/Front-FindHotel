@@ -23,9 +23,10 @@
     font-family: cocogoose, sans-serif;
     border-radius: 25px;
     -webkit-box-shadow: 8px 14px 14px -7px rgba(0,0,0,0.44); 
-box-shadow: 8px 14px 14px -7px rgba(0,0,0,0.44);
+    box-shadow: 8px 14px 14px -7px rgba(0,0,0,0.44);
+
   }
-  
+
   .cardImage {
     width: 290px;
     height: 280px;
