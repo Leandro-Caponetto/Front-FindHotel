@@ -118,11 +118,9 @@ const Detail = () => {
 
   return (
     <div className={styles.detailContainer}>
-      <div>
         <div className={styles.title}>
-          <h1>{hotel.name}</h1>
+          <h1 >{hotel.name}</h1>
         </div>
-        <div>
           <div>
             <img
               className={styles.cardImage}
@@ -135,18 +133,15 @@ const Detail = () => {
            <MdLocationOn/> We are located in {hotel.city}, {hotel.country}, {hotel.address}
             </h5>
           </div>
-        </div>
-        <div>
         <div className={styles.star}>
           {Array.from({ length: hotel.category }, (_, index) => (
             <FaStar key={index} />
           ))}
         </div>
-
         <div className={styles.textConten}>
         <h5>Enjoy {hotel.services}</h5>
         <h5>
-          The services that you will have in your room are {hotel.servicesRoom}
+          The services that you will have in your room are {hotel.servicesRoom.join(",")}
         </h5>
         <h5>Room information </h5>
         <h5> Type room: {hotel.room.name}</h5>
@@ -155,8 +150,7 @@ const Detail = () => {
         {hotel.roomService ? <h5>Room Service: Available</h5> : null}
         </div>
         <button className={styles.button}><Link to="/results"> Back </Link></button>
-      </div>
-    </div>
+      
     </div>
   );
 };
