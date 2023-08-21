@@ -6,7 +6,7 @@ import hotelData from "./hotelData.json";
 import styles from "./hotelTrend.module.css";
 
 const HotelTrend = () => {
-  
+
   const settings = {
     dots: true, // Muestra los indicadores (puntitos)
     infinite: true,
@@ -35,7 +35,7 @@ const HotelTrend = () => {
         }
       }
     ]
-    
+
   };
 
   return (
@@ -44,21 +44,22 @@ const HotelTrend = () => {
 
       <div className={styles.carouselContainer}>
         <Slider {...settings}>
-        {hotelData.map((d) => (
-          <div className={styles.cardContainer} key={d.id}>
-           <div className={styles.card}>
-            <img
-              className={styles.image}
-              src={d.img}
-              alt={`Imagen de ${d.city}, ${d.country}`}
-            />
-            <div className={styles.info}>
-              <h3>{d.name}</h3>
-              <p>{d.city}</p>
+          {hotelData.map((d) => (
+            <div className={styles.cardContainer} key={d.id}>
+              <div className={styles.card}>
+                <img
+                  className={styles.image}
+                  src={d.img}
+                  alt={`Imagen de ${d.city}, ${d.country}`}
+                  loading="lazy"
+                />
+                <div className={styles.info}>
+                  <h3>{d.name}</h3>
+                  <p>{d.city}</p>
+                </div>
+              </div>
             </div>
-            </div>
-          </div>
-        ))}
+          ))}
         </Slider>
       </div>
 
