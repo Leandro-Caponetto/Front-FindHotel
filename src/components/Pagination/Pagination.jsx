@@ -1,5 +1,3 @@
-/** @format */
-
 import React from "react";
 import PropTypes from "prop-types";
 import './Pagination.module.css'
@@ -16,6 +14,7 @@ const Pagination = ({
   for (let i = 1; i <= Math.ceil(totalHotels / hotelsPorPage); i++) {
     pageNumber.push(i);
   }
+  
   const onPreviusPage = () => {
     setCurrentPage(currentPage - 1)
   }
@@ -33,13 +32,13 @@ const Pagination = ({
       aria-label="pagination"
     >
       <a className={`pagination-previous  ${currentPage === 1 ? 'is-disabled' : ''}`} onClick={onPreviusPage}>Previous</a>
-      <a className={`pagination-next ${currentPage >= pageNumber.length ? 'is-disabled' : ''}`} onClick={onNextPage}>Next page</a>
+      <a className={`pagination-next  ${currentPage >= pageNumber.length ? 'is-disabled' : ''}`} onClick={onNextPage}>Next</a>
       <ul className="pagination-list">
         {pageNumber.map(noPage => (
           <li key={noPage}>
             <a
              className={`pagination-link  link ${
-                noPage === currentPage ? 'is-current' : ''}`}
+                noPage === currentPage ? 'is-current tag is-primary is-large' : ''}`}
                     onClick={() => onSpecificPage(noPage)}
                 >
                     {noPage}</a>

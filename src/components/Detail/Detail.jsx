@@ -1,12 +1,14 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import styles from "./Detail.module.css";
 import { FaStar  } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md"
 import NavBar from "../NavBar/NavBar";
 import { Link } from "react-router-dom";
 
+
 const Detail = () => {
+
   const hotels = [
     {
       id: 1,
@@ -109,6 +111,7 @@ const Detail = () => {
       isActive: true,
     },
   ];
+
   const { hotelId } = useParams();
   const hotel = hotels.find((hotel) => hotel.id === parseInt(hotelId));
 

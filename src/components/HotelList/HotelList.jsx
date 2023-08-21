@@ -3,9 +3,13 @@ import styles from "./HotelList.module.css";
 import { FaStar } from 'react-icons/fa'
 import { NavLink } from 'react-router-dom'
 import hotelsData from "./hotelsData.json"
+import  Pagination  from "../Pagination/Pagination";
 
-const HotelList = (props) => {
+const HotelList = () => {
   const [hotels, setHotels] = useState([]);
+
+  const totalHotels = hotels.length
+
   const [hotelsPorPage, setHotelsPorPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -20,7 +24,7 @@ const HotelList = (props) => {
     <div className={styles.container}>
       <div className={styles.cardsContainer}>
         <span className={styles.resultsText}>Results Hotels</span>
-        {hotels.map((hotel) => (
+        {hotels.slice(firstIndex, lastIndex).map((hotel) => (
           <NavLink key={hotel.id} to={`/detail/${hotel.id}`} className={styles.card}>
             <img
               src={hotel.img}
@@ -44,6 +48,12 @@ const HotelList = (props) => {
           </NavLink>
         ))}
       </div>
+        <Pagination
+        hotelsPorPage={hotelsPorPage}
+        currentPage={currentPage}
+         setCurrentPage={setCurrentPage}
+        totalHotels={totalHotels}
+        />
     </div>
   );
 };
