@@ -1,11 +1,30 @@
-import React from "react";
+import React , { useEffect, useState } from "react";
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import hotelData from "./hotelData.json";
 import styles from "./hotelTrend.module.css";
+import axios from "axios";
 
 const HotelTrend = () => {
+
+
+  const [hotelData, setHotelData] = useState([]); // Use state to store hotelData
+
+  useEffect(() => {
+
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:3001/trending/hotels');
+        setHotelData(response.data); // Update hotelData using the state setter
+        console.log(response.data);
+      } catch (error) {
+        console.error('Error fetching hotel data:', error);
+      }
+    };
+
+    fetchData(); // Call the fetchData function
+  }, []);
+
 
   const settings = {
     dots: true, // Muestra los indicadores (puntitos)
@@ -49,13 +68,15 @@ const HotelTrend = () => {
               <div className={styles.card}>
                 <img
                   className={styles.image}
-                  src={d.img}
+                  src={d.image}
+
                   alt={`Imagen de ${d.city}, ${d.country}`}
                   loading="lazy"
                 />
                 <div className={styles.info}>
                   <h3>{d.name}</h3>
-                  <p>{d.city}</p>
+                  <p>{d.country}</p>
+
                 </div>
               </div>
             </div>
