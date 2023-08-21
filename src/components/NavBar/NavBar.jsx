@@ -23,7 +23,6 @@ const NavBar = (props) => {
           </Link>
         </div>
       </nav>
-
     </div>
   );
 };

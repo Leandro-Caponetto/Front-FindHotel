@@ -24,21 +24,22 @@ const TrendDestinations = () => {
 
       <div className={styles.carouselContainer}>
         <Slider {...settings}>
-        {mockData.map((d) => (
-          <div className={styles.cardContainer} key={d.id}>
-           <div className={styles.card}>
-            <img
-              className={styles.image}
-              src={d.img}
-              alt={`Imagen de ${d.Ciudad}, ${d.pais}`}
-            />
-            <div className={styles.info}>
-              <h3>{d.Ciudad}</h3>
-              <p>{d.pais}</p>
+          {mockData.map((d) => (
+            <div className={styles.cardContainer} key={d.id}>
+              <div className={styles.card}>
+                <img
+                  className={styles.image}
+                  src={d.img}
+                  alt={`Imagen de ${d.Ciudad}, ${d.pais}`}
+                  loading="lazy"
+                />
+                <div className={styles.info}>
+                  <h3>{d.Ciudad}</h3>
+                  <p>{d.pais}</p>
+                </div>
+              </div>
             </div>
-            </div>
-          </div>
-        ))}
+          ))}
         </Slider>
       </div>
 

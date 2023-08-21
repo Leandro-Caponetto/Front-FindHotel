@@ -1,8 +1,9 @@
 import styles from './Header.module.css'
 import { IoIosArrowForward } from 'react-icons/io';
+import { InputText, InputNumber, InputDate } from '../Inputs';
 
-const Header = () =>{
-    return(
+const Header = () => {
+    return (
         <div className={styles.ContainerBox}>
             <div className={styles.boxInfo}>
                 <p>Elevate your travel journey</p>
@@ -13,22 +14,23 @@ const Header = () =>{
 
                 <div className={styles.search}>
                     <div className={styles.searchInfo}>
-                        <h3>Destination</h3>
-                        <input type="text" />
+                        {/* <h3>Destination</h3> */}
+                        <InputText tag={'Destination'} />
+                        {/* <input type="text" /> */}
                     </div>
                     <div className={styles.searchInfo}>
-                        <h3>Check in</h3>
-                        <input type="date"/>
-                        
+                        {/* <h3>Check in</h3>
+                    <input type="date" /> */}
+                        <InputDate tag={'Check in'} />
                     </div>
                     <div className={styles.searchInfo}>
-                        <h3>Check out</h3>
-                        <input type="date"/>
-                        
+                        {/* <h3>Check out</h3>
+                        <input type="date"/> */}
+                        <InputDate tag={'Check out'} />
                     </div>
                     <div className={styles.searchInfo}>
-                        <h3>Guests</h3>
-                        <input type="number" />
+                        {/* <h3>Guests</h3> */}
+                        <InputNumber tag={'Guests'} />
                     </div>
                     <div className={styles.searchInfo}>
                         <h3></h3>

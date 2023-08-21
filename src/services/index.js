@@ -1,0 +1,1 @@
+export { handlerLoginValidate } from './handlers'

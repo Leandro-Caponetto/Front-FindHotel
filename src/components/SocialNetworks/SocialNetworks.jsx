@@ -26,7 +26,6 @@ import styles from './SocialNetworks.module.css';
  * @returns 
  */
 const SocialNetworks = ({ redSocial, size = 30, gap = 20 }) => {
-  console.log(redSocial)
   return (
     <div className={styles.SocialNetworks} style={{ gap: `${gap}px` }}>
       {Object.entries(redSocial).map((red, index) => {
