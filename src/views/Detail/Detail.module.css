@@ -1,0 +1,24 @@
+
+  
+  .contentContainer {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden; 
+  }
+  
+  .detailContainer {
+    flex: 1;
+    padding: 20px;
+
+  }
+  
+  .reserveContainer {
+    flex-shrink: 0;
+    width: 300px; 
+    padding: 20px;
+    position: absolute;
+    top: 80px; 
+    position: fixed;
+  
+  }
+  

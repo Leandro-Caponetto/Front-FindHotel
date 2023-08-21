@@ -19,11 +19,17 @@
 .FaFacebook:hover {
     transform: scale(1.1);
     color: #4267B2;
+    background: #fff;
+    border-radius: 50%;
+    filter: drop-shadow(1px 5px 8px #201f1f);
+    
+    
 }
 
 .FaTwitter:hover {
     color: #1DA1F2;
     transform: scale(1.1);
+    filter: drop-shadow(1px 5px 8px #201f1f);
 }
 
 .FaInstagram:hover {
@@ -34,6 +40,7 @@
     background: #d6249f;
     background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
     box-shadow: 0px 3px 10px rgba(0, 0, 0, .1);
+    filter: drop-shadow(1px 5px 8px #201f1f);
 }
 
 .FaLinkedin:hover {
@@ -41,6 +48,7 @@
     background: #fff;
     color: #0288D1;
     border-radius: 15%;
+    filter: drop-shadow(1px 5px 8px #201f1f);
 }
 
 .FaGithub:hover {

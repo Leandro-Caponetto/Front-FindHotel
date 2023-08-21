@@ -7,6 +7,7 @@ import axios from "axios";
 
 const HotelTrend = () => {
 
+
   const [hotelData, setHotelData] = useState([]); // Use state to store hotelData
 
   useEffect(() => {
@@ -23,6 +24,7 @@ const HotelTrend = () => {
 
     fetchData(); // Call the fetchData function
   }, []);
+
 
   const settings = {
     dots: true, // Muestra los indicadores (puntitos)
@@ -67,12 +69,14 @@ const HotelTrend = () => {
                 <img
                   className={styles.image}
                   src={d.image}
+
                   alt={`Imagen de ${d.city}, ${d.country}`}
                   loading="lazy"
                 />
                 <div className={styles.info}>
                   <h3>{d.name}</h3>
                   <p>{d.country}</p>
+
                 </div>
               </div>
             </div>

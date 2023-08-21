@@ -1,0 +1,36 @@
+.InputNumber {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.InputNumber h3 {
+    line-height: 0;
+}
+
+.InputNumber input {
+    border: none;
+    border-radius: 10px;
+    font-family: "Segoe UI ", Arial, sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    text-indent: 10px;
+    -webkit-text-stroke: 0.5px black;
+}
+
+.InputNumber input::placeholder {
+    font-family: CocoSharpBold;
+    opacity: 50%;
+    font-size: 16px;
+    -webkit-text-stroke: 0.5px white;
+}
+
+.ErrorLabel {
+    width: 100%;
+    height: auto;
+    font-size: 15px;
+    border-color: #fff;
+    color: rgb(207, 35, 35);
+    -webkit-text-stroke: 0.1px rgba(255, 255, 255, 0.52);
+    transition: 0.5s ease-in-out;
+}

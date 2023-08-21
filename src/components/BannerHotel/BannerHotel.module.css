@@ -1,0 +1,33 @@
+
+.slider {
+    width: 75vw;
+    height: auto;
+    margin: auto;
+    overflow: hidden;
+  }
+  
+  .slideTrack {
+    display: flex;
+    animation: scroll 90s linear infinite;
+    -webkit-animation: scroll 90s linear infinite;
+    width: calc(200px * 14);
+  }
+  
+  .slide {
+    width: 250px;
+    margin: 30px;
+  }
+  
+  .slide img {
+    width: 100%;
+  }
+  
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-200px * 7)); /* Cambiado el valor de -200 * 7 */
+    }
+  }
+  
