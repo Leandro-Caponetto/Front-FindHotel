@@ -17,7 +17,12 @@ const Header = () =>{
                         <input type="text" />
                     </div>
                     <div className={styles.searchInfo}>
-                        <h3>Dates</h3>
+                        <h3>Check in</h3>
+                        <input type="date"/>
+                        
+                    </div>
+                    <div className={styles.searchInfo}>
+                        <h3>Check out</h3>
                         <input type="date"/>
                         
                     </div>

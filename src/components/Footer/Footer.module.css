@@ -47,6 +47,8 @@
 .LinksContact a:hover {
     color: #2CC2B4;
     transform: scale(1.1);
+    -webkit-text-stroke: 1px aliceblue;
+    text-shadow: 0 7px 10px #000;
 }
 
 .RedSocial {

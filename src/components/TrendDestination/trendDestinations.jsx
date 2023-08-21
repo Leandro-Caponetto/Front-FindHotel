@@ -8,12 +8,14 @@ import styles from "./trendDestinations.module.css";
 const TrendDestinations = () => {
   const settings = {
     dots: true, // Muestra los indicadores (puntitos)
-    infinite: false,
+    arrow: true,
+    infinite: true,
     speed: 500,
     slidesToShow: 4, // Cantidad de tarjetas visibles a la vez
     slidesToScroll: 1,
-    
-    
+    autoplay: true,
+    autoplaySpeed: 2000,
+
   };
 
   return (

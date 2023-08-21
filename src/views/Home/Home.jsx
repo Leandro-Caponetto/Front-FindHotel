@@ -5,15 +5,22 @@ import styles from './Home.module.css';
 import TrendDestinations from '../../components/TrendDestination/trendDestinations';
 import Header from '../../components/Header/Header';
 import HotelTrend from '../../components/HotelTrend/hotelTrend';
+import BannerHotel from '../../components/BannerHotel/BannerHotel';
+
+
 
 
 const Home = () => {
   return (
     <div className={styles.container}>
      <NavBar/>
+     
      <Header/>
      <TrendDestinations/>
+
      <HotelTrend/>
+     <BannerHotel/>
+
     </div>
   );
 };

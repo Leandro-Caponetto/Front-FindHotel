@@ -107,7 +107,7 @@
 
 
 .index input{
-    color: #101010;
+    
     display: flex;
     width: 130px;
     height: 20px;
@@ -128,11 +128,11 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), inset 0 -4px 8px rgba(255, 255, 255, 0.5); 
 }
 
-.index .error{
-    font-size: 0.9rem;
+.index .errors{
+    font-size: 12px;
     width: 130px;
     font-weight: bold;
-
+    color: red;
 }
 
 .details{
@@ -176,13 +176,13 @@
 }
 
 
-.details .error {
+.details .errors {
     font-weight: bold;
-    font-size: 0.70rem;
+    font-size: 12px;
     margin-top: 10px;
-    width: 70px;
-    margin-bottom: none;
     
+    margin-bottom: none;
+    color: red;
   }
 
 .types{

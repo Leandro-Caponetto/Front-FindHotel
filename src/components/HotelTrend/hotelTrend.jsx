@@ -6,12 +6,35 @@ import hotelData from "./hotelData.json";
 import styles from "./hotelTrend.module.css";
 
 const HotelTrend = () => {
+  
   const settings = {
     dots: true, // Muestra los indicadores (puntitos)
-    infinite: false,
+    infinite: true,
     speed: 500,
     slidesToShow: 4, // Cantidad de tarjetas visibles a la vez
     slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          arrows: false,
+          centerMode: true,
+          centerPadding: '40px',
+          slidesToShow: 3
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          arrows: false,
+          centerMode: true,
+          centerPadding: '40px',
+          slidesToShow: 1
+        }
+      }
+    ]
     
   };
 

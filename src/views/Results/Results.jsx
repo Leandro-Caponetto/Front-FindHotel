@@ -1,7 +1,7 @@
 import React from "react";
 import HotelList from "../../components/HotelList/HotelList";
 import NavBar from "../../components/NavBar/NavBar";
-import SearchBox from "../../components/searchBox/SearchBox";
+import SearchBox from "../../components/SearchBox/SearchBox";
 import styles from "./Results.module.css";
 
 const Results = () => {
@@ -11,6 +11,7 @@ const Results = () => {
       <div className={styles.conten}>
         <SearchBox />
         <HotelList />
+        
       </div>
     </div>
   );

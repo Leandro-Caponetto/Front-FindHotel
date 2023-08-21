@@ -8,7 +8,7 @@ const CreateHotel = () => {
     const [selectedServices, setSelectedServices] = useState([]);
     const [selectedFacilities, setSelectedFacilities] = useState([]);
 
-
+    
 
     const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -100,12 +100,61 @@ const CreateHotel = () => {
         }
       };
 
+      const validate = () => {
+        const newErrors = {};
+    
+        if (!hotelData.name) {
+          newErrors.name = 'Name is required';
+        } else if (!/^[a-zA-Z\s]*$/.test(hotelData.name)) {
+          newErrors.name = 'Name should only contain letters and spaces';
+        } else if (hotelData.name.length > 50) {
+          newErrors.name = 'Name should be no more than 50 characters';
+        }
+    
+        if (!hotelData.image) {
+          newErrors.image = 'Image URL is required';
+        }
+    
+        if (!hotelData.country) {
+          newErrors.country = 'Country is required';
+        }
+    
+        if (!hotelData.city) {
+          newErrors.city = 'City is required';
+        }
+    
+        if (!hotelData.address) {
+          newErrors.address = 'Address is required';
+        }
+    
+        if (!hotelData.category) {
+          newErrors.category = 'Category is required';
+        }
+    
+        if (!hotelData.room.name) {
+          newErrors.roomName = 'Room name is required';
+        }
+    
+        if (!hotelData.room.price) {
+          newErrors.roomPrice = 'Room price is required';
+        }
+    
+        if (!hotelData.room.stock) {
+          newErrors.roomStock = 'Room stock is required';
+        }
+    
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+      };
+    
+
 
       // Función para manejar el envío del formulario
   const handleSubmit = (event) => {
     event.preventDefault(); 
 
-    const dataToSend = {
+    if (validate()) {
+      const dataToSend = {
         name: hotelData.name,
         category: hotelData.category,
         facilities: selectedFacilities,
@@ -121,13 +170,12 @@ const CreateHotel = () => {
         address: hotelData.address,
       };
 
-      console.log('Data to send:', dataToSend);
-
-      axios.post('http://localhost:3001/hotel', dataToSend)
-      .then((response) => {
-        console.log('Response from server:', response.data);
-        setIsSubmitted(true); 
-        setHotelData({ 
+      axios
+        .post('http://localhost:3001/hotel', dataToSend)
+        .then((response) => {
+          console.log('Response from server:', response.data);
+          setIsSubmitted(true);
+          setHotelData({
             name: '',
             image: '',
             country: '',
@@ -135,7 +183,7 @@ const CreateHotel = () => {
             address: '',
             category: '',
             room: {
-              name: '',     // Reset room name
+              name: '',
               price: '',
               stock: '',
             },
@@ -144,21 +192,23 @@ const CreateHotel = () => {
             roomService: false,
             wifi: false,
             isActive: true,
+          });
+          setSelectedRoomTypes([]);
+          setSelectedServices([]);
+          setSelectedFacilities([]);
+          setErrors({});
+        })
+        .catch((error) => {
+          console.error('Error during POST request:', error);
+          if (error.response && error.response.data && error.response.data.message) {
+            setErrors({ server: 'The hotel with this name already exists. Please choose a different name.' });
+          } else {
+            setErrors({ server: 'Something went wrong. Please try again later.' });
+          }
         });
-        setSelectedRoomTypes([]); 
-        setSelectedServices([]);
-        setSelectedFacilities([]);
-        setErrors({}); 
-      })
-      .catch((error) => {
-        console.error('Error during POST request:', error);
-        if (error.response && error.response.data && error.response.data.message) {
-          setErrors({ server: 'The hotel with this name already exists. Please choose a different name.' });
-        } else {
-          setErrors({ server: 'Something went wrong. Please try again later.' });
-        }
-      });
+    }
   };
+
   
 
     return(
@@ -170,13 +220,14 @@ const CreateHotel = () => {
                 <div>
                     <label>Name Hotel:</label>
                     <input type="text" name="name" value={hotelData.name} onChange={handleOnChange}/>
-                    {errors.name && <p className={styles.error}>{errors.name}</p>}
+                    {errors.name && <p className={styles.errors}>{errors.name}</p>}
+                    
                 </div>
     
                 <div>
                     <label>Image:</label>
                     <input type="text" name="image" value={hotelData.image} onChange={handleOnChange}/>
-                    {errors.image && <p className={styles.error}>{errors.image}</p>}
+                    {errors.image && <p className={styles.errors}>{errors.image}</p>}
                 </div>
             </div>
     
@@ -185,28 +236,28 @@ const CreateHotel = () => {
             <div>
             <label>Country:</label>
             <input type="text" name="country" value={hotelData.country} onChange={handleOnChange}/>
-            {errors.country && <p className={styles.error}>{errors.country}</p>}
+            {errors.country && <p className={styles.errors}>{errors.country}</p>}
             </div>
     
             <div>
             <label>City:</label>
             <input type="text" name="city" value={hotelData.city} onChange={handleOnChange}/>
-            {errors.city && <p className={styles.error}>{errors.city}</p>}
+            {errors.city && <p className={styles.errors}>{errors.city}</p>}
             </div>
 
             <div>
             <label>Adress:</label>
             <input type="text" name="address" value={hotelData.address} onChange={handleOnChange}/>
-            {errors.address && <p className={styles.error}>{errors.address}</p>}
+            {errors.address && <p className={styles.errors}>{errors.address}</p>}
             </div>
     
             <div>
             <label>Category (stars):</label>
             <input type="number" name="category" value={hotelData.category} onChange={handleOnChange}/>
-            {errors.category && <p className={styles.error}>{errors.category}</p>}
+            {errors.category && <p className={styles.errors}>{errors.category}</p>}
             </div>
 
-            <p>Habitaciones:</p>
+            <p>Rooms:</p>
     
             <div>
             <label >Selecciona el tipo:</label>
@@ -282,6 +333,11 @@ const CreateHotel = () => {
             </label>
 
             </div>
+
+            <div>
+           
+            
+          </div>
     
     
             <button type="submit" onClick={handleSubmit}>CREATE</button>
@@ -294,3 +350,5 @@ const CreateHotel = () => {
 }
 
 export default CreateHotel;
+
+
