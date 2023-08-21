@@ -22,6 +22,7 @@
     box-sizing: border-box;
     font-family: cocogoose, sans-serif;
     border-radius: 25px;
+    color: #000;
     -webkit-box-shadow: 8px 14px 14px -7px rgba(0,0,0,0.44); 
     box-shadow: 8px 14px 14px -7px rgba(0,0,0,0.44);
 

@@ -4,22 +4,24 @@
   width: 100%;
   justify-content: center;
   align-items: center;
+  background: #fff;
 }
 
 .navbar {
   width: 100%;
+ 
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 50px;
-  background: none;
+  
   color: white;
 }
 
 .navbar_logo img {
   width: calc(36% - 10px);
   padding: 0 5px;
-
+  filter: drop-shadow(1px 15px 10px #201f1f62);
 }
 
 .navbar_buttons {

@@ -1,7 +1,8 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import styles from "./Detail.module.css";
 import { FaStar } from "react-icons/fa";
+
 
 const Detail = () => {
     const hotels = [
@@ -61,11 +62,12 @@ const Detail = () => {
           typeRoom: "Habitacion matrimonial",
           score: 5.5,
           category: 1,
-          img: "https://www.momondo.com.co/himg/62/c0/84/ice-85676218-68620422_3XL-430714.jpg",}
+          img: "https://www.momondo.com.co/himg/62/c0/84/ice-85676218-68620422_3XL-430714.jpg",
+        }
          
      ]
   const { hotelId } = useParams();
-  const hotel = Hotelist .find((hotel) => hotel.id === parseInt(hotelId));
+  const hotel = hotels.find((hotel) => hotel.id === parseInt(hotelId));
 
   if (!hotel) {
     return <div>Hotel not found</div>;
