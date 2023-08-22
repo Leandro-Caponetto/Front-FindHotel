@@ -38,7 +38,7 @@ const Pagination = ({
           <li key={noPage}>
             <a
              className={`pagination-link  link ${
-                noPage === currentPage ? 'is-current tag is-primary is-large' : ''}`}
+                noPage === currentPage ? 'is-current tag is-primary is-medium' : ''}`}
                     onClick={() => onSpecificPage(noPage)}
                 >
                     {noPage}</a>

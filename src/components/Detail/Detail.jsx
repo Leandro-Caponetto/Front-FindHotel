@@ -1,7 +1,10 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 import styles from "./Detail.module.css";
-import { FaStar } from "react-icons/fa";
+import { FaStar  } from "react-icons/fa";
+import { MdLocationOn } from "react-icons/md"
+import NavBar from "../NavBar/NavBar";
+
 
 
 const Detail = () => {
