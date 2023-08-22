@@ -57,7 +57,6 @@ const TrendDestinations = () => {
                 </div>
               </div>
             </div>
-          </div>
           ))}
         </Slider>
       </div>
