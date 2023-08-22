@@ -5,7 +5,7 @@ import destinationReducer from "./destinations";
 const store = configureStore({
     reducer: {
       countries: countriesReducer,
-      destination: destinationReducer  // Agrega tu slice al store
+      destination: destinationReducer,
       // Otros reducers si los tienes
     },
   });

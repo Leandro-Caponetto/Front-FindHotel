@@ -17,6 +17,18 @@ const HotelList = ({ hotels }) => {
 
     setHoteles(hotels);
   }, []);
+
+
+
+
+  // const [hotels, setHotels] = useState([]);
+  // const [hotelsPorPage, setHotelsPorPage] = useState(5);
+  // const [currentPage, setCurrentPage] = useState(1); 
+  // useEffect(() => {
+
+  //   setHotels(hotelsData);
+  // }, []);
+
   // const destinations = useSelector(state => state.destination);
 
   const lastIndex = currentPage * hotelsPorPage;
@@ -29,6 +41,7 @@ const HotelList = ({ hotels }) => {
       <div className={styles.cardsContainer} key='hotels'>
         <span className={styles.resultsText}> Results Hotels: {uniqueCountries.join(', ')}</span>
         {hotels.slice(firstIndex,lastIndex ).map((hotel) => (
+
           <NavLink key={hotel._id} to={`/detail/${hotel._id}`} className={styles.card}>
             <img
               src={hotel.image}
@@ -53,11 +66,14 @@ const HotelList = ({ hotels }) => {
         ))}
       </div>
       <Pagination
+
         hotelsPorPage={hotelsPorPage}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
         totalHotels={totalHotels}
       />
+
+
     </div>
   );
 };
