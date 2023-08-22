@@ -1,0 +1,25 @@
+.UploadSquare {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.image-upload-box {
+    width: 150px;
+    height: 150px;
+    border: 2px dashed rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.image-input {
+    display: none;
+}
+
+.plus {
+    font-size: 40px;
+    color: rgba(0, 0, 0, 0.5);
+}
