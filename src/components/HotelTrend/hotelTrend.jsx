@@ -1,11 +1,9 @@
-import React from "react";
+import React , { useEffect, useState } from "react";
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import hotelData from "./hotelData.json";
 import styles from "./hotelTrend.module.css";
-import { useState, useEffect } from 'react'
- import axios from 'axios'
+import axios from "axios";
 
 const HotelTrend = () => {
 
@@ -70,13 +68,15 @@ const HotelTrend = () => {
               <div className={styles.card}>
                 <img
                   className={styles.image}
-                  src={d.img}
+                  src={d.image}
+
                   alt={`Imagen de ${d.city}, ${d.country}`}
                   loading="lazy"
                 />
                 <div className={styles.info}>
                   <h3>{d.name}</h3>
-                  <p>{d.city}</p>
+                  <p>{d.country}</p>
+
                 </div>
               </div>
             </div>
