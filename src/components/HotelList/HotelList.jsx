@@ -3,12 +3,9 @@ import React, { useState, useEffect } from "react";
 import styles from "./HotelList.module.css";
 import { FaStar } from 'react-icons/fa'
 import { NavLink } from 'react-router-dom'
-import { useSelector } from "react-redux";
-import { fetchData } from "../../redux/destinations";
 
-// eslint-disable-next-line react/prop-types
+
 const HotelList = ({hotels}) => {
-
   
   // const [hotels, setHotels] = useState([]);
   // const [hotelsPorPage, setHotelsPorPage] = useState(5);
@@ -26,7 +23,7 @@ const HotelList = ({hotels}) => {
     <div className={styles.container}>
       <div className={styles.cardsContainer}>
         <span className={styles.resultsText}>Results Hotels</span>
-        {hotels.map((hotel) => (
+        {hotels.slice(firstIndex, lastIndex).map((hotel) => (
           <NavLink key={hotel.id} to={`/detail/${hotel.id}`} className={styles.card}>
             <img
               src={hotel.image}
@@ -50,6 +47,12 @@ const HotelList = ({hotels}) => {
           </NavLink>
         ))}
       </div>
+        <Pagination
+        hotelsPorPage={hotelsPorPage}
+        currentPage={currentPage}
+         setCurrentPage={setCurrentPage}
+        totalHotels={totalHotels}
+        />
     </div>
   );
 };

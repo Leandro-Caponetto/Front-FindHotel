@@ -14,12 +14,14 @@ const Home = () => {
   return (
     <div className={styles.container}>
      <NavBar/>
-     
+     <div className={styles.componet}>
+
      <Header/>
      <TrendDestinations/>
 
      <HotelTrend/>
      <BannerHotel/>
+     </div>
 
     </div>
   );
