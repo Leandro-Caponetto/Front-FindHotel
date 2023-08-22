@@ -18,32 +18,32 @@ export const destinationSlice = createSlice({
     setFilteredHotels: (state, action) => {
       state.order = action.payload;
     },
-    sortAscendant: (state, action) =>{
+    sortAscendant: (state, action) => {
       state.filteredHotels = [...action.payload]
-      .sort((a, b) => a.name.localeCompare(b.name));
+        .sort((a, b) => a.name.localeCompare(b.name));
 
     },
-    sortDescendent: (state, action) =>{
+    sortDescendent: (state, action) => {
       state.filteredHotels = [...action.payload]
-      .sort((a, b) => b.name.localeCompare(a.name))
+        .sort((a, b) => b.name.localeCompare(a.name))
     },
-    sortTopCategory: (state, action) =>{
+    sortTopCategory: (state, action) => {
       state.filteredHotels = [...action.payload]
-      .sort((a, b) => a.category - b.category)
+        .sort((a, b) => a.category - b.category)
     },
-    sortLowCategory: (state, action) =>{
+    sortLowCategory: (state, action) => {
       state.filteredHotels = [...action.payload]
-      .sort((a, b) => b.category - a.category)
+        .sort((a, b) => b.category - a.category)
     },
-    sortPriceLow: (state, action) =>{
+    sortPriceLow: (state, action) => {
       state.filteredHotels = [...action.payload]
-      .sort((a, b) => a.room.price - b.room.price)
+        .sort((a, b) => a.room.price - b.room.price)
     },
-    sortPriceHigh: (state, action) =>{
+    sortPriceHigh: (state, action) => {
       state.filteredHotels = [...action.payload]
-      .sort((a, b) => b.room.price - a.room.price)
+        .sort((a, b) => b.room.price - a.room.price)
     },
-    selectAll: (state, action) =>{
+    selectAll: (state, action) => {
       state.filteredHotels = action.payload
     },
   },

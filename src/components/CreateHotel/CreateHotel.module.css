@@ -80,7 +80,10 @@
     flex-direction: column;
     width: 300px;
     font-family: 'Secular One', sans-serif;
-
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .form p {
