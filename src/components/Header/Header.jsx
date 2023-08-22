@@ -6,6 +6,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchData, setDestination } from '../../redux/destinations';
 import { NavLink } from 'react-router-dom';
+import { handlerNames } from '../../services';
 
 const Header = () => {
     const dispatch = useDispatch();
@@ -37,8 +38,13 @@ const Header = () => {
 
                 <div className={styles.search}>
 
-                    <InputText tag={'Destination'} onChangeInput={(input) => handleInputChange('destination', input)} />
-{/* 
+                    <InputText
+                        tag={'Destination'}
+                        onChangeInput={(input) => handleInputChange('destination', input)}
+                        buttonClear={true}
+                        namesFormat={true}
+                    />
+
                     <InputDate
                         tag={'Check in'}
                         onChangeInput={(input) => handleInputChange('checkIn', input)}
@@ -50,10 +56,9 @@ const Header = () => {
                         onChangeInput={(input) => handleInputChange('checkOut', input)}
                         minDate={search.checkIn}
                         buttonClear={true}
-                    /> */}
+                    />
 
-
-                    {/* <InputNumber tag={'Guests'} onChangeInput={(input) => handleInputChange('guests', input)} /> */}
+                    <InputNumber tag={'Guests'} onChangeInput={(input) => handleInputChange('guests', input)} />
 
                     <div className={styles.searchInfo}>
                         <h3></h3>

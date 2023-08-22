@@ -3,7 +3,8 @@ import styles from "./CreateHotel.module.css";
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCountries, fetchCity } from '../../redux/countries';
-import { InputSelect, InputText } from '../Inputs';
+import { InputNumber, InputSelect, InputText } from '../Inputs';
+// import CheckBox from '../Inputs/CheckBox/CheckBox';
 
 const CreateHotel = () => {
   const dispatch = useDispatch();
@@ -35,8 +36,8 @@ const CreateHotel = () => {
     category: '',
     room: {
       name: '',
-      roomStock: '',
-      roomPrice: '',
+      stock: '',
+      price: '',
     },
     services: [],
     facilities: [],
@@ -45,6 +46,7 @@ const CreateHotel = () => {
     isActive: true,
   })
 
+  console.log(hotelData)
   useEffect(() => {
     dispatch(fetchCountries()); // Llama a la acción para obtener los países al cargar el componente
   }, [dispatch]);
@@ -95,19 +97,6 @@ const CreateHotel = () => {
 
   // }
 
-  const handleRoomTypesChange = (event) => {
-    const selectedRoomType = event.target.value;
-    console.log(selectedRoomType);
-
-    if (selectedRoomType === "standar") {
-      setHotelData({
-        ...hotelData,
-        room: {
-          ...hotelData.room, name: selectedRoomType
-        }
-      })
-    }
-  };
 
   const handleServicesChange = (event) => {
     const serviceValue = event.target.value;
@@ -181,15 +170,15 @@ const CreateHotel = () => {
     }
 
     if (!hotelData.room.name) {
-      newErrors.roomName = 'Room name is required';
+      newErrors.room.name = 'Room name is required';
     }
 
     if (!hotelData.room.price) {
-      newErrors.roomPrice = 'Room price is required';
+      newErrors.room.price = 'Room price is required';
     }
 
     if (!hotelData.room.stock) {
-      newErrors.roomStock = 'Room stock is required';
+      newErrors.room.stock = 'Room stock is required';
     }
 
     setErrors(newErrors);
@@ -208,8 +197,8 @@ const CreateHotel = () => {
       image: hotelData.image,
       room: {
         name: hotelData.room.name,
-        price: hotelData.roomPrice,
-        stock: hotelData.roomStock,
+        price: hotelData.room.price,
+        stock: hotelData.room.stock,
       },
       country: hotelData.country,
       city: hotelData.city,
@@ -259,16 +248,20 @@ const CreateHotel = () => {
   };
 
 
-  const handleInputChange = (inputField, inputValue) => {
-    const currentState = { ...hotelData, [inputField]: inputValue }
+  const handlerValueChange = (inputField, inputValue) => {
+    // console.log("🚀 ~ file: CreateHotel.jsx:263 ~ handlerValueChange ~ inputField, inputValue:", inputField, inputValue)
+
+    let currentState = {}
+    if (inputField === 'typeRoom' || inputField === 'stock' || inputField === 'price') {
+      let field = inputField === 'typeRoom' ? 'name' : inputField
+      currentState = { ...hotelData, room: { ...hotelData.room, [field]: inputValue } }
+    } else { currentState = { ...hotelData, [inputField]: inputValue } }
     setHotelData(currentState);
 
     //?Save On LocalStorage
     localStorage.setItem('hotelData', JSON.stringify(currentState));
     console.log(hotelData)
   };
-
-
 
   return (
     <div className={styles.container}>
@@ -277,81 +270,87 @@ const CreateHotel = () => {
 
           <div className={styles.index}>
             <div>
-              <InputText initInput={hotelData.name} onChangeInput={(input) => handleInputChange('name', input)} tag={'Name Hotel'} errors={errors.name} />
+              <InputText tag={'Name Hotel'}
+                initInput={hotelData.name}
+                onChangeInput={(input) => handlerValueChange('name', input)}
+                errors={errors.name}
+                style={{ input: { width: '300px' } }} />
             </div>
 
             <div>
-              <label>Image:</label>
-              <InputText initInput={hotelData.image} onChangeInput={(input) => handleInputChange('image', input)} style={{ input: { width: '100px' } }} />
+              <InputText tag={'Image'}
+                initInput={hotelData.image}
+                onChangeInput={(input) => handlerValueChange('image', input)}
+                errors={errors.image}
+                style={{ input: { width: '300px' } }} />
             </div>
           </div>
 
           <div className={styles.details}>
 
             <div>
-              <label>Country:</label>
-              <select name="country" id="country" onChange={handleCountry} >
-                <option value="none" selected disabled hidden>Select an Option</option>
-                {
-                  countries.countries.map((data, index) => {
-                    return (
-                      <option value={data} key={index}>{data}</option>
-                    )
-                  })
-                }
-              </select>
+              <div>
+                <InputSelect tag={'Country'}
+                  initSelect={hotelData.country}
+                  options={countries.countries}
+                  onChangeSelect={(input) => handlerValueChange('country', input)}
+                  errors={errors.country}
+                />
+              </div>
               {errors.country && <p className={styles.error}>{errors.country}</p>}
             </div>
 
             <div>
-              <label>City:</label>
-              <select name="city" id="city" onChange={handleCity} >
-                <option value="none" selected disabled hidden>Select an Option</option>
-                {
-                  citys.map((data, index) => {
-                    return (
-                      <option value={data} key={index}>{data}</option>
-                    )
-                  })
-                }
-              </select>
+              <InputSelect tag={'City'}
+                initSelect={hotelData.city}
+                options={citys}
+                onChangeSelect={(input) => handlerValueChange('city', input)}
+                errors={errors.city}
+              />
               {errors.city && <p className={styles.error}>{errors.city}</p>}
             </div>
 
             <div>
-              {/* <label>Adress:</label> */}
-              <InputText tag={'Address'} initInput={hotelData.address} onChangeInput={(input) => handleInputChange('address', input)} style={{ input: { width: '100px' } }} />
-              {/* <input type="text" name="address" value={hotelData.address} onChange={handleOnChange} /> */}
-              {errors.address && <p className={styles.error}>{errors.address}</p>}
+              <InputText tag={'Address'}
+                initInput={hotelData.address}
+                onChangeInput={(input) => handlerValueChange('address', input)}
+                errors={errors.address}
+                style={{ input: { width: '300px' } }} />
             </div>
 
             <div>
               <label>Category (stars):</label>
-              <input type="number" name="category" value={hotelData.category} onChange={handleOnChange} />
-              {errors.category && <p className={styles.error}>{errors.category}</p>}
+              <InputNumber tag={'Category'}
+                initInput={hotelData.category}
+                onChangeInput={(input) => handlerValueChange('category', input)}
+                errors={errors.category}
+                style={{ input: { width: '300px' } }} />
             </div>
 
-            <p>Habitaciones:</p>
-
             <div>
-              <label >Selecciona el tipo:</label>
-              {/* <select name="roomTypes" id="roomTypes" onChange={handleRoomTypesChange} >
-                <option value="none" selected disabled hidden>Select an Option</option>
-                <option value="standar">Standar</option>
-              </select> */}
-              <InputSelect options={['standar']} />
+              <InputSelect tag={'Type Room'}
+                initSelect={hotelData.room.name}
+                options={['standar']}
+                onChangeSelect={(input) => handlerValueChange('typeRoom', input)}
+              // errors={errors.room.name}
+              />
             </div>
 
             <div>
               <label>Stock:</label>
-              <InputText tag={'Stock'} initInput={hotelData.address} onChangeInput={(input) => handleInputChange('stock', input)} style={{ input: { width: '100px' } }} />
-              {/* <input type="number" name="roomPrice" value={hotelData.roomPrice} onChange={handleOnChange} /> */}
+              <InputNumber tag={'Stock'}
+                initInput={hotelData.room.stock}
+                onChangeInput={(input) => handlerValueChange('stock', input)}
+                // errors={errors.room.stock}
+                style={{ input: { width: '300px' } }} />
             </div>
 
             <div>
-              {/* <label>Price:</label> */}
-              <InputText tag={'Price'} initInput={hotelData.address} onChangeInput={(input) => handleInputChange('price', input)} style={{ input: { width: '100px' } }} />
-              {/* <input type="number" name="roomStock" value={hotelData.roomStock} onChange={handleOnChange} /> */}
+              <InputNumber tag={'Price'}
+                initInput={hotelData.room.price}
+                onChangeInput={(input) => handlerValueChange('price', input)}
+                // errors={errors.room.price}
+                style={{ input: { width: '300px' } }} />
             </div>
 
 
@@ -359,6 +358,7 @@ const CreateHotel = () => {
             <p>Services:</p>
 
             <div className={styles.types}>
+              {/* <CheckBox infoCheck={ } initCheck={ } onChangeCheck={ } /> */}
               <label>
                 <input type="checkbox" name="type" value="all inclusive" checked={selectedServices.includes("all inclusive")} onChange={handleServicesChange} />
                 all inclusive
@@ -387,6 +387,7 @@ const CreateHotel = () => {
           <p>Facilities:</p>
 
           <div className={styles.types}>
+
             <label>
               <input type="checkbox" name="type" value="beach" checked={selectedFacilities.includes("beach")} onChange={handleFacilitiesChange} />
               Beach
@@ -414,8 +415,8 @@ const CreateHotel = () => {
           <button type="submit" onClick={handleSubmit}>CREATE</button>
 
         </form>
-      </div>
-    </div>)
+      </div >
+    </div >)
 }
 
 export default CreateHotel;
