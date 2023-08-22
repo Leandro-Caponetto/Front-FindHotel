@@ -24,7 +24,7 @@ const HotelList = ({ hotels }) => {
       <div className={styles.cardsContainer} key='hotels'>
         <span className={styles.resultsText}>Results Hotels</span>
         {hotels.map((hotel) => (
-          <NavLink key={hotel.id} to={`/detail/${hotel.id}`} className={styles.card}>
+          <NavLink key={hotel._id} to={`/detail/${hotel._id}`} className={styles.card}>
             <img
               src={hotel.image}
               alt="hotel image"
