@@ -57,7 +57,7 @@
     align-items: center;
     gap: 30px;
     height: 180px;
-    width: 1200px;
+    width: 800px;
     border-radius: 25px;
     background-color: rgba(249, 249, 251, 0.4);  
 }
@@ -99,6 +99,9 @@
     cursor: pointer;
     margin-top: 30px;
     transition: 1s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 }
 
