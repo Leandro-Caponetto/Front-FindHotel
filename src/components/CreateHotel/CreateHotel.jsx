@@ -3,7 +3,7 @@ import styles from "./CreateHotel.module.css";
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCountries, fetchCity } from '../../redux/countries';
-import { InputText } from '../Inputs';
+import { InputSelect, InputText } from '../Inputs';
 
 const CreateHotel = () => {
   const dispatch = useDispatch();
@@ -14,9 +14,9 @@ const CreateHotel = () => {
     dispatch(fetchCountries()); // Llama a la acción para obtener los países al cargar el componente
   }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(fetchCity(curCountry))
-  }, [dispatch, curCountry])
+  // useEffect(() => {
+  //   dispatch(fetchCity(curCountry))
+  // }, [dispatch, curCountry])
 
   const [curCountry, setCurCountry] = useState("")
   const [selectedRoomTypes, setSelectedRoomTypes] = useState([]);
@@ -278,16 +278,11 @@ const CreateHotel = () => {
           <div className={styles.index}>
             <div>
               <InputText initInput={hotelData.name} onChangeInput={(input) => handleInputChange('name', input)} tag={'Name Hotel'} errors={errors.name} />
-              {/* <label>Name Hotel:</label>
-              <input type="text" name="name" value={hotelData.name} onChange={handleOnChange} />
-              {errors.name && <p className={styles.error}>{errors.name}</p>} */}
             </div>
 
             <div>
               <label>Image:</label>
               <InputText initInput={hotelData.image} onChangeInput={(input) => handleInputChange('image', input)} style={{ input: { width: '100px' } }} />
-              {/* <input type="text" name="image" value={hotelData.image} onChange={handleOnChange} />
-              {errors.image && <p className={styles.error}>{errors.image}</p>} */}
             </div>
           </div>
 
@@ -324,8 +319,9 @@ const CreateHotel = () => {
             </div>
 
             <div>
-              <label>Adress:</label>
-              <input type="text" name="address" value={hotelData.address} onChange={handleOnChange} />
+              {/* <label>Adress:</label> */}
+              <InputText tag={'Address'} initInput={hotelData.address} onChangeInput={(input) => handleInputChange('address', input)} style={{ input: { width: '100px' } }} />
+              {/* <input type="text" name="address" value={hotelData.address} onChange={handleOnChange} /> */}
               {errors.address && <p className={styles.error}>{errors.address}</p>}
             </div>
 
@@ -339,11 +335,11 @@ const CreateHotel = () => {
 
             <div>
               <label >Selecciona el tipo:</label>
-              <select name="roomTypes" id="roomTypes" onChange={handleRoomTypesChange} >
+              {/* <select name="roomTypes" id="roomTypes" onChange={handleRoomTypesChange} >
                 <option value="none" selected disabled hidden>Select an Option</option>
                 <option value="standar">Standar</option>
-              </select>
-
+              </select> */}
+              <InputSelect options={['standar']} />
             </div>
 
             <div>

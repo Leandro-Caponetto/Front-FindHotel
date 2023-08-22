@@ -6,7 +6,7 @@ import firebase from '../../../services/firebase/configFirebase';
 import InputText from '../../Inputs/InputText/InputText';
 import { handlerLoginValidate } from '../../../services';
 
-const Login = ({ isActiveSignIn = false, onChangeSignIn }) => {
+const LogIn = ({ isActiveSignIn = false, onChangeSignIn }) => {
   const dispatch = useDispatch();
   const [login, setLogin] = useState({ email: '', password: '' });
   const [error, setError] = useState({});
@@ -33,7 +33,7 @@ const Login = ({ isActiveSignIn = false, onChangeSignIn }) => {
   };
 
   return (
-    <div className={styles.Login}>
+    <div className={styles.LogIn}>
       <div>
         <InputText onChangeInput={(input) => handleInputChange('email', input)} tag={'email'} />
         <InputText onChangeInput={(input) => handleInputChange('password', input)} />
@@ -43,14 +43,14 @@ const Login = ({ isActiveSignIn = false, onChangeSignIn }) => {
         <button>Login with Facebook</button>
         <button>Login with Twitter</button>
       </div>
-      );
+      ;
     </div>
   )
 }
 
-Login.propTypes = {
+LogIn.propTypes = {
   isActiveSignIn: PropTypes.bool.isRequired,
   onChangeSignIn: PropTypes.bool,
 };
 
-export default Login;
+export default LogIn;

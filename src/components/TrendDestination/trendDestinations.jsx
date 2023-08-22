@@ -1,4 +1,4 @@
-import React , { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -8,14 +8,14 @@ import axios from "axios";
 
 const TrendDestinations = () => {
 
-  const [stateData, setStateData] = useState([]); 
+  const [stateData, setStateData] = useState([]);
 
   useEffect(() => {
 
     const fetchData = async () => {
       try {
         const response = await axios.get('http://localhost:3001/trending/state');
-        setStateData(response.data); 
+        setStateData(response.data);
         console.log(response.data);
       } catch (error) {
         console.error('Error fetching hotel data:', error);
@@ -43,25 +43,24 @@ const TrendDestinations = () => {
 
       <div className={styles.carouselContainer}>
         <Slider {...settings}>
-        {stateData.map((d) => (
-          <div className={styles.cardContainer} key={d.id}>
-           <div className={styles.card}>
-            <img
-              className={styles.image}
-              src={d.image}
-              alt={`Imagen de ${d.country}, ${d.state}`}
-            />
-            <div className={styles.info}>
-              <h3>{d.country}</h3>
-              <p>{d.state}</p>
-            </div>
-          </div>
+          {stateData.map((d) => (
+            <div className={styles.cardContainer} key={d.id}>
+              <div className={styles.card}>
+                <img
+                  className={styles.image}
+                  src={d.image}
+                  alt={`Imagen de ${d.country}, ${d.state}`}
+                />
+                <div className={styles.info}>
+                  <h3>{d.country}</h3>
+                  <p>{d.state}</p>
+                </div>
+              </div>
             </div>
           </div>
           ))}
         </Slider>
       </div>
-
     </div>
   );
 };
