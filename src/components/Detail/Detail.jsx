@@ -4,7 +4,7 @@ import styles from "./Detail.module.css";
 import { FaStar  } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md"
 import NavBar from "../NavBar/NavBar";
-import { Link } from "react-router-dom";
+
 
 
 const Detail = () => {

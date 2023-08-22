@@ -20,6 +20,10 @@
   
   .slide img {
     width: 100%;
+    initial-letter: grayscale(1); /* Webkit */
+    filter: gray; /* IE6-9 */
+    filter: grayscale(1); /* W3C */
+    opacity: .8;
   }
   
   @keyframes scroll {

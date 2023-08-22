@@ -14,7 +14,7 @@ const DetailHotel = () => {
           <Detail />
         </div>
         <div className={styles.reserveContainer}>
-          {/* <ReserveBox /> */}
+
         </div>
       </div>
     </div>
