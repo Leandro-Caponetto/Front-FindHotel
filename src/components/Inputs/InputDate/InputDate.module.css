@@ -22,6 +22,7 @@
     outline: none;
 }
 
+
 .InputDate input::placeholder {
     font-family: CocoSharpBold;
     opacity: 50%;

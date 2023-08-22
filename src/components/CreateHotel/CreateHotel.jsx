@@ -344,12 +344,14 @@ const CreateHotel = () => {
 
             <div>
               <label>Stock:</label>
-              <input type="number" name="roomPrice" value={hotelData.roomPrice} onChange={handleOnChange} />
+              <InputText tag={'Stock'} initInput={hotelData.address} onChangeInput={(input) => handleInputChange('stock', input)} style={{ input: { width: '100px' } }} />
+              {/* <input type="number" name="roomPrice" value={hotelData.roomPrice} onChange={handleOnChange} /> */}
             </div>
 
             <div>
-              <label>Price:</label>
-              <input type="number" name="roomStock" value={hotelData.roomStock} onChange={handleOnChange} />
+              {/* <label>Price:</label> */}
+              <InputText tag={'Price'} initInput={hotelData.address} onChangeInput={(input) => handleInputChange('price', input)} style={{ input: { width: '100px' } }} />
+              {/* <input type="number" name="roomStock" value={hotelData.roomStock} onChange={handleOnChange} /> */}
             </div>
 
 

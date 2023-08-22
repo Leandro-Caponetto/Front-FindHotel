@@ -5,13 +5,13 @@ import { FaStar } from 'react-icons/fa'
 import { NavLink } from 'react-router-dom'
 
 
-const HotelList = ({hotels}) => {
-  
+const HotelList = ({ hotels }) => {
+
   // const [hotels, setHotels] = useState([]);
   // const [hotelsPorPage, setHotelsPorPage] = useState(5);
   // const [currentPage, setCurrentPage] = useState(1); 
   // useEffect(() => {
-    
+
   //   setHotels(hotelsData);
   // }, []);
   // const destinations = useSelector(state => state.destination);
@@ -21,9 +21,9 @@ const HotelList = ({hotels}) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.cardsContainer}>
+      <div className={styles.cardsContainer} key='hotels'>
         <span className={styles.resultsText}>Results Hotels</span>
-        {hotels.slice(firstIndex, lastIndex).map((hotel) => (
+        {hotels.map((hotel) => (
           <NavLink key={hotel.id} to={`/detail/${hotel.id}`} className={styles.card}>
             <img
               src={hotel.image}
@@ -47,17 +47,17 @@ const HotelList = ({hotels}) => {
           </NavLink>
         ))}
       </div>
-        <Pagination
+      {/* <Pagination
         hotelsPorPage={hotelsPorPage}
         currentPage={currentPage}
-         setCurrentPage={setCurrentPage}
+        setCurrentPage={setCurrentPage}
         totalHotels={totalHotels}
-        />
+      /> */}
     </div>
   );
 };
 HotelList.propTypes = {
   hotels: PropTypes.array,
-  
+
 };
 export default HotelList;
