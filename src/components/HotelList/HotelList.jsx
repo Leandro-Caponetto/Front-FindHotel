@@ -1,24 +1,23 @@
+import PropTypes from 'prop-types';
 import React, { useState, useEffect } from "react";
 import styles from "./HotelList.module.css";
 import { FaStar } from 'react-icons/fa'
 import { NavLink } from 'react-router-dom'
-import hotelsData from "./hotelsData.json"
-import  Pagination  from "../Pagination/Pagination";
 
-const HotelList = () => {
-  const [hotels, setHotels] = useState([]);
 
-  const totalHotels = hotels.length
+const HotelList = ({hotels}) => {
+  
+  // const [hotels, setHotels] = useState([]);
+  // const [hotelsPorPage, setHotelsPorPage] = useState(5);
+  // const [currentPage, setCurrentPage] = useState(1); 
+  // useEffect(() => {
+    
+  //   setHotels(hotelsData);
+  // }, []);
+  // const destinations = useSelector(state => state.destination);
 
-  const [hotelsPorPage, setHotelsPorPage] = useState(5);
-  const [currentPage, setCurrentPage] = useState(1);
-
-  useEffect(() => {
-    setHotels(hotelsData);
-  }, []);
-
-  const lastIndex = currentPage * hotelsPorPage;
-  const firstIndex = lastIndex - hotelsPorPage;
+  // const lastIndex = currentPage * hotelsPorPage;
+  // const firstIndex = lastIndex - hotelsPorPage;
 
   return (
     <div className={styles.container}>
@@ -27,7 +26,7 @@ const HotelList = () => {
         {hotels.slice(firstIndex, lastIndex).map((hotel) => (
           <NavLink key={hotel.id} to={`/detail/${hotel.id}`} className={styles.card}>
             <img
-              src={hotel.img}
+              src={hotel.image}
               alt="hotel image"
               className={styles.cardImage}
             />
@@ -35,7 +34,7 @@ const HotelList = () => {
               <h1 className={styles.title}>{hotel.name}</h1>
               <div className={styles.location}>
                 <h5 className={styles.textCity}>
-                  {hotel.city}, {hotel.country}
+                  {hotel.state}, {hotel.country}
                 </h5>
               </div>
               <div className={styles.starIcon}>
@@ -43,7 +42,7 @@ const HotelList = () => {
                   <FaStar key={index} />
                 ))}
               </div>
-              <h5 className={styles.text}>{hotel.typeRoom}</h5>
+              <h5 className={styles.text}>{hotel.room.name}</h5>
             </div>
           </NavLink>
         ))}
@@ -57,5 +56,8 @@ const HotelList = () => {
     </div>
   );
 };
-
+HotelList.propTypes = {
+  hotels: PropTypes.array,
+  
+};
 export default HotelList;

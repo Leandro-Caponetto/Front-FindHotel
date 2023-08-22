@@ -1,8 +1,31 @@
 import styles from './Header.module.css'
+import React , { useEffect, useState } from "react";
 import { IoIosArrowForward } from 'react-icons/io';
 import { InputText, InputNumber, InputDate } from '../Inputs';
+import axios from "axios";
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchData, setDestination } from '../../redux/destinations';
+import { NavLink } from 'react-router-dom';
 
 const Header = () => {
+const dispatch = useDispatch();
+    
+const [search, setSearch] = useState({
+    destination: '',
+    checkIn: '',
+    checkOut: '',
+    guests: ''
+})
+    const handleSearch = () =>{ 
+        dispatch(fetchData(search.destination))
+        console.log("🚀 ~ file: Header.jsx:20 ~ handleSearch ~ search.destination:", search)
+    }
+    const handleInputChange = (inputField, inputValue) => {
+        const currentState = { ...search, [inputField]: inputValue }
+        setSearch(currentState);
+    };
+        console.log(search);
+    
     return (
         <div className={styles.ContainerBox}>
             <div className={styles.boxInfo}>
@@ -15,7 +38,7 @@ const Header = () => {
                 <div className={styles.search}>
                     <div className={styles.searchInfo}>
                         {/* <h3>Destination</h3> */}
-                        <InputText tag={'Destination'} />
+                        <InputText tag={'Destination'} onChangeInput={(input) => handleInputChange('destination', input)} />
                         {/* <input type="text" /> */}
                     </div>
                     <div className={styles.searchInfo}>
@@ -34,7 +57,8 @@ const Header = () => {
                     </div>
                     <div className={styles.searchInfo}>
                         <h3></h3>
-                        <button>Search</button>
+                       <NavLink to="/results"> <button  onClick={handleSearch}>Search</button> </NavLink>
+                   
                     </div>
                 </div>
             </div>

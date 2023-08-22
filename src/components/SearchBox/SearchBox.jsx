@@ -5,6 +5,7 @@ import { ImSearch } from "react-icons/im"
 console.log(styles.searchBox)
 
 const SearchBox = () => {
+  
     return (
         <div className={styles.searchBox}>
           <div>
