@@ -6,11 +6,11 @@ import TrendDestinations from '../../components/TrendDestination/trendDestinatio
 import Header from '../../components/Header/Header';
 import HotelTrend from '../../components/HotelTrend/hotelTrend';
 import BannerHotel from '../../components/BannerHotel/BannerHotel';
-
-
+import { setDestination } from '../../redux/destinations';
 
 
 const Home = () => {
+
   return (
     <div className={styles.container}>
      <NavBar/>

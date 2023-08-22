@@ -55,7 +55,7 @@ const TrendDestinations = () => {
               <h3>{d.country}</h3>
               <p>{d.state}</p>
             </div>
-
+          </div>
             </div>
           </div>
           ))}
