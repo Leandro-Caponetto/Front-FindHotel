@@ -4,7 +4,7 @@ import { useParams, Link } from "react-router-dom";
 import styles from "./Detail.module.css";
 import { FaStar  } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md"
-
+import NavBar from '../../components/NavBar/NavBar'
 import { useSelector, useDispatch } from 'react-redux';
 import axios from "axios";
 import { useLocation } from "react-router-dom";
@@ -34,6 +34,7 @@ console.log(hotelId)
 
   return (
     <div className={styles.detailContainer}>
+      <NavBar/>
         <div className={styles.title}>
           <h1 >{hotelDetail?.name}</h1>
         </div>

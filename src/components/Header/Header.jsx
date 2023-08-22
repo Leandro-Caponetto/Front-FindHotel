@@ -45,7 +45,7 @@ const Header = () => {
                         namesFormat={true}
                     />
 
-                    <InputDate
+                    {/* <InputDate
                         tag={'Check in'}
                         onChangeInput={(input) => handleInputChange('checkIn', input)}
                         maxDate={search.checkOut}
@@ -56,9 +56,9 @@ const Header = () => {
                         onChangeInput={(input) => handleInputChange('checkOut', input)}
                         minDate={search.checkIn}
                         buttonClear={true}
-                    />
+                    /> */}
 
-                    <InputNumber tag={'Guests'} onChangeInput={(input) => handleInputChange('guests', input)} />
+                    {/* <InputNumber tag={'Guests'} onChangeInput={(input) => handleInputChange('guests', input)} /> */}
 
                     <div className={styles.searchInfo}>
                         <h3></h3>
