@@ -277,6 +277,8 @@ const CreateHotel = () => {
 
           <div className={styles.index}>
             <div>
+            
+              
               <InputText initInput={hotelData.name} onChangeInput={(input) => handleInputChange('name', input)} tag={'Name Hotel'} errors={errors.name} />
             </div>
 
@@ -353,7 +355,7 @@ const CreateHotel = () => {
               <InputText tag={'Price'} initInput={hotelData.address} onChangeInput={(input) => handleInputChange('price', input)} style={{ input: { width: '100px' } }} />
               {/* <input type="number" name="roomStock" value={hotelData.roomStock} onChange={handleOnChange} /> */}
             </div>
-
+            
 
 
             <p>Services:</p>
@@ -382,9 +384,8 @@ const CreateHotel = () => {
             </div>
 
 
-
           </div>
-          <p>Facilities:</p>
+          
 
           <div className={styles.types}>
             <label>

@@ -3,19 +3,20 @@
 
 import * as firebase from "firebase/app";
 import "firebase/auth";
-require("dotenv").config();
+import {getStorage} from "firebase/storage";
 
-// Añade aquí tus credenciales
 const firebaseAccountConfig = {
-    apiKey: process.env.FIREBASE_API_KEY,
-    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-    projectId: process.env.FIREBASE_PROJECT_ID,
-    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.FIREBASE_APP_ID,
+    apiKey: "AIzaSyBt5GxrrSST0CKhSqqAml9j9-iH1-NWQg",
+    authDomain: "find-hotel-396121.firebaseapp.com",
+    projectId: "find-hotel-396121",
+    storageBucket: "find-hotel-396121.appspot.com",
+    messagingSenderId: "467499107156",
+    appId:"1:467499107156:web:fec7a5fc7396c464f03ec1",
 };
 
-firebase.initializeApp(firebaseAccountConfig);
+const app = firebase.initializeApp(firebaseAccountConfig);
+const storage=getStorage(app)
 
-export default firebase
+
+export {app, storage}
 
