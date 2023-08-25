@@ -18,7 +18,6 @@ const Home = () => {
 
      <Header/>
      <TrendDestinations/>
-
      <HotelTrend/>
      <BannerHotel/>
      </div>

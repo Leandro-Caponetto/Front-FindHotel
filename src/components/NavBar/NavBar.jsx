@@ -17,6 +17,10 @@ const NavBar = (props) => {
         </div>
         <div className={styles.navbar_buttons}>
           <Link to={"/signup"} className={styles.navbar_button}>
+          <Link to="/form" className={styles.navbar_button}>
+            Create Hotel
+          </Link>
+          <Link to="/register" className={styles.navbar_button}>
             Register
           </Link>
           <Link to="/signin" className={styles.navbar_button}>

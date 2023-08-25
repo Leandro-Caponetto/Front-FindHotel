@@ -3,8 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from './InputText.module.css';
 import { GiBroom } from 'react-icons/gi'
+import { handlerNames } from '../../../services';
 
-const InputText = ({ initInput, onChangeInput, errors, tag = '', buttonClear = false, style }) => {
+const InputText = ({ initInput, onChangeInput, errors, tag = '', buttonClear = false, namesFormat = 'false', style }) => {
   const [state, setState] = useState(initInput || '')
 
   useEffect(() => {
@@ -13,8 +14,8 @@ const InputText = ({ initInput, onChangeInput, errors, tag = '', buttonClear = f
 
   const handlerInputChange = (event) => {
     const { value } = event.target
-    setState(value)
-    onChangeInput(value)
+    setState(handlerNames(value, namesFormat))
+    onChangeInput(handlerNames(value, namesFormat))
   }
 
   const handlerClearInput = () => {
@@ -48,6 +49,7 @@ InputText.propTypes = {
   errors: PropTypes.string,
   tag: PropTypes.string,
   buttonClear: PropTypes.bool,
+  namesFormat: PropTypes.bool,
   style: PropTypes.object,
 
 };
