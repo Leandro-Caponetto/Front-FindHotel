@@ -6,6 +6,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchData, setDestination } from '../../redux/destinations';
 import { NavLink } from 'react-router-dom';
+import { handlerNames } from '../../services';
 
 const Header = () => {
     const dispatch = useDispatch();
@@ -18,7 +19,6 @@ const Header = () => {
     })
     const handleSearch = () => {
         dispatch(fetchData(search.destination))
-        console.log("🚀 ~ file: Header.jsx:20 ~ handleSearch ~ search.destination:", search)
     }
     const handleInputChange = (inputField, inputValue) => {
         const currentState = { ...search, [inputField]: inputValue }
@@ -38,9 +38,14 @@ const Header = () => {
 
                 <div className={styles.search}>
 
-                    <InputText tag={'Destination'} onChangeInput={(input) => handleInputChange('destination', input)} />
+                    <InputText
+                        tag={'Destination'}
+                        onChangeInput={(input) => handleInputChange('destination', input)}
+                        buttonClear={true}
+                        namesFormat={true}
+                    />
 
-                    <InputDate
+                    {/* <InputDate
                         tag={'Check in'}
                         onChangeInput={(input) => handleInputChange('checkIn', input)}
                         maxDate={search.checkOut}
@@ -51,10 +56,9 @@ const Header = () => {
                         onChangeInput={(input) => handleInputChange('checkOut', input)}
                         minDate={search.checkIn}
                         buttonClear={true}
-                    />
+                    /> */}
 
-
-                    <InputNumber tag={'Guests'} onChangeInput={(input) => handleInputChange('guests', input)} />
+                    {/* <InputNumber tag={'Guests'} onChangeInput={(input) => handleInputChange('guests', input)} /> */}
 
                     <div className={styles.searchInfo}>
                         <h3></h3>

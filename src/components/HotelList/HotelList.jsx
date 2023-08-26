@@ -59,6 +59,7 @@ const HotelList = ({ hotels }) => {
                 {Array.from({ length: hotel.category }, (_, index) => (
                   <FaStar key={index} />
                 ))}
+                <h4>Price for night ${hotel.room.price}</h4>
               </div>
               <h5 className={styles.text}>{hotel.room.name}</h5>
             </div>

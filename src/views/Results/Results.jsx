@@ -33,7 +33,7 @@ const Results = () => {
     <div className={styles.container}>
       <NavBar />
       <div className={styles.conten}>
-        <SearchBox />
+        {/* <SearchBox /> */}
         <FilterOrder data={destination} onChangeFilter={handleChange}/>
         <HotelList hotels={paginated} />
       </div>

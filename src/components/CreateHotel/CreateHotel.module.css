@@ -37,13 +37,11 @@
     align-items: flex-start;
     justify-content: flex-start;
     font-family: 'Secular One', sans-serif;
-    margin-top: -30px;
     margin-left: 10px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     text-decoration: none;
     color: white;
-    font-size: 1.7rem;
 }
 
 .image img {
@@ -61,15 +59,16 @@
 }
 
 .boxForm {
+    color: #ffffff;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-width: 400px;
-    max-height: 1000px;
+    width: 600px;
     padding: 30px;
     margin-left: 150px;
     border-radius: 50px;
-    background-color: #bbbbbb4a;
+    background-color: #2CC2B4;
     box-shadow: 0 2px 5px whitesmoke, inset 0 -2px 50px rgba(255, 255, 255, 0.5);
     /* Create the bevel effect */
     margin: 20px 0;
@@ -80,27 +79,32 @@
     flex-direction: column;
     width: 300px;
     font-family: 'Secular One', sans-serif;
-
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .form p {
     font-family: 'Secular One', sans-serif;
-    color: #101010;
+    color: #ffffff;
     display: flex;
     margin-top: 25px;
     margin-bottom: 10px;
     font-weight: bold;
+    font-size: 20px;
 }
 
 .index {
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
-    gap: 0px 20px;
+    gap: 20px 20px;
+    margin-bottom: 20px;
 }
 
 .index label {
-    color: #101010;
+    color: #ffffff;
     display: flex;
     margin-top: 20px;
     font-weight: bold;
@@ -137,19 +141,21 @@
 }
 
 .details {
+    margin-top: 30px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 0px 20px;
+    gap: 20px;
 }
 
 
 .details label {
-    color: #101010;
+    color: #ffffff;
     display: flex;
     margin-top: 20px;
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 20px;
+    margin-bottom: 30px;
 
 }
 
@@ -194,6 +200,7 @@
     gap: 2px 20px;
     font-family: 'Secular One', sans-serif;
     font-weight: bold;
+    color: #ffffff;
 }
 
 .types input {
@@ -219,25 +226,23 @@
 }
 
 .form button {
+    display: flex;
+    align-items: center;
     margin-top: 30px;
     font-family: 'Secular One', sans-serif;
     font-size: 1.2rem;
     font-weight: bold;
     letter-spacing: 2px;
-    color: white;
+    color: #101010;
     width: auto;
     height: 40px;
     border-radius: 5px;
     border: none;
-    background-color: transparent;
-    background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.1));
+    background-color: white;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5), inset 0 -2px 5px rgba(255, 255, 255, 0.5);
-    margin-right: 10px;
 }
 
 .form button:hover {
     color: black;
-    background: transparent;
-    transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), inset 0 -4px 8px rgba(255, 255, 255, 0.5);
 }

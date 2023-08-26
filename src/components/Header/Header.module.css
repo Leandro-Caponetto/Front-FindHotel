@@ -1,5 +1,4 @@
-
-.ContainerBox{
+.ContainerBox {
     display: flex;
     flex-direction: column;
     height: 630px;
@@ -10,21 +9,21 @@
     border-radius: 100px;
 }
 
-.boxInfo{
+.boxInfo {
     width: 470px;
     height: 250px;
     margin: 85px 0 0 85px;
-    
+
 }
 
-.ContainerBox p{
+.ContainerBox p {
     font-family: CocoSharp;
     font-size: 32px;
     color: black;
     margin: 0;
 }
 
-.ContainerBox h1{
+.ContainerBox h1 {
     font-family: Cocogoose;
     font-weight: 500;
     font-size: 48px;
@@ -33,7 +32,7 @@
     margin: 0;
 }
 
-.boxFind{
+.boxFind {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,40 +40,40 @@
     height: 250px;
 }
 
-.boxFind h2{
+.boxFind h2 {
     font-family: Cocogoose;
     font-weight: 500;
     font-size: 36px;
     color: white;
-    margin: 0;  
+    margin: 0;
     text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.785);
 }
 
-.search{
+.search {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 30px;
     height: 180px;
-    width: 1200px;
     border-radius: 25px;
-    background-color: rgba(249, 249, 251, 0.4);  
+    background-color: rgba(249, 249, 251, 0.4);
+    padding: 20px;
 }
 
-.searchInfo{
+.searchInfo {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.searchInfo h3{
+.searchInfo h3 {
     font-family: CocoSharp;
     font-size: 24px;
     line-height: 0;
 }
 
-.searchInfo input{
+.searchInfo input {
     border: none;
     width: 200px;
     height: 45px;
@@ -86,12 +85,12 @@
     box-shadow: 0 7px 10px #2525255a;
 }
 
-.searchInfo button{
+.searchInfo button {
     font-family: CocoSharpBold;
     font-size: 20px;
     color: white;
     border: none;
-    width: 200px;
+    width: 150px;
     height: 45px;
     border-radius: 10px;
     background-color: #2CC2B4;
@@ -99,14 +98,11 @@
     cursor: pointer;
     margin-top: 30px;
     transition: 1s;
-
+    display: flex;
+    text-align: center;
 }
 
-.searchInfo button:hover{
+.searchInfo button:hover {
     transition: 1s;
     background-color: #101010;
 }
-
-
-
-

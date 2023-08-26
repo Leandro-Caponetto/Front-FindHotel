@@ -19,7 +19,6 @@ const Home = () => {
 
      <Header/>
      <TrendDestinations/>
-
      <HotelTrend/>
      </div>
      <div className={styles.info}>
