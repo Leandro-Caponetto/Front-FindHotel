@@ -7,6 +7,7 @@ import Header from '../../components/Header/Header';
 import HotelTrend from '../../components/HotelTrend/hotelTrend';
 import BannerHotel from '../../components/BannerHotel/BannerHotel';
 import { setDestination } from '../../redux/destinations';
+import InfoUser from '../../components/InfoUser/InfoUser';
 
 
 const Home = () => {
@@ -20,9 +21,15 @@ const Home = () => {
      <TrendDestinations/>
 
      <HotelTrend/>
+     </div>
+     <div className={styles.info}>
+
+     <InfoUser />
+     </div>
+     <div className={styles.banner}>
+
      <BannerHotel/>
      </div>
-
     </div>
   );
 };

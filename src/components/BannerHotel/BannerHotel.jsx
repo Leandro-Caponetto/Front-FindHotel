@@ -6,6 +6,7 @@ import banner from '../../assets/banner.json'
 const BannerHotel = () => {
     return (
         <div className={styles.slider}>
+          <h1>Promoting the best Hotels</h1>
           <div className={styles.slideTrack}>
             {banner.map((bannerItem, index) => (
               <div className={styles.slide} key={index}>

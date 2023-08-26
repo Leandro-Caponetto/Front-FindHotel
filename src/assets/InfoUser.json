@@ -1,0 +1,103 @@
+{
+    "comentarios": [
+      {
+        "_id": 1,
+        "img": "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "usuario": "Karol123",
+        "calificacion": "★★★★★",
+        "comentario": "What a discovery this hotel search page! Find the perfect hotel for my family vacation. The interface is very intuitive, I was able to filter the results by location, price and amenities. "
+      },
+      {
+        "_id": 2,
+        "img": "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "usuario": "Leandro8",
+        "calificacion": "★★★★☆",
+        "comentario": "I love exploring new places and this page made finding a hotel a doddle. The best part is the number of options it offers. "
+      },
+      {
+        "id": 3,
+        "img": "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "usuario": "Micaela10",
+        "calificacion": "★★★★★",
+        "comentario": "Wonderful find! I'm pretty picky about my hotel choices, but this page made my life easier. I was able to filter the results to find hotels with spas and room service. "
+      },
+      {
+        "id": 4,
+        "img": "https://images.pexels.com/photos/8690108/pexels-photo-8690108.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "usuario": "MochileroAventurero",
+        "calificacion": "★★★★☆",
+        "comentario": "For a backpacker like me, this page is a good starting point. I was able to quickly compare cheap options and find accommodations that fit my budget. "
+      },
+      {
+        "id": 5,
+        "img": "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "usuario": "Leví2023",
+        "calificacion": "★★☆☆☆",
+        "comentario": "I have mixed feelings about this page. I appreciate the photos and reviews from other travelers, but it seems that some popular hotels are missing from their results."
+      },
+      {
+        "id": 6,
+        "img": "https://images.pexels.com/photos/712513/pexels-photo-712513.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "usuario": "Ana5",
+        "calificacion": "★★★★☆",
+        "comentario": "Our experience using this page was generally satisfactory. We found a lovely family run hotel for our vacation. "
+      },
+      {
+        "id": 7,
+        "img": "https://media.istockphoto.com/id/175726997/es/foto/con-una-sonrisa-de-confianza.jpg?s=612x612&w=0&k=20&c=S9M8ecc-M-5gziubLrPGGHk_vSFPFdAvZF65U4Iielc=",
+        "usuario": "LuisMiguel365",
+        "calificacion": "★★★★☆",
+        "comentario": "As a business traveler, the site made my search efficient and fast. I was able to find hotels with services like conference rooms and high-speed Wi-Fi access. "
+      },
+      {
+        "id": 8,
+        "img": "https://images.pexels.com/photos/1065084/pexels-photo-1065084.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "usuario": "MariaLuz4",
+        "calificacion": "★★★★★",
+        "comentario": "This page deserves all the stars! My partner and I were looking for a romantic getaway hotel and we found the perfect place."
+      },
+      {
+        "id": 9,
+        "img": "https://images.pexels.com/photos/874158/pexels-photo-874158.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "usuario": "Daniel2023",
+        "calificacion": "★★★☆☆",
+        "comentario": "As someone new to travel planning, this page was a bit overwhelming at first. There are so many options and filters that I didn't know where to start."
+      },
+      {
+        "id": 10,
+        "img": "https://images.pexels.com/photos/1181519/pexels-photo-1181519.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "usuario": "HenryPlaya",
+        "calificacion": "★★★★★",
+        "comentario": "Incredible platform to find hotels by the beach! The panoramic photos of the ocean views in the listings are amazing."
+      },
+      {
+        "id": 11,
+        "img": "https://images.pexels.com/photos/1065084/pexels-photo-1065084.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "usuario": "MariaLuz",
+        "calificacion": "★★★★★",
+        "comentario": "This page deserves all the stars! My partner and I were looking for a romantic getaway hotel and we found the perfect place."
+      },
+      {
+        "id": 12,
+        "img": "https://images.pexels.com/photos/874158/pexels-photo-874158.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "usuario": "Daniel2023",
+        "calificacion": "★★★☆☆",
+        "comentario": "As someone new to travel planning, this page was a bit overwhelming at first. There are so many options and filters that I didn't know where to start."
+      },
+      {
+        "id": 13,
+        "img": "https://images.pexels.com/photos/1181519/pexels-photo-1181519.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "usuario": "HenryPlaya",
+        "calificacion": "★★★★★",
+        "comentario": "Incredible platform to find hotels by the beach! The panoramic photos of the ocean views in the listings are amazing."
+      },
+      {
+        "id": 14,
+        "img": "https://images.pexels.com/photos/1181519/pexels-photo-1181519.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "usuario": "HenryPlaya",
+        "calificacion": "★★★★★",
+        "comentario": "Incredible platform to find hotels by the beach! The panoramic photos of the ocean views in the listings are amazing. "
+      }
+    ]
+}
+  
