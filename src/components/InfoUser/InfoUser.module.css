@@ -1,0 +1,69 @@
+.slider {
+  width: 85vw;
+  height: auto;
+  margin: auto;
+  overflow: hidden;
+}
+
+.slideTrack {
+  display: flex;
+  text-align: center;
+  animation: scroll 90s linear infinite;
+  -webkit-animation: scroll 90s linear infinite;
+  width: calc(320px * 14); /* Ajustado el ancho de las cards */
+}
+
+.slide {
+  width: 220px; /* Ajustado el ancho de las cards */
+  height: 350px;
+  margin: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+ 
+  transition: transform 10s ease;
+  overflow: hidden;
+  opacity: .6;
+  cursor: pointer;
+}
+.slide:hover{
+  opacity: 10;
+}
+h1{
+  text-align: center;
+  font-size: 40px;
+  font-family: Cocogoose;
+  font-weight: 500;
+  font-size: 28px;
+}
+
+.comment {
+  padding: 6px;
+}
+
+.slide:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.slide img {
+  width: 120px;
+  height: 120px;
+  max-height: 250px; /* Ajustado el alto máximo de la imagen */
+  border-radius: 50%; /* Border radius solo en la parte superior */
+  object-fit: cover;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.stars {
+  color: yellow;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-320px * 7)); /* Ajustado el ancho de las cards */
+  }
+}
+

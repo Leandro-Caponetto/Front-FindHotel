@@ -69,7 +69,7 @@ console.log(hotelId)
         {hotelDetail?.wifi ? <h5>WiFi: Available</h5> : null}
         {hotelDetail?.roomService ? <h5>Room Service: Available</h5> : null}
         </div>
-        <button className={styles.button}><Link to="/results"> Back </Link></button>
+        <button className={styles.button}><Link to="/results"> reservar </Link></button>
       
     </div>
   );

@@ -5,10 +5,10 @@ import { NavLink } from 'react-router-dom';
 import SocialNetworks from '../SocialNetworks/SocialNetworks';
 
 const redesSociales = {
-  facebook: '',
+  facebook: 'https://www.facebook.com/profile.php?id=61550257965574',
   twitter: '',
   linkedin: '',
-  instagram: '',
+  instagram: 'https://www.instagram.com/findhotelfh/',
 }
 
 const Footer = () => {
