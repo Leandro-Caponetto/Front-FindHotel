@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from './InputText.module.css';
+import { GiBroom } from 'react-icons/gi'
 
-const InputText = ({ initInput, onChangeInput, errors, tag = '', style }) => {
+const InputText = ({ initInput, onChangeInput, errors, tag = '', buttonClear = false, style }) => {
   const [state, setState] = useState(initInput || '')
 
   useEffect(() => {
@@ -16,17 +17,26 @@ const InputText = ({ initInput, onChangeInput, errors, tag = '', style }) => {
     onChangeInput(value)
   }
 
+  const handlerClearInput = () => {
+    setState('')
+    onChangeInput('')
+  }
   return (
     <div className={styles.InputText} style={{ ...style }} >
-      {tag !== '' && <h3 style={{ fontFamily: 'CocoSharp', fontSize: '24px', ...style?.h3 }}>{tag}: </h3>}
-      <input
-        style={{ width: '200px', height: '45px', ...style?.input }}
-        type='text'
-        autoComplete="off"
-        value={state}
-        placeholder={`${tag}`}
-        onChange={(event) => { handlerInputChange(event) }}
-      />
+      {tag !== '' && <h3 style={{ fontFamily: 'CocoSharp', fontSize: '24px', ...style?.h3 }}>{tag} </h3>}
+      <div className={styles.DateFile}>
+        <input
+          style={{ width: '200px', height: '45px', ...style?.input }}
+          type='text'
+          autoComplete="off"
+          value={state}
+          placeholder={`${tag}`}
+          onChange={(event) => { handlerInputChange(event) }}
+        />
+        {buttonClear && <a className={styles.ClearInput} onClick={handlerClearInput}>
+          <GiBroom className={styles.Icon} />
+        </a>}
+      </div>
       {errors && <label className={styles.ErrorLabel}>{errors}</label>}
     </div>
   )
@@ -37,6 +47,7 @@ InputText.propTypes = {
   onChangeInput: PropTypes.func,
   errors: PropTypes.string,
   tag: PropTypes.string,
+  buttonClear: PropTypes.bool,
   style: PropTypes.object,
 
 };
