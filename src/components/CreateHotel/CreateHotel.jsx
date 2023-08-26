@@ -238,26 +238,25 @@ const CreateHotel = () => {
     
   };
 
-  
 
-    return(
-        <div className={styles.container}>
-        <div className={styles.boxForm}>
-          <form className={styles.form} autoComplete="off">
-    
-            <div className={styles.index}>
-                <div>
-                    <label>Name Hotel:</label>
-                    <input type="text" name="name" value={hotelData.name} onChange={handleOnChange}/>
-                    {errors.name && <p className={styles.errors}>{errors.name}</p>}
-                    
-                </div>
+  return (
+    <div className={styles.container}>
+      <div className={styles.boxForm}>
+        <form className={styles.form} autoComplete="off">
+
+          <div className={styles.index}>
+            <div>
+            
+              
+              <InputText initInput={hotelData.name} onChangeInput={(input) => handleInputChange('name', input)} tag={'Name Hotel'} errors={errors.name} />
+                
     
                 <div>
                     <label>Image:</label>
                     <input type="text" name="image" value={hotelData.image} onChange={handleOnChange}/>
                     {errors.image && <p className={styles.errors}>{errors.image}</p>}
                 </div>
+
             </div>
     
             <div className={styles.details}>
@@ -324,7 +323,7 @@ const CreateHotel = () => {
             <label>Price:</label>
             <input type="number" name="roomStock" min={1} value={hotelData.roomStock} onChange={handleOnChange}/>
             </div>
-
+            
 
     
             <p>Services:</p>

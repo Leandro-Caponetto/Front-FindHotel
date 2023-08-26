@@ -9,6 +9,8 @@ import NavBar from "../NavBar/NavBar";
 import { useSelector, useDispatch } from 'react-redux';
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import UploadImages from "../uploadImages/UploadImages";
+
 
 
 const Detail = () => {
@@ -37,6 +39,7 @@ console.log(hotelId)
     <div className={styles.detailContainer}>
         <div className={styles.title}>
           <h1 >{hotelDetail?.name}</h1>
+          <UploadImages/>
         </div>
           <div>
             <img

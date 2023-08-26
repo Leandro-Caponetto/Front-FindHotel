@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import styles from "./NavBar.module.css";
 import logo from '../../assets/image/logoBlack-removebg-preview.png'
 
+
 const NavBar = (props) => {
   return (
     <div className={styles.conteiner}>
@@ -15,6 +16,7 @@ const NavBar = (props) => {
           </Link>
         </div>
         <div className={styles.navbar_buttons}>
+          <Link to={"/signup"} className={styles.navbar_button}>
           <Link to="/form" className={styles.navbar_button}>
             Create Hotel
           </Link>
