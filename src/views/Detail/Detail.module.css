@@ -1,66 +1,90 @@
+/* Detail.module.css */
 .detailContainer {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
+    flex-direction: column;
+   margin: 30px auto;
+    
+    width: 500px;
+    height: auto;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    color: #000;
+    -webkit-box-shadow: 8px 14px 14px -7px rgba(0,0,0,0.44); 
+    box-shadow: 8px 14px 14px -7px rgba(0,0,0,0.44);
+    
 }
+
+
+
+.card {
+  display: flex;
+    width: 100%;
+    height: 280px;
+    box-sizing: border-box;
+    font-family: cocogoose, sans-serif;
+}
+
+
 
 .cardImage {
-  display: flex;
-  align-self: center;
-  align-content: center;
-  width: 700px;
+  width: 100%;
+  height: 300px;
   object-fit: cover;
-  position: relative;
-  border-radius: 25px;
-  -webkit-box-shadow: 5px 17px 28px 9px rgba(0, 0, 0, 0.82);
-  box-shadow: 5px 17px 28px 9px rgba(0, 0, 0, 0.82);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
-.title {
-  font-size: 45px;
-  margin-bottom: 8px;
-  font-family: cocogoose;
-  color: rgb(44, 194, 180);
-  text-align: center;
+.star{
+  color: yellow;
+  filter: drop-shadow(0px 7px 10px #201f1ff0);
 }
 
-.star {
-  color: #ffc107;
-  font-size: 40px;
+.cardTitle {
+  font-size: 1.2rem;
+  
+  color: #333;
 }
 
-.text {
-  font-size: 25px;
-  margin-bottom: 8px;
-  font-family: 'Courier New', Courier, monospace;
-  font-weight: bolder;
-  flex-direction: row-reverse;
-  margin-top: 10%;
+.cardLocation {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 12px;
 }
+
+.icon {
+  margin-right: 8px;
+  font-size: 1rem;
+}
+
 .textConten {
-  font-size: 25px;
-  margin-bottom: 8px;
-  font-family: 'Courier New', Courier, monospace;
-  font-weight: bolder;
-  font-weight: bolder;
-  flex-direction: row-reverse;
-  margin-top: 10%;
+  
+  margin-top: 32px;
+  font-size: 0.9rem;
+}
+
+
+.btn{
+  display: flex;
+  text-align: center;
+  gap: 20px;
+  justify-content: center;
+  margin: 20px;
 }
 .button {
-  background-color: rgb(44, 194, 180);
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  font-size: 16px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;  
+  background-color: #20c996;
+  border-radius: 8px;
+  width: 100px;
+  padding: 6px;
+  box-shadow: 8px 14px 14px -7px rgba(0,0,0,0.44);
+  text-align: center;
+  color: white;
+  text-align: center;
+  
+  padding: 10
 }
-
-.button:hover {
-  background-color: rgb(0, 237, 214);
+.button:hover{
+  opacity: 50%;
 }
-.button:active {
-  background-color:44, 194, 180;}

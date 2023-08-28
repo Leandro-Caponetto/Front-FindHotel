@@ -34,10 +34,11 @@ const HotelList = ({ hotels }) => {
   const lastIndex = currentPage * hotelsPorPage;
   const firstIndex = lastIndex - hotelsPorPage;
   const uniqueCountries = Array.from(new Set(hotels.map((hotel) => hotel.country)));
-
+  console.log(hotels)
 
   return (
     <div className={styles.container}>
+      
       <div className={styles.cardsContainer} key='hotels'>
         <span className={styles.resultsText}> Results Hotels: {uniqueCountries.join(', ')}</span>
         {hotels.slice(firstIndex,lastIndex ).map((hotel) => (
@@ -59,7 +60,6 @@ const HotelList = ({ hotels }) => {
                 {Array.from({ length: hotel.category }, (_, index) => (
                   <FaStar key={index} />
                 ))}
-                <h4>Price for night ${hotel.room.price}</h4>
               </div>
               <h5 className={styles.text}>{hotel.room.name}</h5>
             </div>

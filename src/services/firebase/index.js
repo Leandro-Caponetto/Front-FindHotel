@@ -1,2 +1,3 @@
-export { storage} from "./configFirebase.js"
-export { app} from "./configFirebase.js"
+import firebase from './configFirebase.js'
+
+export { firebase }

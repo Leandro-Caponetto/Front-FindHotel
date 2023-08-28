@@ -22,7 +22,7 @@ const InputSelect = ({ initSelect, options, onChangeSelect, errors, tag = '', pa
 
   return (
     <div className={styles.InputSelect}>
-      {tag !== '' && <h3 style={{ fontFamily: 'CocoSharp', fontSize: '20px', ...style?.h3 }}>{tag} </h3>}
+      {tag !== '' && <h3 style={{ fontFamily: 'CocoSharp', fontSize: '24px', ...style?.h3 }}>{tag} </h3>}
       <select className={styles.Selecter} value={selected} onChange={handleSelectChange}>
         <option value="" selected disabled hidden>Select an Option</option>
         {Array.isArray(options) ?

@@ -25,16 +25,18 @@ const Results = () => {
     setPaginated(dataPaginated)
   }
 
-  const handleChange = (data) =>{
+  const handleChange = (data) => {
 
   }
+
+  console.log(paginated.image)
 
   return (
     <div className={styles.container}>
       <NavBar />
       <div className={styles.conten}>
-        {/* <SearchBox /> */}
-        <FilterOrder data={destination} onChangeFilter={handleChange}/>
+        <SearchBox />
+        <FilterOrder data={destination} onChangeFilter={handleChange} />
         <HotelList hotels={paginated} />
       </div>
       <div className={styles.Pages}>

@@ -6,26 +6,18 @@ import FormCreate from './views/FormCreate/FormCreate'
 import Footer from './components/Footer/Footer'
 import DetailHotel from './views/Detail/Detail'
 import './App.css'
-import Reserva from './components/Reserva/Reserva'
-
-import SignUpClient from './views/SignUp/SignUp'
+import Reserv from './views/Reserv/Reserv'
 
 function App() {
 
   return (
     <>
-
-
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/results' element={<Results />} />
         <Route path='/form' element={<FormCreate />} />
         <Route path="/detail/:hotelId" element={<DetailHotel />} />
-        <Route path='/reserva' element={<Reserva />} />
-        <Route path="/signUp" element={<SignUpClient />} />
-
-
-
+        <Route path='/reserv' element={<Reserv />} />
       </Routes>
       <Footer />
     </>

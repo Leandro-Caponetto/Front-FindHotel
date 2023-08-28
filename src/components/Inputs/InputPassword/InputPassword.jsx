@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from './InputPassword.module.css';
+import { FaEye, FaEyeSlash } from 'react-icons/fa'
 
 const InputPassword = ({ initInput, onChangeInput, errors, tag = '', style }) => {
   const [state, setState] = useState(initInput || '')
@@ -17,24 +18,25 @@ const InputPassword = ({ initInput, onChangeInput, errors, tag = '', style }) =>
     onChangeInput(value);
   };
 
-  const togglePasswordVisibility = () => {
+  const onChangePasswordView = () => {
     setShowPassword(!showPassword);
   };
 
   return (
-    <div className={styles.InputPassword} style={{ ...style }} >
+    <div className={styles.InputPassword}
+      style={{ flexDirection: 'column', alignItems: 'center', gap: '30px', ...style }} >
       {tag !== '' && <h3 style={{ fontFamily: 'CocoSharp', fontSize: '24px', ...style?.h3 }}>{tag}: </h3>}
-      <div style={{ display: 'flex', alignItems: 'center' }}>
+      <div className={styles.DateFile} style={{ display: 'flex', alignItems: 'center' }}>
         <input
-          style={{ width: '200px', height: '45px', ...style?.input }}
+          style={{ height: '45px', ...style?.input }}
           type={showPassword ? 'text' : 'password'}
           autoComplete="off"
           value={state}
           placeholder={`${tag}`}
           onChange={(event) => { handlerInputChange(event) }}
         />
-        <button onClick={togglePasswordVisibility} style={{ border: 'none', background: 'none', cursor: 'pointer' }}>
-          {showPassword ? <span>👁️</span> : <span>👁️‍🗨️</span>}
+        <button className={styles.ViewPassword} onClick={onChangePasswordView} style={{ border: 'none', background: 'none', cursor: 'pointer' }}>
+          {showPassword ? <div style={{ display: 'flex' }}><FaEyeSlash color='rgb(44, 194, 180)' size={20} /></div> : <div style={{ display: 'flex' }}><FaEye size={20} /></div>}
         </button>
 
       </div>

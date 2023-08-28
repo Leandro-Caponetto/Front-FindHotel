@@ -8,6 +8,9 @@ import { useForm } from "react-hook-form";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 initMercadoPago("APP_USR-e2f3a313-4a9d-4110-bd77-ad6c50675664");
 import axios from "axios";
+import InfoUser from '../../components/InfoUser/InfoUser';
+
+
 
 const datos = {
   title: "HotelMalaVista - Habitación 202",
@@ -23,12 +26,16 @@ const Reserva = () => {
 
 
 
-  currentStep === steps.length && id === null && axios.post("http://localhost:3001/payment/create-order", datos)
-        .then(({ data }) => {
-           console.log(data.id)
-            setId(data.id)
-        })
-        .catch((error) => alert(error))
+
+  currentStep === steps.length &&
+    id === null &&
+    axios
+      .post("http://localhost:3001/payment/create-order", datos)
+      .then(({ data }) => {
+        console.log(data.id);
+        setId(data.id);
+      })
+      .catch((error) => alert(error));
 
   const {
     register,
@@ -40,10 +47,16 @@ const Reserva = () => {
   } = useForm({
     defaultValues: {
       nombre: "",
+      lastName: "",
       correo: "",
-
+      guest: "",
       country: "",
-      archivo: "",
+      address: "",
+      dayArrival: "",
+      time: "",
+      city: "",
+      postalCode: "",
+      phone: "",
       aceptaTerminos: false,
     },
   });
@@ -66,246 +79,366 @@ const Reserva = () => {
 
     reset();
   });
+
+
+
+
+  const hotelData = [
+    {
+      id: 1,
+      img: "https://www.infobae.com/new-resizer/mgEpxPqcxG2LQAETGta69SRKSfk=/1200x900/filters:format(webp):quality(85)/s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2019/05/20152251/Dorado-Beach-a-Ritz-Carlton-Reserve-3.jpg",
+    },
+    {
+      id: 2,
+      img: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2a/0a/78/65/pool.jpg?w=1200&h=-1&s=1"
+    },
+    {
+      id: 3,
+      img: "https://www.clarin.com/img/2021/05/19/the-ritz-carlton-macao-en___9PkS_Tbe4_720x0__1.jpg"
+    }
+  ]
+
   return (
     <>
-      <NavBar />
+
       <div className="container">
+        {/* Nueva tarjeta de hotel en el lado izquierdo */}
         <h1>Reservation</h1>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex justify-between">
-            {steps?.map((step, i) => (
-              <div
-                key={i}
-                className={`step-item ${currentStep === i + 1 && "active"} ${
-                  (i + 1 < currentStep || complete) && "complete"
-                } `}
-              >
-                <div className="step">
-                  {i + 1 < currentStep || complete ? (
-                    <TiTick size={24} />
-                  ) : (
-                    i + 1
-                  )}
-                </div>
-                <p className="text-gray-500">{step}</p>
+        <div className="contenedor">
+          <div className="hotel-card">
+            <div className="carousel-container">
+              <div className="carousel" key={id}>
+                {hotelData.map((d) => (
+                  <img key={d.id}
+                    className="hotel-image"
+                    src={d.img}
+                    alt={`Imagen de `}
+                  />
+                ))}
               </div>
-            ))}
+            </div>
+
+            <div className="hotel-details">
+              <h1 className="hotel-location"><strong>Argentina</strong></h1>
+              <p className="hotel-location">Buenos Aires</p>
+              <p className="hotel-location">Hotel Gran Buenos Aires</p>
+              <p className="start">★★★★★</p>
+              <p className="hotel-description">
+                Descripción del hotel, servicios, etc,Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae rem praesentium iusto?.
+              </p>
+
+              <p className="hotel-price">$ 200</p>
+
+            </div>
           </div>
 
-          {currentStep === 1 && (
-            <div className="rese">
-              <label>First Name:</label>
-              <input
-                type="text"
-                placeholder="Enter your First Name"
-                name="nombre"
-                {...register("nombre", {
-                  required: {
-                    value: true,
-                    message: "First Name Required",
-                  },
-                  maxLength: 20,
-                  minLength: 2,
-                })}
-              />
-              {errors.nombre?.type === "required" && (
-                <span>First Name requerid</span>
-              )}
-              {errors.nombre?.type === "maxLength" && (
-                <span>Name must not be longer than 20 characters</span>
-              )}
-              {errors.nombre?.type === "minLength" && (
-                <span>Name must be greater than 2 characters</span>
-              )}
-
-              <label>Last Name:</label>
-              <input
-                type="text"
-                placeholder="Enter your Last Name"
-                name="lastName"
-                {...register("lastName", {
-                  required: {
-                    value: true,
-                    message: "Last Name Required",
-                  },
-                  maxLength: 20,
-                  minLength: 2,
-                })}
-              />
-              {errors.lastName?.type === "required" && (
-                <span>Last Name requerid</span>
-              )}
-              {errors.lastName?.type === "maxLength" && (
-                <span>Name must not be longer than 20 characters</span>
-              )}
-              {errors.lastName?.type === "minLength" && (
-                <span>Name must be greater than 2 characters</span>
-              )}
-              <label>Guest Number:</label>
-              <input
-                type="number"
-                name="guest"
-                placeholder="Enter your Guest Number"
-                {...register("guest", {
-                  required: {
-                    value: true,
-                    message: "Number Guest Required",
-                  },
-                  maxLength: 6,
-                  minLength: 1,
-                })}
-              />
-              {errors.guest?.type === "required" && (
-                <span>Guest number required</span>
-              )}
-              {errors.guest?.type === "maxLength" && (
-                <span>Guest number cannot exceed 6 characters</span>
-              )}
-              {errors.guest?.type === "minLength" && (
-                <span>Guest number should have at least 1 character</span>
-              )}
-              <label>Email:</label>
-              <input
-                type="text"
-                name="correo"
-                placeholder="Enter your Email"
-                {...register("correo", {
-                  required: {
-                    value: true,
-                    message: "Mail is Required",
-                  },
-                  pattern: {
-                    value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-                    message: "Invalid Email",
-                  },
-                })}
-              />
-              {errors.correo && <span>{errors.correo.message}</span>}
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="flex justify-between">
+              {steps?.map((step, i) => (
+                <div
+                  key={i}
+                  className={`step-item ${currentStep === i + 1 && "active"} ${(i + 1 < currentStep || complete) && "complete"
+                    } `}
+                >
+                  <div className="step">
+                    {i + 1 < currentStep || complete ? (
+                      <TiTick size={24} />
+                    ) : (
+                      i + 1
+                    )}
+                  </div>
+                  <p className="text-gray-500">{step}</p>
+                </div>
+              ))}
             </div>
-          )}
 
-          {/* ########## INPUT 2 ############# */}
-
-          {currentStep === 2 && (
-            <div className="rese">
-              <label>Address:</label>
-              <input
-                type="text"
-                name="address"
-                placeholder="Enter your address"
-                {...register("address", {
-                  required: {
-                    value: true,
-                    message: "Address Required",
-                  },
-                  maxLength: 20,
-                  minLength: 2,
-                })}
-              />
-              {errors.address?.type === "required" && (
-                <span>Address requerid</span>
-              )}
-              {errors.address?.type === "maxLength" && (
-                <span>Address must not be longer than 20 characters</span>
-              )}
-              {errors.address?.type === "minLength" && (
-                <span>Address must be greater than 2 characters</span>
-              )}
-              <label>Country:</label>
-              <input
-                type="text"
-                placeholder="Enter your address"
-                {...register("country", {
-                  required: true,
-                  message: "Invalid Country",
-                })}
-              />
-              {errors.country && <span>{errors.country.message}</span>}
-
-              <label>Day of Arrival:</label>
-              <input
-                type="date"
-                placeholder="Enter your Guest Number"
-                {...register("dayArrival")}
-              />
-              <label>Schedule:</label>
-              <input
-                type="time"
-                placeholder="Enter your Guest Number"
-                {...register("time")}
-              />
-            </div>
-          )}
-
-          {/* ########## INPUT 3 ############ */}
-
-          {currentStep === 3 && (
-            <div className="rese">
-              <label>City:</label>
-              <input
-                type="text"
-                placeholder="Enter your City"
-                {...register("city")}
-              />
-              <label>Postal Code:</label>
-              <input
-                type="number"
-                placeholder="Enter your Postal Code"
-                {...register("postalCode")}
-              />
-              <label>Phone:</label>
-              <input
-                type="tel"
-                placeholder="Enter your Phone"
-                {...register("phone")}
-              />
-
-              <div>
+            {currentStep === 1 && (
+              <div className="rese">
+                <label>First Name:</label>
                 <input
-                  type="checkbox"
-                  name="aceptaTerminos"
-                  {...register("aceptaTerminos", {
+                  type="text"
+                  placeholder="Enter your First Name"
+                  name="nombre"
+                  {...register("nombre", {
                     required: {
                       value: true,
-                      message: "Acepta los términos y condiciones",
+                      message: "First Name Required",
+                    },
+                    maxLength: 20,
+                    minLength: 2,
+                    pattern: {
+                      value: /^[a-zA-Z\s]+$/,
+                      message:
+                        "First Name should only contain letters and spaces",
                     },
                   })}
                 />
-                <label>Acepto los términos y condiciones</label>
-                {errors.aceptaTerminos && (
-                  <span>{errors.aceptaTerminos.message}</span>
+                {errors.nombre?.type === "required" && (
+                  <span>First Name requerid</span>
+                )}
+                {errors.nombre?.type === "maxLength" && (
+                  <span>Name must not be longer than 20 characters</span>
+                )}
+                {errors.nombre?.type === "minLength" && (
+                  <span>Name must be greater than 2 characters</span>
+                )}
+
+                <label>Last Name:</label>
+                <input
+                  type="text"
+                  placeholder="Enter your Last Name"
+                  name="lastName"
+                  {...register("lastName", {
+                    required: {
+                      value: true,
+                      message: "Last Name Required",
+                    },
+                    maxLength: 20,
+                    minLength: 2,
+                    pattern: {
+                      value: /^[a-zA-Z\s]+$/,
+                      message:
+                        "Last Name should only contain letters and spaces",
+                    },
+                  })}
+                />
+                {errors.lastName?.type === "required" && (
+                  <span>Last Name requerid</span>
+                )}
+                {errors.lastName?.type === "maxLength" && (
+                  <span>Name must not be longer than 20 characters</span>
+                )}
+                {errors.lastName?.type === "minLength" && (
+                  <span>Name must be greater than 2 characters</span>
+                )}
+                <label>Guest Number:</label>
+                <input
+                  type="number"
+                  placeholder="Enter your Guest Number"
+                  {...register("guest", {
+                    required: "Guest number is required",
+                    min: {
+                      value: 1,
+                      message: "Guest should be a number between 1 and 6",
+                    },
+                    max: {
+                      value: 6,
+                      message: "Guest should be a number between 1 and 6",
+                    },
+                    pattern: {
+                      value: /^[1-6]$/, // Expresión regular para números del 1 al 6
+                      message: "Guest should be a number between 1 and 6",
+                    },
+                  })}
+                />
+                {errors.guest && <span>{errors.guest.message}</span>}
+
+                <label>Email:</label>
+                <input
+                  type="text"
+                  name="correo"
+                  placeholder="Enter your Email"
+                  {...register("correo", {
+                    required: {
+                      value: true,
+                      message: "Mail is Required",
+                    },
+                    pattern: {
+                      value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+                      message: "Invalid Email",
+                    },
+                  })}
+                />
+                {errors.correo && <span>{errors.correo.message}</span>}
+              </div>
+            )}
+
+            {/* ########## INPUT 2 ############# */}
+
+            {currentStep === 2 && (
+              <div className="rese">
+                <label>Address:</label>
+                <input
+                  type="text"
+                  name="address"
+                  placeholder="Enter your address"
+                  {...register("address", {
+                    required: {
+                      value: true,
+                      message: "Address Required",
+                    },
+                    maxLength: 20,
+                    minLength: 2,
+                  })}
+                />
+                {errors.address?.type === "required" && (
+                  <span>Address requerid</span>
+                )}
+                {errors.address?.type === "maxLength" && (
+                  <span>Address must not be longer than 20 characters</span>
+                )}
+                {errors.address?.type === "minLength" && (
+                  <span>Address must be greater than 2 characters</span>
+                )}
+
+                <label>Country:</label>
+                <input
+                  type="text"
+                  placeholder="Enter your address"
+                  {...register("country", {
+                    required: {
+                      value: true,
+                      message: "Requires a Country",
+                    },
+                    pattern: {
+                      value: /^[a-zA-Z\s]+$/,
+                      message: "Country should only contain letters and spaces",
+                    },
+                  })}
+                />
+                {errors.country && <span>{errors.country.message}</span>}
+
+                <label>Day of Arrival:</label>
+                <input
+                  type="date"
+                  placeholder="Enter your Guest Number"
+                  {...register("dayArrival", {
+                    required: {
+                      value: true,
+                      message: "Date of Arrival is required",
+                    },
+                    validate: (value) => {
+                      const dayArrival = new Date(value);
+                      const dayNow = new Date();
+                      return (
+                        dayArrival > dayNow || "Date must be in the future"
+                      );
+                    },
+                  })}
+                  min={new Date().toISOString().split("T")[0]} // Establece el atributo min al día actual
+                />
+                {errors.dayArrival && <span>{errors.dayArrival.message}</span>}
+
+                <label>Schedule:</label>
+                <input
+                  type="time"
+                  placeholder="Enter your Guest Number"
+                  {...register("time", {
+                    required: "Schedule is required",
+                    pattern: {
+                      value: /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/, // Expresión regular para formato HH:MM
+                      message: "Invalid time format (HH:MM)",
+                    },
+                  })}
+                />
+                {errors.time && <span>{errors.time.message}</span>}
+              </div>
+            )}
+
+            {/* ########## INPUT 3 ############ */}
+
+            {currentStep === 3 && (
+              <div className="rese">
+                <label>City:</label>
+                <input
+                  type="text"
+                  placeholder="Enter your City"
+                  {...register("city", {
+                    required: "City is required",
+                    pattern: {
+                      value: /^[a-zA-Z\s]*$/, // Expresión regular para letras y espacios
+                      message: "City should only contain letters and spaces",
+                    },
+                  })}
+                />
+
+                {errors.city && <span>{errors.city.message}</span>}
+                <label>Postal Code:</label>
+                <input
+                  type="number"
+                  placeholder="Enter your Postal Code"
+                  {...register("postalCode", {
+                    required: "Postal Code is required",
+                    pattern: {
+                      value: /^\d{4}(-\d{4})?$/, // Expresión regular para códigos postales en formato XXXXX o XXXXX-XXXX
+                      message: "Invalid Postal Code format",
+                    },
+                  })}
+                />
+                {errors.postalCode && <span>{errors.postalCode.message}</span>}
+
+                <label>Phone:</label>
+                <input
+                  type="tel"
+                  placeholder="Enter your Phone"
+                  {...register("phone", {
+                    required: "Phone number is required",
+                  })}
+                />
+                {errors.phone && <span>{errors.phone.message}</span>}
+
+                <div>
+                  <input
+                    type="checkbox"
+                    name="aceptaTerminos"
+                    {...register("aceptaTerminos", {
+                      required: {
+                        value: true,
+                        message: "Accept the terms and conditions",
+                      },
+                    })}
+                  />
+                  <label>Accept the terms and conditions</label>
+                  {errors.aceptaTerminos && (
+                    <span>{errors.aceptaTerminos.message}</span>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/*################ Button ########################*/}
+            {!complete && (
+              <div className="rese">
+                {currentStep > 1 && (
+                  <button
+                    className="btn"
+                    type="button"
+                    onClick={handlePrevious}
+                  >
+                    Previous
+                  </button>
+                )}
+
+                {currentStep < steps.length ? (
+                  <button
+                    type="submit"
+                    className="btn"
+                    onClick={handleNext}
+                    disabled={Object.keys(errors).length > 0}
+                  >
+                    Next
+                  </button>
+                ) : (
+                  <button
+                    type="submit"
+                    className="btn"
+                    onClick={() => setCurrentStep(currentStep + 1)}
+                    disabled={Object.keys(errors).length > 0}
+                  >
+                    Next
+                  </button>
                 )}
               </div>
-            </div>
-          )}
+            )}
 
-          {/*################ Button ########################*/}
-          {!complete && (
-            <div className="rese">
-              <button className="btn" type="button" onClick={handlePrevious}>
-                Previous
-              </button>
-
-              <button type="submit">Enviar</button>
-              {currentStep !== steps.length ? (
-                <button
-                  type="submit"
-                  className="btn"
-                  onClick={handleNext}
-                  disabled={Object.keys(errors).length > 0}
-                >
-                  next
-                </button>
-              ) : (
-                
-               
-                <div id="wallet_container"> 
-                  <Wallet initialization={{ preferenceId: id }} /> 
-                </div> 
+            {currentStep === steps.length &&
+              Object.keys(errors).length === 0 && (
+                <div id="wallet_container">
+                  <Wallet initialization={{ preferenceId: id }} />
+                </div>
               )}
-            </div>
-          )}
-        </form>
+          </form>
+        </div>
 
         {/* #############################################################*/}
         <div className="content-card ">
@@ -325,6 +458,10 @@ const Reserva = () => {
             </strong>
           </h5>
         </div>
+      </div>
+      <div className="info">
+
+        <InfoUser />
       </div>
     </>
   );

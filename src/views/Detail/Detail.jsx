@@ -1,13 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import {React, useEffect, useState} from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, NavLink } from "react-router-dom";
 import styles from "./Detail.module.css";
 import { FaStar  } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md"
-import NavBar from '../../components/NavBar/NavBar'
+
 import { useSelector, useDispatch } from 'react-redux';
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import NavBar from "../../components/NavBar/NavBar";
 
 
 const Detail = () => {
@@ -33,11 +34,14 @@ console.log(hotelId)
   
 
   return (
-    <div className={styles.detailContainer}>
+
+    <>
       <NavBar/>
-        <div className={styles.title}>
-          <h1 >{hotelDetail?.name}</h1>
+        <div>
+          <h1>COUNTRY: {hotelDetail.country} </h1>
         </div>
+      
+    <div className={styles.detailContainer}>
           <div>
             <img
               className={styles.cardImage}
@@ -45,6 +49,9 @@ console.log(hotelId)
               alt="hotel image"
             />
           </div>
+
+          <div className={styles.textConten}>
+          <h1 >{hotelDetail?.name}</h1>
           <div className={styles.text}>
            <h5>
            <MdLocationOn/> We are located in {hotelDetail.city}, {hotelDetail.country}, {hotelDetail.address}
@@ -55,20 +62,25 @@ console.log(hotelId)
             <FaStar key={index} />
           ))}
         </div>
-        <div className={styles.textConten}>
         <h5>Enjoy {hotelDetail?.services}</h5>
         <h5>
           The services that you will have in your room are {hotelDetail.servicesRoom}
         </h5>
-        <h5>Room information </h5>
-        <h5> Type room: {hotelDetail.room?.name}</h5>
-        <h5> Room price: {hotelDetail.room?.price}</h5>
-        {hotelDetail?.wifi ? <h5>WiFi: Available</h5> : null}
-        {hotelDetail?.roomService ? <h5>Room Service: Available</h5> : null}
+        <h5> Room information </h5>
+        <h5><strong><strong>Type room:</strong> </strong>  {hotelDetail.room?.name}</h5>
+        <h5><strong>Room price:</strong>  $ {hotelDetail.room?.price}</h5>
+        {hotelDetail?.wifi ? <h5><strong>WiFi:</strong>  Available</h5> : null}
+        {hotelDetail?.roomService ? <h5><strong>Room Service:</strong>  Available</h5> : null}
         </div>
-        <button className={styles.button}><Link to="/results"> Back </Link></button>
+        <div className={styles.btn}>
+
+        <Link className={styles.button} to="/results"> Back</Link>
+      
+        <NavLink className={styles.button} to={`/reserva`}> Reserve</NavLink>
+        </div>
       
     </div>
+    </>
   );
 };
 

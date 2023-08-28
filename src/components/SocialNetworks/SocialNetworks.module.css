@@ -10,7 +10,6 @@
 }
 
 .SocialNetworks a {
-    color: #ffffff;
     display: inline-block;
     position: relative;
     transition: transform 0.5s ease-in-out, color 0.5s ease-in-out;
@@ -22,8 +21,8 @@
     background: #fff;
     border-radius: 50%;
     filter: drop-shadow(1px 5px 8px #201f1f);
-    
-    
+
+
 }
 
 .FaTwitter:hover {
@@ -146,4 +145,12 @@
     z-index: 0;
     display: block;
     opacity: 80%;
+}
+
+
+.FaGoogle:hover {
+    transform: scale(1.1);
+    color: #ea4335;
+    background-color: transparent;
+    border-radius: 50%;
 }

@@ -1,0 +1,95 @@
+.SignIn {
+    position: absolute;
+    right: 50px;
+    top: 40px;
+    background: #3A6561;
+    width: 300px;
+    min-height: 400px;
+    border-radius: 30px;
+    opacity: 0;
+    visibility: hidden;
+    /* Oculta el componente */
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+}
+
+
+.SignIn.active {
+    opacity: 1;
+    visibility: visible;
+
+}
+
+.SignInForm {
+    display: flex;
+    padding: 25px;
+    padding-top: 50px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-around;
+    align-items: stretch;
+}
+
+.BtnSignIn {
+    display: flex;
+    padding: 0px 10px 0px 10px;
+    gap: 8px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+}
+
+
+.BtnLogIn {
+    margin: 0;
+    padding: 0;
+    width: 200px !important;
+    height: 40px !important;
+    text-align: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border-radius: 25px;
+    border: 2.5px solid white;
+    background: transparent;
+    color: white;
+    -webkit-text-stroke: 0.5px rgb(255, 255, 255);
+}
+
+.SocialNet {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    margin: 5px auto;
+    gap: 10px;
+}
+
+.Links {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+    flex-direction: column;
+}
+
+.Links label {
+    cursor: pointer;
+    display: flex;
+    text-decoration: none;
+    color: white;
+    transition: 0.5s ease-in-out;
+}
+
+/* .Links label:hover {
+    cursor: pointer;
+    color: rgb(90, 232, 218);
+    transform: scale(1.1);
+} */

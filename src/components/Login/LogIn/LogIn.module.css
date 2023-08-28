@@ -1,1 +1,32 @@
-.LogIn {}
+.LogIn {
+    display: contents;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.PhotoWrapper {
+    background-color: #ffffff;
+    display: flex;
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid#3A6561;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: center;
+    align-items: center;
+}
+
+.Photo {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+}
+
+.Icon {
+    display: flex;
+    align-items: center;
+    background-color: #3A6561;
+}

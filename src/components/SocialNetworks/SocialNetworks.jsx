@@ -17,6 +17,7 @@ import {
   FaDiscord,
 } from 'react-icons/fa';
 import styles from './SocialNetworks.module.css';
+import { Link } from 'react-router-dom';
 
 /**
  * 
@@ -25,12 +26,12 @@ import styles from './SocialNetworks.module.css';
  * @param {*} gap = number --> Icon spacing
  * @returns 
  */
-const SocialNetworks = ({ redSocial, size = 30, gap = 20 }) => {
+const SocialNetworks = ({ redSocial, size = 30, gap = 20, color = 'white' }) => {
   return (
     <div className={styles.SocialNetworks} style={{ gap: `${gap}px` }}>
       {Object.entries(redSocial).map((red, index) => {
         return (
-          <a href={red[1]} key={index} target="_blank" rel="noopener noreferrer">
+          <a href={red[1]} key={index} target="_blank" rel="noopener noreferrer" style={{ color: color }}>
             {red[0] === 'apple' && <FaApple className={styles.FaApple} size={size} />}
             {red[0] === 'facebook' && <FaFacebook className={styles.FaFacebook} size={size} />}
             {red[0] === 'github' && <FaGithub className={styles.FaGithub} size={size} />}
@@ -49,10 +50,13 @@ const SocialNetworks = ({ redSocial, size = 30, gap = 20 }) => {
                 < FaTiktok className={styles.TiktokEnd} size={size} />
               </div>
             }
+
+            {red[0] === 'google' && < FaGoogle className={styles.FaGoogle} size={size} />}
+
           </a>
         )
       })}
-    </div>
+    </div >
   )
 }
 
@@ -60,6 +64,7 @@ SocialNetworks.propTypes = {
   redSocial: PropTypes.object.isRequired,
   size: PropTypes.number,
   gap: PropTypes.number,
+  color: PropTypes.string,
 };
 
 export default SocialNetworks;

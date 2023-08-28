@@ -1,56 +1,54 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import styles from './Login.module.css';
+import styles from './LogIn.module.css';
 import firebase from '../../../services/firebase/configFirebase';
 import InputText from '../../Inputs/InputText/InputText';
-import { handlerLoginValidate } from '../../../services';
+import SignIn from '../SignIn/SignIn';
+import IconSelector from '../../IconSelector/IconSelector';
+import LoggedIn from '../LoggedIn/LoggedIn';
 
-const LogIn = ({ isActiveSignIn = false, onChangeSignIn }) => {
+const LogIn = ({ imageSrc, onChangeImage, defaultImage, style = { size: '80px' }, sizeAvatar = '30' }) => {
   const dispatch = useDispatch();
-  const [login, setLogin] = useState({ email: '', password: '' });
-  const [error, setError] = useState({});
+  const login = useSelector(state => state)
 
-  const handlerLogin = (event) => {
 
+  const [imageUrl, setImageUrl] = useState(imageSrc || defaultImage || '');
+  const [viewLogin, setViewLogin] = useState(false)
+
+
+  const handlerImageChange = (url) => {
+    setImageUrl(url);
+    onChangeImage(url)
+  };
+
+  const handlerClickLogin = () => {
+    setViewLogin(!viewLogin)
   }
 
-  const handleInputChange = (inputField, inputValue) => {
-    const currentState = { ...login, [inputField]: inputValue }
-    setLogin(currentState);
-    setError(handlerLoginValidate(currentState))
-  };
-
-  const handleSocialLogin = async (provider) => {
-    try {
-      const authProvider = new firebase.auth[`${provider}AuthProvider`]();
-      await firebase.auth().signInWithPopup(authProvider);
-      // El usuario ha iniciado sesión correctamente
-    } catch (error) {
-      // Manejar errores de autenticación aquí
-      console.error("Error al iniciar sesión:", error.message);
-    }
-  };
-
   return (
-    <div className={styles.LogIn}>
-      <div>
-        <InputText onChangeInput={(input) => handleInputChange('email', input)} tag={'email'} />
-        <InputText onChangeInput={(input) => handleInputChange('password', input)} />
-
-        <button onClick={handlerLogin}>Login</button>
-        <button>Login with Google</button>
-        <button>Login with Facebook</button>
-        <button>Login with Twitter</button>
-      </div>
-      ;
+    <div className={styles.LogIn} >
+      <span className={styles.PhotoWrapper} style={{
+        width: `${style.size}`, height: `${style.size}`
+      }} onClick={handlerClickLogin}>
+        {imageUrl !== '' ? <img className={styles.Photo} src={imageUrl} alt='uploadImage' /> :
+          <IconSelector className={styles.Icon}
+            iconType={'user'}
+            size={sizeAvatar}
+            color={'#3A6561'} />}
+      </span>
+      <SignIn isActiveSignIn={viewLogin} />
+      <LoggedIn isActiveSignIn={viewLogin} />
     </div>
   )
 }
 
 LogIn.propTypes = {
-  isActiveSignIn: PropTypes.bool.isRequired,
-  onChangeSignIn: PropTypes.bool,
+  imageSrc: PropTypes.string,
+  onChangeImage: PropTypes.func,
+  defaultImage: PropTypes.string,
+  style: PropTypes.object,
+  sizeAvatar: PropTypes.number,
 };
 
 export default LogIn;

@@ -5,7 +5,7 @@ import styles from './InputText.module.css';
 import { GiBroom } from 'react-icons/gi'
 import { handlerNames } from '../../../services';
 
-const InputText = ({ initInput, onChangeInput, errors, tag = '', buttonClear = false, namesFormat = 'false', style }) => {
+const InputText = ({ initInput, onChangeInput, errors, tag = '', buttonClear = false, namesFormat = false, style }) => {
   const [state, setState] = useState(initInput || '')
 
   useEffect(() => {
@@ -14,8 +14,9 @@ const InputText = ({ initInput, onChangeInput, errors, tag = '', buttonClear = f
 
   const handlerInputChange = (event) => {
     const { value } = event.target
-    setState(handlerNames(value, namesFormat))
-    onChangeInput(handlerNames(value, namesFormat))
+    const currentValue = namesFormat ? handlerNames(value, true) : value
+    setState(currentValue)
+    onChangeInput(currentValue)
   }
 
   const handlerClearInput = () => {
@@ -23,7 +24,8 @@ const InputText = ({ initInput, onChangeInput, errors, tag = '', buttonClear = f
     onChangeInput('')
   }
   return (
-    <div className={styles.InputText} style={{ ...style }} >
+    <div className={styles.InputText}
+      style={{ flexDirection: 'column', alignItems: 'center', gap: '30px', ...style }} >
       {tag !== '' && <h3 style={{ fontFamily: 'CocoSharp', fontSize: '24px', ...style?.h3 }}>{tag} </h3>}
       <div className={styles.DateFile}>
         <input

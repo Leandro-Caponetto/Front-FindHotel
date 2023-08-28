@@ -55,6 +55,7 @@ export const fetchData = (name) => async (dispatch) => {
       `http://localhost:3001/hotel?name=${name}`
     );
     const destino = response.data[0];
+    console.log(destino);
     dispatch(setDestination(destino));
   } catch (error) {
     console.log("error");
