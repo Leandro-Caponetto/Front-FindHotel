@@ -31,7 +31,7 @@ const SocialNetworks = ({ redSocial, size = 30, gap = 20, color = 'white' }) => 
     <div className={styles.SocialNetworks} style={{ gap: `${gap}px` }}>
       {Object.entries(redSocial).map((red, index) => {
         return (
-          <a href={red[1]} key={index} target="_blank" rel="noopener noreferrer" style={{ color: color }}>
+          <a href={red[1] !== '' ? red[1] : null} key={index} target="_blank" rel="noopener noreferrer" style={{ color: color }}>
             {red[0] === 'apple' && <FaApple className={styles.FaApple} size={size} />}
             {red[0] === 'facebook' && <FaFacebook className={styles.FaFacebook} size={size} />}
             {red[0] === 'github' && <FaGithub className={styles.FaGithub} size={size} />}

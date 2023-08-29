@@ -1,25 +1,77 @@
 .UploadSquare {
-    display: flex;
+    display: grid;
+    width: 100%;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+    align-items: stretch;
+    align-content: space-between;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 5px;
+    padding: 1%;
+    justify-items: center;
 }
 
-.image-upload-box {
+.Image {
     width: 150px;
     height: 150px;
-    border: 2px dashed rgba(0, 0, 0, 0.3);
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
 }
 
-.image-input {
+.newImage {
+    border: 2px dashed rgba(0, 0, 0, 0.3);
+}
+
+
+.imageInput {
     display: none;
 }
 
 .plus {
     font-size: 40px;
     color: rgba(0, 0, 0, 0.5);
+}
+
+.viewImages {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border: none;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.viewImages img {
+    border: none;
+    width: 100%;
+    height: 100%;
+
+}
+
+.RemoveButton {
+    position: absolute;
+    display: flex;
+    top: 0px;
+    right: 0px;
+    width: 30px;
+    height: 30px;
+    background-color: aliceblue;
+    border-radius: 50%;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.RemoveButton:hover {
+    background-color: rgb(44, 194, 180);
+
+    IconSelector {
+        color: aliceblue
+    }
 }

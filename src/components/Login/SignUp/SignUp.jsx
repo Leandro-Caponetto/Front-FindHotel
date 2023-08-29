@@ -6,6 +6,7 @@ import SocialNetworks from '../../SocialNetworks/SocialNetworks';
 import { MdLock, MdEmail, MdPerson } from 'react-icons/md';
 import logo from '../../../assets/image/logoBlack2.png'
 import { Link } from "react-router-dom";
+import { createUser } from '../../../services/firebase/firebaseAuth';
 
 const SignUp = ({ viewSignUp, onViewSignUp }) => {
   const [signUp, setSignUp] = useState({
@@ -33,58 +34,50 @@ const SignUp = ({ viewSignUp, onViewSignUp }) => {
   //     setNombreError('');
   //   }
   // }
-  const [nombre, setNombre] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [nombreError, setNombreError] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
-  const [confirmPasswordError, setConfirmPasswordError] = useState('');
 
-  const handleNombreChange = (event) => {
-    const newNombre = event.target.value;
-    setNombre(newNombre);
+  // const handleNombreChange = (event) => {
+  //   const newNombre = event.target.value;
+  //   setNombre(newNombre);
 
-    if (!/^[a-zA-Z ]{1,20}$/.test(newNombre)) {
-      setNombreError('The name Cannot contain special characters and must be less than 20 characters.');
-    } else {
-      setNombreError('');
-    }
-  };
+  //   if (!/^[a-zA-Z ]{1,20}$/.test(newNombre)) {
+  //     setNombreError('The name Cannot contain special characters and must be less than 20 characters.');
+  //   } else {
+  //     setNombreError('');
+  //   }
+  // };
 
-  const handleEmailChange = (event) => {
-    const newEmail = event.target.value;
-    setEmail(newEmail);
+  // const handleEmailChange = (event) => {
+  //   const newEmail = event.target.value;
+  //   setEmail(newEmail);
 
-    if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(newEmail)) {
-      setEmailError('Enter a valid email.');
-    } else {
-      setEmailError('');
-    }
-  };
+  //   if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(newEmail)) {
+  //     setEmailError('Enter a valid email.');
+  //   } else {
+  //     setEmailError('');
+  //   }
+  // };
 
-  const handlePasswordChange = (event) => {
-    const newPassword = event.target.value;
-    setPassword(newPassword);
+  // const handlePasswordChange = (event) => {
+  //   const newPassword = event.target.value;
+  //   setPassword(newPassword);
 
-    if (newPassword.length < 8) {
-      setPasswordError('Password must include at least 8 characters.');
-    } else {
-      setPasswordError('');
-    }
-  };
+  //   if (newPassword.length < 8) {
+  //     setPasswordError('Password must include at least 8 characters.');
+  //   } else {
+  //     setPasswordError('');
+  //   }
+  // };
 
-  const handleConfirmPasswordChange = (event) => {
-    const newConfirmPassword = event.target.value;
-    setConfirmPassword(newConfirmPassword);
+  // const handleConfirmPasswordChange = (event) => {
+  //   const newConfirmPassword = event.target.value;
+  //   setConfirmPassword(newConfirmPassword);
 
-    if (newConfirmPassword !== password) {
-      setConfirmPasswordError('Passwords do not match.');
-    } else {
-      setConfirmPasswordError('');
-    }
-  };
+  //   if (newConfirmPassword !== password) {
+  //     setConfirmPasswordError('Passwords do not match.');
+  //   } else {
+  //     setConfirmPasswordError('');
+  //   }
+  // };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -102,6 +95,8 @@ const SignUp = ({ viewSignUp, onViewSignUp }) => {
     if (event.target.classList.contains(styles.SignUpContainer)) handlerCloseBox();
 
   };
+
+  console.log(signUp)
   return (
     <>
       {viewSignUp && (<div className={styles.SignUpContainer} onClick={handlerExternalClick}>
@@ -110,7 +105,7 @@ const SignUp = ({ viewSignUp, onViewSignUp }) => {
             <img src={logo} alt="Logo" className={styles.logo} />
           </Link>
           <h2 className={styles.h2}>Register and elevate your travel journey</h2>
-          <form onSubmit={handleSubmit}>
+          <form>
 
             {Object.keys(signUp).map((key, index) => {
               return (

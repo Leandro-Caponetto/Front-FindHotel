@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from './LogIn.module.css';
-import firebase from '../../../services/firebase/configFirebase';
 import InputText from '../../Inputs/InputText/InputText';
 import SignIn from '../SignIn/SignIn';
 import IconSelector from '../../IconSelector/IconSelector';

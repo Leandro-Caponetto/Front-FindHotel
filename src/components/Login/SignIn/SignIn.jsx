@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from './SignIn.module.css';
-import firebase from '../../../services/firebase/configFirebase';
+import SignUp from '../SignUp/SignUp';
+import ForgotPassword from '../ForgotPassword/ForgotPassword';
 import SocialNetworks from '../../SocialNetworks/SocialNetworks';
 import { InputPassword, InputText } from '../../Inputs';
 import { handlerLoginValidate } from '../../../services';
-import SignUp from '../SignUp/SignUp';
-import ForgotPassword from '../ForgotPassword/ForgotPassword';
+import { signInWithGoogle } from '../../../services/firebase/firebaseAuth';
+
 
 const SignIn = ({ isActiveSignIn = false, onChangeSignIn }) => {
   const dispatch = useDispatch();
@@ -26,20 +27,27 @@ const SignIn = ({ isActiveSignIn = false, onChangeSignIn }) => {
     setError(handlerLoginValidate(currentState))
   };
 
-  const handleSocialLogin = async (provider) => {
-    try {
-      const authProvider = new firebase.auth[`${provider}AuthProvider`]();
-      await firebase.auth().signInWithPopup(authProvider);
-      // El usuario ha iniciado sesión correctamente
-    } catch (error) {
-      // Manejar errores de autenticación aquí
-      console.error("Error al iniciar sesión:", error.message);
-    }
-  };
+  // const handleSocialLogin = async (provider) => {
+  //   try {
+  //     const authProvider = new firebase.auth[`${provider}AuthProvider`]();
+  //     await firebase.auth().signInWithPopup(authProvider);
+  //     // El usuario ha iniciado sesión correctamente
+  //   } catch (error) {
+  //     // Manejar errores de autenticación aquí
+  //     console.error("Error al iniciar sesión:", error.message);
+  //   }
+  // };
 
+  const logInGoogle = async () => {
+    console.log('here')
+    const userCredential = await signInWithGoogle()
+    console.log(userCredential)
+  }
+
+
+  console.log(login)
   const handlerChangeSignUp = () => { setViewSignUp(!viewSignUp) }
   const handlerChangeForgotPass = () => { setViewForgotPass(!viewForgotPass) }
-
   return (
     <>
       < div className={`${styles.SignIn} ${isActiveSignIn ? styles.active : ''}`
@@ -68,12 +76,13 @@ const SignIn = ({ isActiveSignIn = false, onChangeSignIn }) => {
               input: { width: '100%' }
 
             }} />
-
           <div className={styles.BtnSignIn}>
             <button className={styles.BtnLogIn} onClick={handlerLogin}>Login</button>
             <div className={styles.SocialNet}>
               <SocialNetworks redSocial={{ facebook: '' }} />
-              <SocialNetworks redSocial={{ google: '' }} />
+              <span onClick={logInGoogle}>
+                <SocialNetworks redSocial={{ google: '' }} />
+              </span>
               <SocialNetworks redSocial={{ twitter: '' }} />
             </div>
           </div>
@@ -83,8 +92,8 @@ const SignIn = ({ isActiveSignIn = false, onChangeSignIn }) => {
           </div>
         </div>
       </div >
-      <SignUp viewSignUp={viewSignUp} onViewSignUp={handlerChangeSignUp} />
-      <ForgotPassword viewForgot={viewForgotPass} onViewForgot={handlerChangeForgotPass} />
+        <SignUp viewSignUp={viewSignUp} onViewSignUp={handlerChangeSignUp} />
+        <ForgotPassword viewForgot={viewForgotPass} onViewForgot={handlerChangeForgotPass} />
     </>
   )
 }

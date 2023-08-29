@@ -1,14 +1,17 @@
 /* eslint-disable no-undef */
 // Importamos la función para inicializar la aplicación de Firebase
-import * as firebase from "firebase/app";
-import "firebase/auth";
+import { initializeApp } from "firebase/app";
+import { getStorage } from "firebase/storage";
 import FirebaseKey from '/FirebaseKey.json'
 
 // Añade aquí tus credenciales
 const firebaseAccountConfig = {
-    FirebaseKey
+    ...FirebaseKey
 };
 
-firebase.initializeApp(firebaseAccountConfig);
+const firebase = initializeApp(firebaseAccountConfig);
 
-export default firebase
+const storage = getStorage(firebase)
+
+
+export { firebase, storage }

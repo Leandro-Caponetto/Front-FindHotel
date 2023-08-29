@@ -1,4 +1,4 @@
-import { initializeApp } from 'firebase/app';
+import { firebase } from './configFirebase.js';
 import {
     getAuth,
     signOut,
@@ -13,7 +13,6 @@ import {
     updatePassword as updateCurrentUserPassword,
 } from 'firebase/auth';
 
-import firebase from './configFirebase.js';
 const googleProvider = new GoogleAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
 const twitterProvider = new TwitterAuthProvider();
@@ -21,7 +20,12 @@ const twitterProvider = new TwitterAuthProvider();
 const auth = getAuth(firebase);
 
 const createUser = async (email, password, name) => {
-    return await createUserWithEmailAndPassword(auth, email, password, name);
+    try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password, name);
+        return userCredential
+    } catch (error) {
+        return error.message
+    }
 }
 
 const signIn = async (email, password) => {
@@ -52,3 +56,13 @@ const updateUserPassword = async (newPassword) => {
     await updateCurrentUserPassword(auth.currentUser, newPassword);
 };
 
+export {
+    createUser,
+    signIn,
+    signInWithGoogle,
+    signInWithFacebook,
+    signInWithTwitter,
+    logOut,
+    resetPassword,
+    updateUserPassword
+}

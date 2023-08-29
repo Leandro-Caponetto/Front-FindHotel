@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import styles from "./NavBar.module.css";
 import logo from '../../assets/image/logoBlack-removebg-preview.png'
 import LogIn from '../Login/LogIn/LogIn'
-import UploadSquare from '../Upload/UploadSquare/UploadSquare';
+// import UploadSquare from '../Upload/UploadSquare/UploadSquare';
 const NavBar = (props) => {
   return (
     <div className={styles.conteiner}>
@@ -26,7 +26,7 @@ const NavBar = (props) => {
             Sign In
           </Link> */}
           <div className={styles.navbar_login}>
-            <LogIn style={{ size: '70px' }} sizeAvatar={90} />
+            <LogIn style={{ size: '75px' }} sizeAvatar={90} />
           </div>
         </div>
       </nav>

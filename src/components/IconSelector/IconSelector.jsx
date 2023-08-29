@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styles from './IconSelector.module.css';
 import { IconContext } from 'react-icons';
 
-import { FaRegUser, FaHeart, FaPhoneAlt } from 'react-icons/fa';
+import { FaRegUser, FaTrashAlt, FaHeart, FaPhoneAlt } from 'react-icons/fa';
 import { PiUserCircleFill, PiUserCircleDuotone } from 'react-icons/pi'
 
 const IconSelector = ({ iconType = '', size = 30, color = 'black' }) => {
@@ -15,7 +15,9 @@ const IconSelector = ({ iconType = '', size = 30, color = 'black' }) => {
       case 'phone':
         return <FaPhoneAlt size={size} />
       case 'user':
-        return <PiUserCircleFill size={size} color={color} border={'none'} />
+        return <PiUserCircleFill size={size} color={color} />
+      case 'trash':
+        return <FaTrashAlt size={size} color={color} />
       default:
         return null;
     }
