@@ -52,7 +52,7 @@ export const destinationSlice = createSlice({
 export const fetchData = (name) => async (dispatch) => {
   try {
     const response = await axios.get(
-      `http://localhost:3001/hotel?name=${name}`
+      `https://backendfindhotel-dev.fl0.io/hotel?name=${name}`
     );
     const destino = response.data[0];
     console.log(destino);
