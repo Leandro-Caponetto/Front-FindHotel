@@ -19,7 +19,7 @@ function App() {
         <Route path='/form' element={<FormCreate />} />
         <Route path="/detail/:hotelId" element={<DetailHotel />} />
         <Route path="/hotel" element={<HotelDashboard />} />
-        <Route path='/reserv' element={<Reserv />} />
+        <Route path='/reserva' element={<Reserv />} />
       </Routes>
 
       {!/(\/hotel)$/.test(pathname) ? <Footer /> : null}

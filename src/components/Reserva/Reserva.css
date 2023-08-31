@@ -419,3 +419,109 @@
   width: 100%;
   height: auto;
 }
+.ticket {
+  background-color: #f4f2f26d;
+  background-image: url('../../assets/image/logo.png'); 
+  background-repeat:repeat-y;
+  background-size: 250px; 
+  
+  border: 1px solid #959595;
+  margin: 20px auto;
+  border-radius: 6px;
+  width: 300px;
+  padding: 20px;
+  box-shadow: 0 7px 10px #3333333b;
+  position: relative;
+  overflow: hidden;
+}
+.ticket img{
+  width:100px ;
+  text-align: center;
+}
+.thanks{
+  display: flex;
+  gap: 5px;
+  margin-top: 25px;
+}
+.ticket::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 0;
+  right: 0;
+  height: 16px;
+  background-color: #fff;
+  transform: skewY(-10deg);
+  z-index: 1;
+}
+
+.ticket::after {
+ 
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  right: 0;
+  height: 16px;
+  background-color: #fff;
+  transform: skewY(10deg);
+  z-index: 1;
+}
+
+.ticket-content {
+  position: relative;
+  z-index: 2;
+}
+
+.ticket-header h1 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.ticket-header p {
+  font-size: 14px;
+  color: #666;
+}
+
+.step-data {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.step-data h3 {
+  font-size: 16px;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+
+.step-data p {
+  margin: 5px;
+}
+
+.ticket-footer {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.ticket-footer p {
+  margin: 0;
+}
+
+.ticket-footer a {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+.download-button button{
+  padding: 5px;
+  border-radius: 8px;
+  background: #20c996;
+}
+.download-button button:hover{
+  background:#20c99678;
+}
