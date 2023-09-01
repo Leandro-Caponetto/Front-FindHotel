@@ -3,11 +3,12 @@ import { useState } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import Home from './views/Home/Home'
 import Results from './views/Results/Results'
-import FormCreate from './views/FormCreate/FormCreate'
+// import FormCreate from './views/FormCreate/FormCreate'
 import Footer from './components/Footer/Footer'
 import DetailHotel from './views/Detail/Detail'
 import Reserv from './views/Reserv/Reserv'
-import HotelDashboard from './views/DashboardHotel/DashboardHotel'
+import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes'
+import Hotel from './views/Hotel/Hotel'
 
 function App() {
   const { pathname } = useLocation();
@@ -16,10 +17,14 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/results' element={<Results />} />
-        <Route path='/form' element={<FormCreate />} />
         <Route path="/detail/:hotelId" element={<DetailHotel />} />
-        <Route path="/hotel" element={<HotelDashboard />} />
-        <Route path='/reserva' element={<Reserv />} />
+        <Route path="/hotel" element={
+          <ProtectedRoutes>
+            <Hotel />
+          </ProtectedRoutes>
+        } />
+
+        <Route path='/reserv' element={<Reserv />} />
       </Routes>
 
       {!/(\/hotel)$/.test(pathname) ? <Footer /> : null}

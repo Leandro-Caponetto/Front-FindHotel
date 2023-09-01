@@ -8,7 +8,7 @@ import {
     TwitterAuthProvider,
     onAuthStateChanged,
     createUserWithEmailAndPassword,
-    signInWithEmailAndPassword as signInWithEmail,
+    signInWithEmailAndPassword,
     sendPasswordResetEmail as sendPasswordReset,
     updatePassword as updateCurrentUserPassword,
 } from 'firebase/auth';
@@ -29,7 +29,7 @@ const createUser = async (email, password, name) => {
 }
 
 const signIn = async (email, password) => {
-    return await signInWithEmail(auth, email, password);
+    return await signInWithEmailAndPassword(auth, email, password);
 };
 
 const signInWithGoogle = async () => {

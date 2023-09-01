@@ -36,8 +36,8 @@ const LogIn = ({ imageSrc, onChangeImage, defaultImage, style = { size: '80px' }
             size={sizeAvatar}
             color={'#3A6561'} />}
       </span>
-      <SignIn isActiveSignIn={viewLogin} />
-      <LoggedIn isActiveSignIn={viewLogin} />
+      {/* <SignIn isActiveSignIn={viewLogin} /> */}
+      <LoggedIn isActiveLoggedIn={viewLogin} />
     </div>
   )
 }
