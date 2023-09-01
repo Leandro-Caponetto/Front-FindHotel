@@ -1,0 +1,19 @@
+.card{
+    padding: 4px 4px;
+    box-shadow: 0 10px 17px #0000008a;
+    border-radius: 8px;
+  }
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 4px;
+   
+    margin-right: 4px;
+    cursor: pointer;
+    gap: 10px;
+    color: #fff;
+  }
+  .trash{
+    background: red;
+  }
