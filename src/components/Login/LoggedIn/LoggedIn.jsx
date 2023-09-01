@@ -8,8 +8,14 @@ const LoggedIn = ({ isActiveLoggedIn = false, onChangeLoggedIn }) => {
   return (
     <>
       <div className={`${styles.LoggedIn} ${isActiveLoggedIn ? styles.active : ''}`}>
-        LoggedIn Component
-      </div>
+        <div className={styles.LoggedInForm}>
+          <div className={styles.BtnSignIn}>
+
+          </div>
+          <div className={styles.Links}>
+          </div>
+        </div>
+      </div >
     </>
   )
 }

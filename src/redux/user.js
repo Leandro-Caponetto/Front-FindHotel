@@ -1,26 +1,49 @@
+import axios from 'axios';
 import { createSlice } from "@reduxjs/toolkit";
+import { URL_FINDHOTEL } from "../const/const";
 
 const initialState = {
-    name: null,
-    lastName: null,
-    email: "",
+    isLog: false,
+    User_id: '',
+    name: '',
+    email: '',
+    image: '',
+    rol: null
 };
 
 export const userSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
-        addUser: (state, action) => {
-            const { name, lastName, email } = action.payload;
-            state.name = name;
-            state.lastName = lastName;
+        setUser: (state, action) => {
+            const { User_id, firstName, lastName, email, image, rol } = action.payload;
+            state.User_id = User_id;
+            state.name = `${firstName} ${lastName}`;
             state.email = email;
+            state.image = image;
+            state.rol = rol;
         },
-        changeEmail: (state, action) => {
-            state.email = action.payload;
-        },
+        signOut: (state, action) => {
+            state.User_id = '';
+            state.name = '';
+            state.email = '';
+            state.image = '';
+            state.rol = null;
+        }
     },
 });
 
-export const { addUser, changeEmail } = userSlice.actions;
+export const { setUser, signOut } = userSlice.actions;
+
+// Async action to sign in
+export const signIn = (email) => async (dispatch) => {
+    try {
+        const response = await axios.get(`${URL_FINDHOTEL}/user/sign-in?email=${email}`);
+        const data = response.data;
+        dispatch(setUser(data));
+    } catch (error) {
+        console.log("Error:", error);
+    }
+};
+
 export default userSlice.reducer;

@@ -16,6 +16,7 @@ import {
   updateStep3,
   resetSteps,
 } from "../../redux/reservaSlice";
+import { URL_FINDHOTEL } from "../../const/const"
 import StepDataInfo from "./SetDataInfo";
 
 
@@ -26,7 +27,7 @@ const datos = {
   title: "HotelMalaVista - Habitación 202",
   quantity: 1,
   unit_price: 100,
-  
+
 };
 
 const Reserva = () => {
@@ -42,8 +43,8 @@ const Reserva = () => {
   // console.log(step2Data)
   // console.log(step3Data)
 
-//   const hotelDetail = useSelector((state) => state.reserva.hotelDetail);
-//  console.log(hotelDetail)
+  //   const hotelDetail = useSelector((state) => state.reserva.hotelDetail);
+  //  console.log(hotelDetail)
   // Dispatch para actualizar datos en el storeil
 
   const hotelDetail = useSelector(state => state.hotels.hotelDetail)
@@ -67,7 +68,7 @@ const Reserva = () => {
   currentStep === steps.length &&
     id === null &&
     axios
-      .post("https://backendfindhotel-dev.fl0.io/payment/create-order", datos)
+      .post(`${URL_FINDHOTEL}/payment/create-order`, datos)
       .then(({ data }) => {
         console.log(data.id);
         setId(data.id);
@@ -75,7 +76,7 @@ const Reserva = () => {
       .catch((error) => alert(error));
 
 
-      
+
 
   const {
     register,
@@ -171,16 +172,15 @@ const Reserva = () => {
               <p>por noche</p>
             </div>
           </div>
-         
+
 
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex justify-between ">
               {steps?.map((step, i) => (
                 <div
                   key={i}
-                  className={`step-item ${currentStep === i + 1 && "active"} ${
-                    (i + 1 < currentStep || complete) && "complete"
-                  } `}
+                  className={`step-item ${currentStep === i + 1 && "active"} ${(i + 1 < currentStep || complete) && "complete"
+                    } `}
                 >
                   <div className="step">
                     {i + 1 < currentStep || complete ? (
@@ -375,9 +375,9 @@ const Reserva = () => {
                   })}
                 />
                 {errors.time && <span>{errors.time.message}</span>}
-                
+
               </div>
-              
+
             )}
 
             {/* ########## INPUT 3 ############ */}
@@ -441,100 +441,100 @@ const Reserva = () => {
               </div>
             )}
 
-            
-             
-                   
+
+
+
 
             {/*################ Button ########################*/}
             {!complete && (
-  <div className="rese">
-    {currentStep > 1 && (
-      <button
-        className="btn"
-        type="button"
-        onClick={() => {
-          handlePrevious();
-          if (currentStep === 2) {
-            updateStep1Data({
-              nombre: watch("nombre"),
-              lastName: watch("lastName"),
-              guest: watch("guest"),
-              correo: watch("correo"),
-            });
-          } else if (currentStep === 3) {
-            updateStep2Data({
-              address: watch("address"),
-              country: watch("country"),
-              dayArrival: watch("dayArrival"),
-              time: watch("time"),
-            });
-          }
-        }}
-      >
-        Back
-      </button>
-    )}
+              <div className="rese">
+                {currentStep > 1 && (
+                  <button
+                    className="btn"
+                    type="button"
+                    onClick={() => {
+                      handlePrevious();
+                      if (currentStep === 2) {
+                        updateStep1Data({
+                          nombre: watch("nombre"),
+                          lastName: watch("lastName"),
+                          guest: watch("guest"),
+                          correo: watch("correo"),
+                        });
+                      } else if (currentStep === 3) {
+                        updateStep2Data({
+                          address: watch("address"),
+                          country: watch("country"),
+                          dayArrival: watch("dayArrival"),
+                          time: watch("time"),
+                        });
+                      }
+                    }}
+                  >
+                    Back
+                  </button>
+                )}
 
-    {currentStep < steps.length ? (
-      <button
-        type="submit"
-        className="btn"
-        onClick={() => {
-          handleNext();
-          if (currentStep === 1) {
-            updateStep1Data({
-              nombre: watch("nombre"),
-              lastName: watch("lastName"),
-              guest: watch("guest"),
-              correo: watch("correo"),
-            });
-          } else if (currentStep === 2) {
-            updateStep2Data({
-              address: watch("address"),
-              country: watch("country"),
-              dayArrival: watch("dayArrival"),
-              time: watch("time"),
-            });
-          }
-        }}
-        disabled={Object.keys(errors).length > 0}
-      >
-        Next
-      </button>
-    ) : (
-      <button
-        type="submit"
-        className="btn"
-        onClick={() => {
-          setCurrentStep(currentStep + 1);
-          updateStep3Data({
-            city: watch("city"),
-            postalCode: watch("postalCode"),
-            phone: watch("phone"),
-            aceptaTerminos: watch("aceptaTerminos"),
-          });
-          // Here, set 'complete' to true to indicate the form is complete
-          setComplete(true);
-        }}
-        disabled={Object.keys(errors).length > 0}
-      >
-        Next
-      </button>
-    )}
-  </div>
-)}
+                {currentStep < steps.length ? (
+                  <button
+                    type="submit"
+                    className="btn"
+                    onClick={() => {
+                      handleNext();
+                      if (currentStep === 1) {
+                        updateStep1Data({
+                          nombre: watch("nombre"),
+                          lastName: watch("lastName"),
+                          guest: watch("guest"),
+                          correo: watch("correo"),
+                        });
+                      } else if (currentStep === 2) {
+                        updateStep2Data({
+                          address: watch("address"),
+                          country: watch("country"),
+                          dayArrival: watch("dayArrival"),
+                          time: watch("time"),
+                        });
+                      }
+                    }}
+                    disabled={Object.keys(errors).length > 0}
+                  >
+                    Next
+                  </button>
+                ) : (
+                  <button
+                    type="submit"
+                    className="btn"
+                    onClick={() => {
+                      setCurrentStep(currentStep + 1);
+                      updateStep3Data({
+                        city: watch("city"),
+                        postalCode: watch("postalCode"),
+                        phone: watch("phone"),
+                        aceptaTerminos: watch("aceptaTerminos"),
+                      });
+                      // Here, set 'complete' to true to indicate the form is complete
+                      setComplete(true);
+                    }}
+                    disabled={Object.keys(errors).length > 0}
+                  >
+                    Next
+                  </button>
+                )}
+              </div>
+            )}
 
-{complete && (
-  <div id="wallet_container">
-    <Wallet initialization={{ preferenceId: id }} />
-  </div>
-)}
+            {complete && (
+              <div id="wallet_container">
+                <Wallet initialization={{ preferenceId: id }} />
+              </div>
+            )}
 
           </form>
           <StepDataInfo />
         </div>
-    
-                
+
+
         {/* #############################################################*/}
         <div className="content-card ">
           <h4>Review accommodation rules</h4>
