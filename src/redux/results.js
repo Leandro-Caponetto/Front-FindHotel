@@ -19,6 +19,7 @@ export const resultsSlice = createSlice({
 
 export const fetchCountries = () => async (dispatch) => {
     try {
+
         const response = await axios.get(`${URL_FINDHOTEL}/destination/`);
         const countryNames = response.data.map(({ country_name }) => country_name);
         dispatch(setCountries(countryNames)); // Llama a la acción setCountries con los nombres de los países

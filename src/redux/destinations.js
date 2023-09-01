@@ -53,6 +53,7 @@ export const destinationSlice = createSlice({
 export const fetchData = (name) => async (dispatch) => {
   try {
     const response = await axios.get(
+
       `${URL_FINDHOTEL}/hotel?name=${name}`
     );
     const destino = response.data[0];

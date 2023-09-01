@@ -2,16 +2,23 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   step1: {
-    nombre: '',
+    User_id:'64e825d14bd146895d387ed4',
+    firstName: '',
+
     lastName: '',
     correo: '',
     guest: '',
   },
   step2: {
+    Hotel_id: "64e3bee4446b4b4eef196c92",
+    RoomType_id: '64f1605cff5f65baabd8e902',
     address: '',
     country: '',
-    dayArrival: '',
+    checkIn: '2023-09-01',
+    checkOut: '2023-09-02',
     time: '',
+    quantity: 1,
+
   },
   step3: {
     city: '',
@@ -22,7 +29,8 @@ const initialState = {
 };
 
 const reservaSlice = createSlice({
-  name: 'reserva',
+  name: 'reserva ',
+
   initialState,
   reducers: {
     updateStep1: (state, action) => {

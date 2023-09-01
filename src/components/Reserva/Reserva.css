@@ -363,8 +363,9 @@
 
 }
 
-.start {
+.star {
   color: yellow;
+  filter: drop-shadow(0px 7px 10px #201f1ff0);
 }
 
 .form-container {

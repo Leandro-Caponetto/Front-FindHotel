@@ -24,7 +24,7 @@ function App() {
           </ProtectedRoutes>
         } />
 
-        <Route path='/reserv' element={<Reserv />} />
+        <Route path='/reserva' element={<Reserv />} />
       </Routes>
 
       {!/(\/hotel)$/.test(pathname) ? <Footer /> : null}

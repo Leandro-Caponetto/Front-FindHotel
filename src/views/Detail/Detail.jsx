@@ -10,12 +10,14 @@ import axios from "axios";
 import { useLocation } from "react-router-dom";
 import NavBar from "../../components/NavBar/NavBar";
 import { setHotelReserva } from "../../redux/hotels";
+
 import { URL_FINDHOTEL } from "../../const/const";
 
 
 const Detail = () => {
   const dispatch = useDispatch()
-  const { hotelId } = useParams()
+  const {hotelId} = useParams()
+
 
   const [hotelDetail, setHotelDetail] = useState({})
 
@@ -32,7 +34,6 @@ const Detail = () => {
       console.error('Error fetching hotel data:', error);
     }
   }
-
 
 
 
@@ -59,34 +60,42 @@ const Detail = () => {
 
       <div className={styles.detailContainer}>
         <div>
-          <img
-            className={styles.cardImage}
-            src={hotelDetail?.image?.[0]?.src}
-            alt="hotel image"
-          />
+          
+          <h1>COUNTRY: {hotelDetail?.country} </h1>
         </div>
+      
+    <div className={styles.detailContainer}>
+          <div>
+            <img
+              className={styles.cardImage}
+              src={hotelDetail?.image?.[0]?.src}
+              alt="hotel image"
+            />
+          </div>
+
 
         <div className={styles.textConten}>
           <h1 >{hotelDetail?.name}</h1>
           <div className={styles.text}>
-            <h5>
-              <MdLocationOn /> We are located in {hotelDetail?.city}, {hotelDetail?.country}, {hotelDetail?.address}
+           <h5>
+           <MdLocationOn/> We are located in {hotelDetail?.city}, {hotelDetail?.country}, {hotelDetail?.address}
             </h5>
           </div>
-          <div className={styles.star}>
-            {Array.from({ length: hotelDetail?.category }, (_, index) => (
-              <FaStar key={index} />
-            ))}
-          </div>
-          <h5>Enjoy {hotelDetail?.services}</h5>
-          <h5>
-            The services that you will have in your room are {hotelDetail?.servicesRoom}
-          </h5>
-          <h5> Room information </h5>
-          <h5><strong><strong>Type room:</strong> </strong>  {hotelDetail?.room?.name}</h5>
-          <h5><strong>Room price:</strong>  $ {hotelDetail?.room?.price}</h5>
-          {hotelDetail?.wifi ? <h5><strong>WiFi:</strong>  Available</h5> : null}
-          {hotelDetail?.roomService ? <h5><strong>Room Service:</strong>  Available</h5> : null}
+        <div className={styles.star}>
+          {Array.from({ length: hotelDetail?.category }, (_, index) => (
+            <FaStar key={index} />
+          ))}
+        </div>
+        <h5>Enjoy {hotelDetail?.services}</h5>
+        <h5>
+          The services that you will have in your room are {hotelDetail?.servicesRoom}
+        </h5>
+        <h5> Room information </h5>
+        <h5><strong><strong>Type room:</strong> </strong>  {hotelDetail?.room?.name}</h5>
+        <h5><strong>Room price:</strong>  $ {hotelDetail?.room?.price}</h5>
+        {hotelDetail?.wifi ? <h5><strong>WiFi:</strong>  Available</h5> : null}
+        {hotelDetail?.roomService ? <h5><strong>Room Service:</strong>  Available</h5> : null}
+
         </div>
         <div className={styles.btn}>
 

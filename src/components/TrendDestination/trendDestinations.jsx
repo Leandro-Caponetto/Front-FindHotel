@@ -15,6 +15,7 @@ const TrendDestinations = () => {
 
     const fetchData = async () => {
       try {
+
         const response = await axios.get(`${URL_FINDHOTEL}/trending/state`);
         setStateData(response.data);
         console.log(response.data);

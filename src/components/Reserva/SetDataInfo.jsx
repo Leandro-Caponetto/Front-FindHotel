@@ -30,16 +30,20 @@ const StepDataInfo = () => {
         <div className="ticket-info">
           <h2>Ticket Information</h2>
           <p>Step 1 Data:</p>
-          <p><strong>Nombre:</strong>  {step1Data.nombre}</p>
+          <p><strong>First Name:</strong>  {step1Data.firstName}</p>
           <p><strong>Last Name:</strong>  {step1Data.lastName}</p>
-          <p><strong>Guest:</strong>  {step1Data.guest}</p>
           <p><strong>Email:</strong>  {step1Data.correo}</p>
+          <p><strong>Guest:</strong>  {step1Data.guest}</p>
+
           <p>--------------------------------------</p>
           <p>Step 2 Data:</p>
           <p><strong>Address:</strong> {step2Data.address}</p>
           <p><strong>Country:</strong> {step2Data.country}</p>
-          <p><strong>Day of Arrival:</strong> {step2Data.dayArrival}</p>
+          <p><strong>CheckIn:</strong> {step2Data.checkIn}</p>
+          <p><strong>CheckOut:</strong> {step2Data.checkOut}</p>
           <p><strong>Schedule: </strong> {step2Data.time}</p>
+          <p><strong>Quantity: </strong> {step2Data.quantity}</p>
+
           <p>--------------------------------------</p>
           <p>Step 3 Data:</p>
           <p><strong>City:</strong>  {step3Data.city}</p>
