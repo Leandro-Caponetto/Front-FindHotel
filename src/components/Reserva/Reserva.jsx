@@ -3,12 +3,22 @@
 import React, { useState } from "react";
 import "./Reserva.css";
 import { TiTick } from "react-icons/ti";
-import NavBar from "../NavBar/NavBar";
+
+import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 initMercadoPago("APP_USR-e2f3a313-4a9d-4110-bd77-ad6c50675664");
 import axios from "axios";
-import InfoUser from '../../components/InfoUser/InfoUser';
+import InfoUser from "../../components/InfoUser/InfoUser";
+import {
+  updateStep1,
+  updateStep2,
+  updateStep3,
+  resetSteps,
+} from "../../redux/reservaSlice";
+import StepDataInfo from "./SetDataInfo";
+
+
 
 
 
@@ -16,6 +26,7 @@ const datos = {
   title: "HotelMalaVista - Habitación 202",
   quantity: 1,
   unit_price: 100,
+  
 };
 
 const Reserva = () => {
@@ -24,18 +35,47 @@ const Reserva = () => {
   const [complete, setComplete] = useState(false);
   const [id, setId] = useState(null);
 
+  const step1Data = useSelector((state) => state.reserva.step1);
+  const step2Data = useSelector((state) => state.reserva.step2);
+  const step3Data = useSelector((state) => state.reserva.step3);
+  // console.log(step1Data)
+  // console.log(step2Data)
+  // console.log(step3Data)
 
+//   const hotelDetail = useSelector((state) => state.reserva.hotelDetail);
+//  console.log(hotelDetail)
+  // Dispatch para actualizar datos en el storeil
 
+  const hotelDetail = useSelector(state => state.hotels.hotelDetail)
+  // console.log('hoteldetail', hotelDetail )
+
+  const dispatch = useDispatch();
+
+  // Funciones para actualizar datos en el store
+  const updateStep1Data = (data) => {
+    dispatch(updateStep1(data));
+  };
+
+  const updateStep2Data = (data) => {
+    dispatch(updateStep2(data));
+  };
+
+  const updateStep3Data = (data) => {
+    dispatch(updateStep3(data));
+  };
 
   currentStep === steps.length &&
     id === null &&
     axios
-      .post("http://localhost:3001/payment/create-order", datos)
+      .post("https://backendfindhotel-dev.fl0.io/payment/create-order", datos)
       .then(({ data }) => {
         console.log(data.id);
         setId(data.id);
       })
       .catch((error) => alert(error));
+
+
+      
 
   const {
     register,
@@ -80,9 +120,6 @@ const Reserva = () => {
     reset();
   });
 
-
-
-
   const hotelData = [
     {
       id: 1,
@@ -90,17 +127,16 @@ const Reserva = () => {
     },
     {
       id: 2,
-      img: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2a/0a/78/65/pool.jpg?w=1200&h=-1&s=1"
+      img: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2a/0a/78/65/pool.jpg?w=1200&h=-1&s=1",
     },
     {
       id: 3,
-      img: "https://www.clarin.com/img/2021/05/19/the-ritz-carlton-macao-en___9PkS_Tbe4_720x0__1.jpg"
-    }
-  ]
+      img: "https://www.clarin.com/img/2021/05/19/the-ritz-carlton-macao-en___9PkS_Tbe4_720x0__1.jpg",
+    },
+  ];
 
   return (
     <>
-
       <div className="container">
         {/* Nueva tarjeta de hotel en el lado izquierdo */}
         <h1>Reservation</h1>
@@ -109,7 +145,8 @@ const Reserva = () => {
             <div className="carousel-container">
               <div className="carousel" key={id}>
                 {hotelData.map((d) => (
-                  <img key={d.id}
+                  <img
+                    key={d.id}
                     className="hotel-image"
                     src={d.img}
                     alt={`Imagen de `}
@@ -119,26 +156,31 @@ const Reserva = () => {
             </div>
 
             <div className="hotel-details">
-              <h1 className="hotel-location"><strong>Argentina</strong></h1>
+              <h1 className="hotel-location">
+                <strong>Argentina</strong>
+              </h1>
               <p className="hotel-location">Buenos Aires</p>
               <p className="hotel-location">Hotel Gran Buenos Aires</p>
               <p className="start">★★★★★</p>
               <p className="hotel-description">
-                Descripción del hotel, servicios, etc,Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae rem praesentium iusto?.
+                Descripción del hotel, servicios, etc,Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Beatae rem praesentium iusto?.
               </p>
 
-              <p className="hotel-price">$ 200</p>
-
+              <p className="hotel-price">U$D 200</p>
+              <p>por noche</p>
             </div>
           </div>
+         
 
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="flex justify-between">
+            <div className="flex justify-between ">
               {steps?.map((step, i) => (
                 <div
                   key={i}
-                  className={`step-item ${currentStep === i + 1 && "active"} ${(i + 1 < currentStep || complete) && "complete"
-                    } `}
+                  className={`step-item ${currentStep === i + 1 && "active"} ${
+                    (i + 1 < currentStep || complete) && "complete"
+                  } `}
                 >
                   <div className="step">
                     {i + 1 < currentStep || complete ? (
@@ -148,6 +190,7 @@ const Reserva = () => {
                     )}
                   </div>
                   <p className="text-gray-500">{step}</p>
+                  {i > 0 && <div className="step-divider"></div>}
                 </div>
               ))}
             </div>
@@ -332,7 +375,9 @@ const Reserva = () => {
                   })}
                 />
                 {errors.time && <span>{errors.time.message}</span>}
+                
               </div>
+              
             )}
 
             {/* ########## INPUT 3 ############ */}
@@ -396,50 +441,100 @@ const Reserva = () => {
               </div>
             )}
 
+            
+             
+                   
+
             {/*################ Button ########################*/}
             {!complete && (
-              <div className="rese">
-                {currentStep > 1 && (
-                  <button
-                    className="btn"
-                    type="button"
-                    onClick={handlePrevious}
-                  >
-                    Previous
-                  </button>
-                )}
+  <div className="rese">
+    {currentStep > 1 && (
+      <button
+        className="btn"
+        type="button"
+        onClick={() => {
+          handlePrevious();
+          if (currentStep === 2) {
+            updateStep1Data({
+              nombre: watch("nombre"),
+              lastName: watch("lastName"),
+              guest: watch("guest"),
+              correo: watch("correo"),
+            });
+          } else if (currentStep === 3) {
+            updateStep2Data({
+              address: watch("address"),
+              country: watch("country"),
+              dayArrival: watch("dayArrival"),
+              time: watch("time"),
+            });
+          }
+        }}
+      >
+        Back
+      </button>
+    )}
 
-                {currentStep < steps.length ? (
-                  <button
-                    type="submit"
-                    className="btn"
-                    onClick={handleNext}
-                    disabled={Object.keys(errors).length > 0}
-                  >
-                    Next
-                  </button>
-                ) : (
-                  <button
-                    type="submit"
-                    className="btn"
-                    onClick={() => setCurrentStep(currentStep + 1)}
-                    disabled={Object.keys(errors).length > 0}
-                  >
-                    Next
-                  </button>
-                )}
-              </div>
-            )}
+    {currentStep < steps.length ? (
+      <button
+        type="submit"
+        className="btn"
+        onClick={() => {
+          handleNext();
+          if (currentStep === 1) {
+            updateStep1Data({
+              nombre: watch("nombre"),
+              lastName: watch("lastName"),
+              guest: watch("guest"),
+              correo: watch("correo"),
+            });
+          } else if (currentStep === 2) {
+            updateStep2Data({
+              address: watch("address"),
+              country: watch("country"),
+              dayArrival: watch("dayArrival"),
+              time: watch("time"),
+            });
+          }
+        }}
+        disabled={Object.keys(errors).length > 0}
+      >
+        Next
+      </button>
+    ) : (
+      <button
+        type="submit"
+        className="btn"
+        onClick={() => {
+          setCurrentStep(currentStep + 1);
+          updateStep3Data({
+            city: watch("city"),
+            postalCode: watch("postalCode"),
+            phone: watch("phone"),
+            aceptaTerminos: watch("aceptaTerminos"),
+          });
+          // Here, set 'complete' to true to indicate the form is complete
+          setComplete(true);
+        }}
+        disabled={Object.keys(errors).length > 0}
+      >
+        Next
+      </button>
+    )}
+  </div>
+)}
 
-            {currentStep === steps.length &&
-              Object.keys(errors).length === 0 && (
-                <div id="wallet_container">
-                  <Wallet initialization={{ preferenceId: id }} />
-                </div>
-              )}
+{complete && (
+  <div id="wallet_container">
+    <Wallet initialization={{ preferenceId: id }} />
+  </div>
+)}
+
           </form>
+          <StepDataInfo />
         </div>
-
+    
+                
         {/* #############################################################*/}
         <div className="content-card ">
           <h4>Review accommodation rules</h4>
@@ -460,7 +555,6 @@ const Reserva = () => {
         </div>
       </div>
       <div className="info">
-
         <InfoUser />
       </div>
     </>

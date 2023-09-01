@@ -14,7 +14,7 @@ const TrendDestinations = () => {
 
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/trending/state');
+        const response = await axios.get('https://backendfindhotel-dev.fl0.io/trending/state');
         setStateData(response.data);
         console.log(response.data);
       } catch (error) {

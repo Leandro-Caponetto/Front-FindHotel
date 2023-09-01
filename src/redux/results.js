@@ -18,7 +18,7 @@ export const resultsSlice = createSlice({
 
 export const fetchCountries = () => async (dispatch) => {
     try {
-        const response = await axios.get('http://localhost:3001/destination/');
+        const response = await axios.get('https://backendfindhotel-dev.fl0.io/destination/');
         const countryNames = response.data.map(({ country_name }) => country_name);
         dispatch(setCountries(countryNames)); // Llama a la acción setCountries con los nombres de los países
     } catch (error) {
