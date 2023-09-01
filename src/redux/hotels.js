@@ -18,8 +18,8 @@ export const hotelsSlice = createSlice({
         },
         
     },
-
 });
+
 
 
 

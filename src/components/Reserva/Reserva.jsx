@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 initMercadoPago("APP_USR-e2f3a313-4a9d-4110-bd77-ad6c50675664");
 import axios from "axios";
+import { FaStar } from "react-icons/fa";
 import InfoUser from "../../components/InfoUser/InfoUser";
 import {
   updateStep1,
@@ -19,15 +20,6 @@ import {
 import StepDataInfo from "./SetDataInfo";
 
 
-
-
-
-const datos = {
-  title: "HotelMalaVista - Habitación 202",
-  quantity: 1,
-  unit_price: 100,
-  
-};
 
 const Reserva = () => {
   const steps = ["Date 1", "Date 2", "Finsh"];
@@ -42,12 +34,12 @@ const Reserva = () => {
   // console.log(step2Data)
   // console.log(step3Data)
 
-//   const hotelDetail = useSelector((state) => state.reserva.hotelDetail);
-//  console.log(hotelDetail)
+  //   const hotelDetail = useSelector((state) => state.reserva.hotelDetail);
+  //  console.log(hotelDetail)
   // Dispatch para actualizar datos en el storeil
 
-  const hotelDetail = useSelector(state => state.hotels.hotelDetail)
-  // console.log('hoteldetail', hotelDetail )
+  const hotelDetail = useSelector((state) => state.hotels.hotelDetail);
+  console.log("hoteldetail", hotelDetail);
 
   const dispatch = useDispatch();
 
@@ -64,7 +56,16 @@ const Reserva = () => {
     dispatch(updateStep3(data));
   };
 
-  currentStep === steps.length &&
+  if(step3Data.aceptaTerminos ){
+    const datos = {
+      User_id: step1Data.User_id,
+      Hotel_id: step2Data.Hotel_id,
+      RoomType_id: step2Data.RoomType_id,
+      quantity: step2Data.quantity,
+      checkIn: step2Data.checkIn,
+      checkOut: step2Data.checkOut
+    }
+    console.log('datos', datos )
     id === null &&
     axios
       .post("https://backendfindhotel-dev.fl0.io/payment/create-order", datos)
@@ -72,11 +73,11 @@ const Reserva = () => {
         console.log(data.id);
         setId(data.id);
       })
-      .catch((error) => alert(error));
-
-
-      
-
+      .catch((error) => {
+        console.error("Error making the request:", error);
+        alert("An error occurred while making the request");
+      });
+  }
   const {
     register,
     handleSubmit,
@@ -86,15 +87,20 @@ const Reserva = () => {
     reset,
   } = useForm({
     defaultValues: {
+      User_id: "64e8277eef72051c7494bca0",
+      Hotel_id: "64e3c23dee91c1d7e305198d",
+      RoomType_id: "64ec8e699e3c7095cce55456",
       nombre: "",
       lastName: "",
       correo: "",
       guest: "",
       country: "",
       address: "",
-      dayArrival: "",
+      checkIn: "",
+      checkOut: "",
       time: "",
       city: "",
+      quantity: 1,
       postalCode: "",
       phone: "",
       aceptaTerminos: false,
@@ -156,22 +162,28 @@ const Reserva = () => {
             </div>
 
             <div className="hotel-details">
-              <h1 className="hotel-location">
-                <strong>Argentina</strong>
-              </h1>
-              <p className="hotel-location">Buenos Aires</p>
-              <p className="hotel-location">Hotel Gran Buenos Aires</p>
-              <p className="start">★★★★★</p>
-              <p className="hotel-description">
-                Descripción del hotel, servicios, etc,Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Beatae rem praesentium iusto?.
+              <h1 className="hotel-location">{hotelDetail?.name}</h1>
+              <p className="hotel-location">
+                {hotelDetail?.city}, {hotelDetail?.country}
               </p>
+              <p className="hotel-location">{hotelDetail?.address}</p>
 
-              <p className="hotel-price">U$D 200</p>
-              <p>por noche</p>
+              <div className="star">
+                {Array.from({ length: hotelDetail?.category }, (_, index) => (
+                  <FaStar key={index} />
+                ))}
+              </div>
+
+              <div className="hotel-description">
+                <h5>Enjoy {hotelDetail?.services}</h5>
+                <h5>
+                  <strong>Type room:</strong> {hotelDetail?.room?.name}
+                </h5>
+              </div>
+
+              <p className="hotel-price">{hotelDetail?.room?.price}</p>
             </div>
           </div>
-         
 
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex justify-between ">
@@ -201,8 +213,8 @@ const Reserva = () => {
                 <input
                   type="text"
                   placeholder="Enter your First Name"
-                  name="nombre"
-                  {...register("nombre", {
+                  name="firstName"
+                  {...register("firstName", {
                     required: {
                       value: true,
                       message: "First Name Required",
@@ -216,13 +228,13 @@ const Reserva = () => {
                     },
                   })}
                 />
-                {errors.nombre?.type === "required" && (
+                {errors.firstName?.type === "required" && (
                   <span>First Name requerid</span>
                 )}
-                {errors.nombre?.type === "maxLength" && (
+                {errors.firstName?.type === "maxLength" && (
                   <span>Name must not be longer than 20 characters</span>
                 )}
-                {errors.nombre?.type === "minLength" && (
+                {errors.firstName?.type === "minLength" && (
                   <span>Name must be greater than 2 characters</span>
                 )}
 
@@ -254,6 +266,25 @@ const Reserva = () => {
                 {errors.lastName?.type === "minLength" && (
                   <span>Name must be greater than 2 characters</span>
                 )}
+
+                <label>Email:</label>
+                <input
+                  type="text"
+                  name="correo"
+                  placeholder="Enter your Email"
+                  {...register("correo", {
+                    required: {
+                      value: true,
+                      message: "Mail is Required",
+                    },
+                    pattern: {
+                      value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+                      message: "Invalid Email",
+                    },
+                  })}
+                />
+                {errors.correo && <span>{errors.correo.message}</span>}
+
                 <label>Guest Number:</label>
                 <input
                   type="number"
@@ -275,24 +306,6 @@ const Reserva = () => {
                   })}
                 />
                 {errors.guest && <span>{errors.guest.message}</span>}
-
-                <label>Email:</label>
-                <input
-                  type="text"
-                  name="correo"
-                  placeholder="Enter your Email"
-                  {...register("correo", {
-                    required: {
-                      value: true,
-                      message: "Mail is Required",
-                    },
-                    pattern: {
-                      value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-                      message: "Invalid Email",
-                    },
-                  })}
-                />
-                {errors.correo && <span>{errors.correo.message}</span>}
               </div>
             )}
 
@@ -341,26 +354,41 @@ const Reserva = () => {
                 />
                 {errors.country && <span>{errors.country.message}</span>}
 
-                <label>Day of Arrival:</label>
+                <label>checkIn:</label>
                 <input
                   type="date"
-                  placeholder="Enter your Guest Number"
-                  {...register("dayArrival", {
+                  {...register("checkIn", {
                     required: {
                       value: true,
-                      message: "Date of Arrival is required",
+                      message: "Date of checkIn is required",
                     },
                     validate: (value) => {
-                      const dayArrival = new Date(value);
+                      const checkIn = new Date(value);
                       const dayNow = new Date();
-                      return (
-                        dayArrival > dayNow || "Date must be in the future"
-                      );
+                      return checkIn > dayNow || "Date must be in the future";
                     },
                   })}
                   min={new Date().toISOString().split("T")[0]} // Establece el atributo min al día actual
                 />
-                {errors.dayArrival && <span>{errors.dayArrival.message}</span>}
+                {errors.checkIn && <span>{errors.checkIn.message}</span>}
+
+                <label>checkOut:</label>
+                <input
+                  type="date"
+                  {...register("checkOut", {
+                    required: {
+                      value: true,
+                      message: "Date of checkOut is required",
+                    },
+                    validate: (value) => {
+                      const checkOut = new Date(value);
+                      const dayNow = new Date();
+                      return checkOut > dayNow || "Date must be in the future";
+                    },
+                  })}
+                  min={new Date().toISOString().split("T")[0]} // Establece el atributo min al día actual
+                />
+                {errors.checkOut && <span>{errors.checkOut.message}</span>}
 
                 <label>Schedule:</label>
                 <input
@@ -375,9 +403,7 @@ const Reserva = () => {
                   })}
                 />
                 {errors.time && <span>{errors.time.message}</span>}
-                
               </div>
-              
             )}
 
             {/* ########## INPUT 3 ############ */}
@@ -441,100 +467,95 @@ const Reserva = () => {
               </div>
             )}
 
-            
-             
-                   
-
             {/*################ Button ########################*/}
             {!complete && (
-  <div className="rese">
-    {currentStep > 1 && (
-      <button
-        className="btn"
-        type="button"
-        onClick={() => {
-          handlePrevious();
-          if (currentStep === 2) {
-            updateStep1Data({
-              nombre: watch("nombre"),
-              lastName: watch("lastName"),
-              guest: watch("guest"),
-              correo: watch("correo"),
-            });
-          } else if (currentStep === 3) {
-            updateStep2Data({
-              address: watch("address"),
-              country: watch("country"),
-              dayArrival: watch("dayArrival"),
-              time: watch("time"),
-            });
-          }
-        }}
-      >
-        Back
-      </button>
-    )}
+              <div className="rese">
+                {currentStep > 1 && (
+                  <button
+                    className="btn"
+                    type="button"
+                    onClick={() => {
+                      handlePrevious();
+                      if (currentStep === 2) {
+                        updateStep1Data({
+                          firstName: watch("firstName"),
+                          lastName: watch("lastName"),
+                          guest: watch("guest"),
+                          correo: watch("correo"),
+                        });
+                      } else if (currentStep === 3) {
+                        updateStep2Data({
+                          address: watch("address"),
+                          country: watch("country"),
+                          dayArrival: watch("dayArrival"),
+                          time: watch("time"),
+                        });
+                      }
+                    }}
+                  >
+                    Back
+                  </button>
+                )}
 
-    {currentStep < steps.length ? (
-      <button
-        type="submit"
-        className="btn"
-        onClick={() => {
-          handleNext();
-          if (currentStep === 1) {
-            updateStep1Data({
-              nombre: watch("nombre"),
-              lastName: watch("lastName"),
-              guest: watch("guest"),
-              correo: watch("correo"),
-            });
-          } else if (currentStep === 2) {
-            updateStep2Data({
-              address: watch("address"),
-              country: watch("country"),
-              dayArrival: watch("dayArrival"),
-              time: watch("time"),
-            });
-          }
-        }}
-        disabled={Object.keys(errors).length > 0}
-      >
-        Next
-      </button>
-    ) : (
-      <button
-        type="submit"
-        className="btn"
-        onClick={() => {
-          setCurrentStep(currentStep + 1);
-          updateStep3Data({
-            city: watch("city"),
-            postalCode: watch("postalCode"),
-            phone: watch("phone"),
-            aceptaTerminos: watch("aceptaTerminos"),
-          });
-          // Here, set 'complete' to true to indicate the form is complete
-          setComplete(true);
-        }}
-        disabled={Object.keys(errors).length > 0}
-      >
-        Next
-      </button>
-    )}
-  </div>
-)}
+                {currentStep < steps.length ? (
+                  <button
+                    type="submit"
+                    className="btn"
+                    onClick={() => {
+                      handleNext();
+                      if (currentStep === 1) {
+                        updateStep1Data({
+                          nombre: watch("nombre"),
+                          lastName: watch("lastName"),
+                          guest: watch("guest"),
+                          correo: watch("correo"),
+                        });
+                      } else if (currentStep === 2) {
+                        updateStep2Data({
+                          address: watch("address"),
+                          country: watch("country"),
+                          checkIn: watch("checkIn"),
+                          checkOut: watch("checkOut"),
+                          time: watch("time"),
+                        });
+                      }
+                    }}
+                    disabled={Object.keys(errors).length > 0}
+                  >
+                    Next
+                  </button>
+                ) : (
+                  <button
+                    type="submit"
+                    className="btn"
+                    onClick={() => {
+                      setCurrentStep(currentStep + 1);
+                      updateStep3Data({
+                        city: watch("city"),
+                        postalCode: watch("postalCode"),
+                        phone: watch("phone"),
+                        aceptaTerminos: watch("aceptaTerminos"),
+                      });
+                      // Here, set 'complete' to true to indicate the form is complete
+                      setComplete(true);
+                    }}
+                    disabled={Object.keys(errors).length > 0}
+                  >
+                    Next
+                  </button>
+                )}
+              </div>
+            )}
 
-{complete && (
-  <div id="wallet_container">
-    <Wallet initialization={{ preferenceId: id }} />
-  </div>
-)}
-
+            {complete && (
+              <div id="wallet_container">
+                <Wallet initialization={{ preferenceId: id }} />
+              </div>
+            )}
           </form>
           <StepDataInfo />
         </div>
-    
-                
+
         {/* #############################################################*/}
         <div className="content-card ">
           <h4>Review accommodation rules</h4>
