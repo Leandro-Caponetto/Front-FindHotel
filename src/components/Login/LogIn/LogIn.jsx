@@ -34,7 +34,7 @@ const LogIn = ({ imageSrc, onChangeImage, defaultImage, style = { size: '80px' }
           <IconSelector className={styles.Icon}
             iconType={'user'}
             size={sizeAvatar}
-            color={'#3A6561'} />}
+            color={'#2CC2B4'} />}
       </span>
       <SignIn isActiveSignIn={viewLogin} />
       <LoggedIn isActiveSignIn={viewLogin} />

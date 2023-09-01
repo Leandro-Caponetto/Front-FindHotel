@@ -1,5 +1,5 @@
 import React from 'react'
-import Dashboard from '../../components/Dashboard/DashboarHotel'
+import Dashboard from '../../components/Dashboard/Hotel/DashboarHotel'
 
 function HotelDashboard() {
   return (

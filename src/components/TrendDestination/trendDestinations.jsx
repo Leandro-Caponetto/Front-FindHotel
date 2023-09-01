@@ -14,7 +14,7 @@ const TrendDestinations = () => {
 
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/trending/state');
+        const response = await axios.get('https://backendfindhotel-dev.fl0.io/trending/state');
         setStateData(response.data);
         console.log(response.data);
       } catch (error) {
@@ -27,13 +27,14 @@ const TrendDestinations = () => {
 
   const settings = {
     dots: true, // Muestra los indicadores (puntitos)
-    arrow: true,
+    arrows: false,
     infinite: true,
     speed: 500,
     slidesToShow: 4, // Cantidad de tarjetas visibles a la vez
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
+    centerMode: true
 
   };
 
