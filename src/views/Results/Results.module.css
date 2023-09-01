@@ -6,7 +6,16 @@
   align-content: flex-start;
   align-items: stretch;
   margin-top: 30px;
-  gap: 30px;
+  gap: 40px;
+}
+
+.leftBar{
+  display: 	flex;
+  flex-direction: column;
+  gap: 28px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
 }
 
 .container {

@@ -27,13 +27,15 @@ const HotelTrend = () => {
 
 
   const settings = {
-    dots: true, // Muestra los indicadores (puntitos)
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4, // Cantidad de tarjetas visibles a la vez
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 2000,
+      dots: true, // Muestra los indicadores (puntitos)
+      arrows: false,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 4, // Cantidad de tarjetas visibles a la vez
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 2000,
+      centerMode: true,
     responsive: [
       {
         breakpoint: 768,

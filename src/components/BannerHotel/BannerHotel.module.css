@@ -1,5 +1,5 @@
 .slider {
-  width: 75vw;
+  width: 1200px;
   height: auto;
   margin: auto;
   overflow: hidden;
@@ -8,9 +8,22 @@
 
 .slideTrack {
   display: flex;
+  justify-content: center;
+  align-items: center;
   animation: scroll 90s linear infinite;
   -webkit-animation: scroll 90s linear infinite;
   width: calc(200px * 14);
+}
+
+
+.slider h1 {
+  font-family: Cocogoose;
+  color: #101010;
+  text-align: center;
+  font-size: 40px;
+  font-family: Cocogoose;
+  font-weight: 500;
+  font-size: 32px;
 }
 
 .slide {

@@ -21,7 +21,9 @@
   font-family: cocogoose;
   font-weight: normal;
   font-size: 24px;
-  margin-bottom: 10px;
+  color: #101010;
+  line-height: 20px;
+  margin-top: 20px;
 }
 
 .searchBox div {
@@ -51,6 +53,10 @@
   color: rgb(0, 0, 0);
   cursor: pointer;
 
+}
+
+.searchButtonContainer button:hover{
+  background-color: #2CC2B4;
 }
 
 .searchButtonContainer {
