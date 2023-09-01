@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { URL_FINDHOTEL } from "../const/const"
 
 const initialState = {
     countries: [],
@@ -14,7 +14,7 @@ export const countriesSlice = createSlice({
         setCountries: (state, action) => {
             state.countries = action.payload; // Actualiza el estado con los países obtenidos
         },
-        setCity: (state, action) =>{
+        setCity: (state, action) => {
             state.city = action.payload
         },
     },
@@ -22,7 +22,8 @@ export const countriesSlice = createSlice({
 
 export const fetchCountries = () => async (dispatch) => {
     try {
-        const response = await axios.get('https://backendfindhotel-dev.fl0.io/destination/');
+
+        const response = await axios.get(`${URL_FINDHOTEL}/destination/`);
         const countryNames = response.data.map(({ country_name }) => country_name);
         dispatch(setCountries(countryNames)); // Llama a la acción setCountries con los nombres de los países
     } catch (error) {
@@ -32,7 +33,7 @@ export const fetchCountries = () => async (dispatch) => {
 
 export const fetchCity = (city) => async (dispatch) => {
     try {
-        const response = await axios.get(`https://backendfindhotel-dev.fl0.io/destination/states/${city}`);
+        const response = await axios.get(`${URL_FINDHOTEL}/destination/states/${city}`);
         const cityNames = response.data.map(({ state_name }) => state_name);
         dispatch(setCity(cityNames));
     } catch (error) {

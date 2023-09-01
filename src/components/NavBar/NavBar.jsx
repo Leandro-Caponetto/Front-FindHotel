@@ -26,7 +26,7 @@ const NavBar = (props) => {
             Sign In
           </Link> */}
           <div className={styles.navbar_login}>
-            <LogIn style={{ size: '75px' }} sizeAvatar={90} />
+            <LogIn style={{ size: '65px' }} sizeAvatar={80} />
           </div>
         </div>
       </nav>

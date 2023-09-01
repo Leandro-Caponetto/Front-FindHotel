@@ -4,6 +4,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styles from "./trendDestinations.module.css";
 import axios from "axios";
+import { URL_FINDHOTEL } from "../../const/const";
 
 
 const TrendDestinations = () => {
@@ -14,7 +15,8 @@ const TrendDestinations = () => {
 
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://backendfindhotel-dev.fl0.io/trending/state');
+
+        const response = await axios.get(`${URL_FINDHOTEL}/trending/state`);
         setStateData(response.data);
         console.log(response.data);
       } catch (error) {
@@ -27,13 +29,14 @@ const TrendDestinations = () => {
 
   const settings = {
     dots: true, // Muestra los indicadores (puntitos)
-    arrow: true,
+    arrows: false,
     infinite: true,
     speed: 500,
     slidesToShow: 4, // Cantidad de tarjetas visibles a la vez
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
+    centerMode: true
 
   };
 

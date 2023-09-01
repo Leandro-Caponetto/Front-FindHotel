@@ -5,6 +5,7 @@ import { MdOutlineDryCleaning, MdSevereCold } from 'react-icons/md';
 import { FaBath, FaHotjar } from 'react-icons/fa';
 import { CgSmartHomeRefrigerator } from 'react-icons/cg';
 import { IoMdWine } from 'react-icons/io';
+import Swal from 'sweetalert2';
 
 const Room = () => {
   const [rooms, setRooms] = useState([
@@ -45,13 +46,28 @@ const Room = () => {
   };
   const handleRemoveRoom = (index) => {
     if (rooms.length > 1) {
-        const shouldRemove = window.confirm("Are you sure you want to remove this room?");
-    if (shouldRemove) {
-      const newRooms = [...rooms];
-      newRooms.splice(index, 1);
-      setRooms(newRooms);
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'You won\'t be able to revert this!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, remove it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const newRooms = [...rooms];
+          newRooms.splice(index, 1);
+          setRooms(newRooms);
+
+          Swal.fire(
+            'Deleted!',
+            'Your room has been removed.',
+            'success'
+          );
+        }
+      });
     }
-}
   };
   
   return (

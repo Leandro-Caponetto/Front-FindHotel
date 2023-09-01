@@ -15,7 +15,8 @@ import { RiHotelLine } from 'react-icons/ri';
 import { BsImage, BsFillPinMapFill, BsStarFill } from 'react-icons/bs';
 import { ImListNumbered } from 'react-icons/im';
 import { UploadSquare } from "../Upload";
-import { image } from "d3";
+import { URL_FINDHOTEL } from '../../const/const'
+import { image, style } from "d3";
 
 const initState = {
   name: "",
@@ -39,10 +40,6 @@ const MultiStepForm = () => {
   const countries = useSelector((state) => state.countries.countries);
   const citys = useSelector((state) => state.countries.city);
   const [imageHotel, setImageHotel] = useState([])
-
-  useEffect(() => {
-    dispatch(fetchCountries()); // Llama a la acción para obtener los países al cargar el componente
-  }, [dispatch]);
 
   const [curCountry, setCurCountry] = useState("");
   const [step, setStep] = useState(1);
@@ -190,7 +187,7 @@ const MultiStepForm = () => {
     };
 
     axios
-      .post("https://backendfindhotel-dev.fl0.io/hotel", dataToSend)
+      .post(`${URL_FINDHOTEL}/hotel`, dataToSend)
       .then(async (response) => {
         console.log("Response from server:", response.data);
         setHotelData(initState);
@@ -262,8 +259,6 @@ const MultiStepForm = () => {
                 <input className={styles.input} type="text" name="name" value={hotelData.name} onChange={handlerInputChange} />
                 {errors.name && <p className={styles.error}>{errors.name}</p>}
               </div>
-
-
 
 
               <div className={styles.inputContainer}>

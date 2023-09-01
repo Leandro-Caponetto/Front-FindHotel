@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchData, setDestination } from '../../redux/destinations';
 import { NavLink } from 'react-router-dom';
 import { handlerNames } from '../../services';
+import { UploadPhoto } from '../Upload';
 
 
 const Header = () => {
@@ -65,7 +66,9 @@ const Header = () => {
                     <div className={styles.searchInfo}>
                         <h3></h3>
                         <NavLink to="/results"> <button onClick={handleSearch}>Search</button> </NavLink>
-
+                        <div style={{ width: '100px', height: '100px' }}>
+                            <UploadPhoto />
+                        </div>
                     </div>
                 </div>
             </div>

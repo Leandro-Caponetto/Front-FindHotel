@@ -10,6 +10,7 @@ import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 initMercadoPago("APP_USR-e2f3a313-4a9d-4110-bd77-ad6c50675664");
 import axios from "axios";
 import { FaStar } from "react-icons/fa";
+
 import InfoUser from "../../components/InfoUser/InfoUser";
 import {
   updateStep1,
@@ -18,6 +19,7 @@ import {
   resetSteps,
 } from "../../redux/reservaSlice";
 import StepDataInfo from "./SetDataInfo";
+
 
 
 
@@ -78,6 +80,7 @@ const Reserva = () => {
         alert("An error occurred while making the request");
       });
   }
+
   const {
     register,
     handleSubmit,
@@ -165,6 +168,7 @@ const Reserva = () => {
               <h1 className="hotel-location">{hotelDetail?.name}</h1>
               <p className="hotel-location">
                 {hotelDetail?.city}, {hotelDetail?.country}
+
               </p>
               <p className="hotel-location">{hotelDetail?.address}</p>
 
@@ -182,8 +186,10 @@ const Reserva = () => {
               </div>
 
               <p className="hotel-price">{hotelDetail?.room?.price}</p>
+
             </div>
           </div>
+
 
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex justify-between ">
@@ -403,7 +409,9 @@ const Reserva = () => {
                   })}
                 />
                 {errors.time && <span>{errors.time.message}</span>}
+
               </div>
+
             )}
 
             {/* ########## INPUT 3 ############ */}
@@ -467,6 +475,10 @@ const Reserva = () => {
               </div>
             )}
 
+
+
+
+
             {/*################ Button ########################*/}
             {!complete && (
               <div className="rese">
@@ -479,6 +491,7 @@ const Reserva = () => {
                       if (currentStep === 2) {
                         updateStep1Data({
                           firstName: watch("firstName"),
+
                           lastName: watch("lastName"),
                           guest: watch("guest"),
                           correo: watch("correo"),
@@ -516,6 +529,7 @@ const Reserva = () => {
                           country: watch("country"),
                           checkIn: watch("checkIn"),
                           checkOut: watch("checkOut"),
+
                           time: watch("time"),
                         });
                       }
@@ -552,9 +566,11 @@ const Reserva = () => {
                 <Wallet initialization={{ preferenceId: id }} />
               </div>
             )}
+
           </form>
           <StepDataInfo />
         </div>
+
 
         {/* #############################################################*/}
         <div className="content-card ">

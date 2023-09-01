@@ -26,59 +26,6 @@ const SignUp = ({ viewSignUp, onViewSignUp }) => {
 
   })
 
-  // const handlerValidate = () => {
-  //   const error = {}
-  //   if (!/^[a-zA-Z ]{1,20}$/.test(newNombre)) {
-  //     setNombreError('The name Cannot contain special characters and must be less than 20 characters.');
-  //   } else {
-  //     setNombreError('');
-  //   }
-  // }
-
-  // const handleNombreChange = (event) => {
-  //   const newNombre = event.target.value;
-  //   setNombre(newNombre);
-
-  //   if (!/^[a-zA-Z ]{1,20}$/.test(newNombre)) {
-  //     setNombreError('The name Cannot contain special characters and must be less than 20 characters.');
-  //   } else {
-  //     setNombreError('');
-  //   }
-  // };
-
-  // const handleEmailChange = (event) => {
-  //   const newEmail = event.target.value;
-  //   setEmail(newEmail);
-
-  //   if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(newEmail)) {
-  //     setEmailError('Enter a valid email.');
-  //   } else {
-  //     setEmailError('');
-  //   }
-  // };
-
-  // const handlePasswordChange = (event) => {
-  //   const newPassword = event.target.value;
-  //   setPassword(newPassword);
-
-  //   if (newPassword.length < 8) {
-  //     setPasswordError('Password must include at least 8 characters.');
-  //   } else {
-  //     setPasswordError('');
-  //   }
-  // };
-
-  // const handleConfirmPasswordChange = (event) => {
-  //   const newConfirmPassword = event.target.value;
-  //   setConfirmPassword(newConfirmPassword);
-
-  //   if (newConfirmPassword !== password) {
-  //     setConfirmPasswordError('Passwords do not match.');
-  //   } else {
-  //     setConfirmPasswordError('');
-  //   }
-  // };
-
   const handleSubmit = (event) => {
     event.preventDefault();
 

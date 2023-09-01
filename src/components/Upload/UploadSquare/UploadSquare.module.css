@@ -68,6 +68,15 @@
     flex-wrap: nowrap;
 }
 
+.ImageZoom {
+    border-radius: 8px;
+    transform: scale(3) translate(0px, -20px);
+    transition: transform 0.8s ease-in-out;
+    -webkit-box-shadow: 1px 4px 28px 9px rgba(0, 0, 0, 0.41);
+    box-shadow: 1px 4px 28px 9px rgba(0, 0, 0, 0.41);
+    z-index: 20;
+}
+
 .RemoveButton:hover {
     background-color: rgb(44, 194, 180);
 
