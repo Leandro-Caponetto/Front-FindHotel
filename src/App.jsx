@@ -9,6 +9,7 @@ import DetailHotel from './views/Detail/Detail'
 import Reserv from './views/Reserv/Reserv'
 import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes'
 import Hotel from './views/Hotel/Hotel'
+import UserDashboard from './components/UserDashboard/DashboardUser'
 
 function App() {
   const { pathname } = useLocation();
@@ -18,13 +19,14 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/results' element={<Results />} />
         <Route path="/detail/:hotelId" element={<DetailHotel />} />
+        <Route path='/user' element={<UserDashboard/>}/>
         <Route path="/hotel" element={
           <ProtectedRoutes>
             <Hotel />
           </ProtectedRoutes>
         } />
 
-        <Route path='/reserv' element={<Reserv />} />
+        <Route path='/reserva' element={<Reserv />} />
       </Routes>
 
       {!/(\/hotel)$/.test(pathname) ? <Footer /> : null}

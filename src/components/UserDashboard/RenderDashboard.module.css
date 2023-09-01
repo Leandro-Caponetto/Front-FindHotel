@@ -1,0 +1,26 @@
+.title{
+    font-family: cocogoose;
+    font-size: 30px;
+    display:flex ;
+    justify-content: center;
+    color: rgb(36, 165, 183);
+}
+.h1{
+    font-family: cocogoose;
+    font-size: 20px;
+    display:flex ;
+    justify-content: center;
+    color: rgb(110, 104, 104);
+}
+.card{
+    padding: 4px 4px;
+    box-shadow: 0 10px 17px #0000008a;
+    border-radius: 8px;
+  }
+
+
+.todo{
+    margin-bottom: 80px;
+}
+
+  
