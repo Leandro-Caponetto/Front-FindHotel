@@ -66,9 +66,9 @@ const Header = () => {
                     <div className={styles.searchInfo}>
                         <h3></h3>
                         <NavLink to="/results"> <button onClick={handleSearch}>Search</button> </NavLink>
-                        <div style={{ width: '100px', height: '100px' }}>
+                        {/* <div style={{ width: '100px', height: '100px' }}>
                             <UploadPhoto />
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
