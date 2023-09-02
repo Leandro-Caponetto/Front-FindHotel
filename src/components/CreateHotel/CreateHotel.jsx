@@ -15,9 +15,14 @@ import { RiHotelLine } from 'react-icons/ri';
 import { BsImage, BsFillPinMapFill, BsStarFill } from 'react-icons/bs';
 import { ImListNumbered } from 'react-icons/im';
 import { UploadSquare } from "../Upload";
+<<<<<<< HEAD
 import { URL_FINDHOTEL } from '../../const/const'
 import { image, style } from "d3";
 
+=======
+import { image } from "d3";
+import {typeRoom} from "../../redux/hotels"
+>>>>>>> e771817 (update rooms and create)
 const initState = {
   name: "",
   country: "",
@@ -35,7 +40,11 @@ const initState = {
   wifi: false,
 }
 
+
+
 const MultiStepForm = () => {
+  const dataRoom = useSelector((state) => state.hotels.typeRoom)
+  const userId = "64f06f359fb30a04b46c9100"
   const dispatch = useDispatch();
   const countries = useSelector((state) => state.countries.countries);
   const citys = useSelector((state) => state.countries.city);
@@ -53,7 +62,13 @@ const MultiStepForm = () => {
 
   useEffect(() => {
     dispatch(fetchCity(curCountry));
+    console.log(curCountry)
   }, [dispatch, curCountry]);
+
+  useEffect(() =>{
+    dispatch(typeRoom(userId));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userId, dispatch]);
 
   useEffect(() => {
     //? Get Data from localStorage
@@ -181,13 +196,17 @@ const MultiStepForm = () => {
     event.preventDefault();
 
     const dataToSend = {
-      User_id: '',
+      User_id: userId,
       email: '',
       ...hotelData
     };
 
     axios
+<<<<<<< HEAD
       .post(`${URL_FINDHOTEL}/hotel`, dataToSend)
+=======
+      .post("http://localhost:3001/hotel", dataToSend)
+>>>>>>> e771817 (update rooms and create)
       .then(async (response) => {
         console.log("Response from server:", response.data);
         setHotelData(initState);
@@ -333,8 +352,14 @@ const MultiStepForm = () => {
               <div className={styles.inputContainer}>
                 <label className={styles.atributtes}><MdBed className={styles.icon} /> Type Room: </label>
                 <select name="roomTypes" id="roomTypes" onChange={handlerInputChange} >
-                  <option value="none" selected disabled hidden>Select an Option</option>
-                  <option value="standar">Standar</option>
+                <option value="none" selected disabled hidden>  Select an Option </option>
+                  {dataRoom.map(({name, _id}, index) => {
+                    return (
+                      <option value={_id} key={index}> {name}</option>
+                    )
+                  })}
+                  {/* <option value="none" selected disabled hidden>Select an Option</option>
+                  <option value="standar">Standar</option> */}
                 </select>
               </div>
               {/* <InputSelect options={["standar"]} /> */}
