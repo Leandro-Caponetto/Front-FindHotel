@@ -15,14 +15,11 @@ import { RiHotelLine } from 'react-icons/ri';
 import { BsImage, BsFillPinMapFill, BsStarFill } from 'react-icons/bs';
 import { ImListNumbered } from 'react-icons/im';
 import { UploadSquare } from "../Upload";
-<<<<<<< HEAD
+
 import { URL_FINDHOTEL } from '../../const/const'
 import { image, style } from "d3";
-
-=======
-import { image } from "d3";
 import {typeRoom} from "../../redux/hotels"
->>>>>>> e771817 (update rooms and create)
+
 const initState = {
   name: "",
   country: "",
@@ -202,11 +199,8 @@ const MultiStepForm = () => {
     };
 
     axios
-<<<<<<< HEAD
-      .post(`${URL_FINDHOTEL}/hotel`, dataToSend)
-=======
+      // .post(`${URL_FINDHOTEL}/hotel`, dataToSend)}
       .post("http://localhost:3001/hotel", dataToSend)
->>>>>>> e771817 (update rooms and create)
       .then(async (response) => {
         console.log("Response from server:", response.data);
         setHotelData(initState);

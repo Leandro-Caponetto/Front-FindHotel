@@ -23,14 +23,10 @@ export const hotelsSlice = createSlice({
 })
 
 
-<<<<<<< HEAD
-});
-=======
 export const typeRoom =  (userId) => async (dispatch) => {
     const {data} = await axios.get(`https://backendfindhotel-dev.fl0.io/roomType/user/${userId}`)
     dispatch(setTypeRoom(data))
     }
->>>>>>> e771817 (update rooms and create)
 
 
 

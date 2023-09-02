@@ -33,13 +33,8 @@ export const fetchCountries = () => async (dispatch) => {
 
 export const fetchCity = (city) => async (dispatch) => {
     try {
-<<<<<<< HEAD
-        const response = await axios.get(`${URL_FINDHOTEL}/destination/states/${city}`);
-        const cityNames = response.data.map(({ state_name }) => state_name);
-=======
-        const {data} = await axios.get(`https://backendfindhotel-dev.fl0.io/destination/states/${city}`);
+        const {data} = await axios.get(`https://backendfindhotel-dev.fl0.io/destination/states/${city}`)
         const cityNames = data[0].states.map(({state_name}) => state_name)
->>>>>>> e771817 (update rooms and create)
         dispatch(setCity(cityNames));
     } catch (error) {
         error
