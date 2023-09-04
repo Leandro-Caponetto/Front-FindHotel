@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import HotelList from "../../components/HotelList/HotelList";
-import NavBar from "../../components/NavBar/NavBar";
+
 import SearchBox from "../../components/SearchBox/SearchBox";
 import styles from "./Results.module.css";
 import { useSelector, useDispatch } from "react-redux";
@@ -33,7 +33,7 @@ const Results = () => {
 
   return (
     <div className={styles.container}>
-      <NavBar />
+     
       <div className={styles.conten}>
         <SearchBox />
         <FilterOrder data={destination} onChangeFilter={handleChange} />

@@ -8,7 +8,7 @@ import { MdLocationOn } from "react-icons/md"
 import { useSelector, useDispatch } from 'react-redux';
 import axios from "axios";
 import { useLocation } from "react-router-dom";
-import NavBar from "../../components/NavBar/NavBar";
+
 import { setHotelReserva } from "../../redux/hotels";
 
 
@@ -44,13 +44,14 @@ useEffect(() => {
   
     
   }, [dispatch,hotelId]);
+  
 
   console.log(hotelDetail)
 
   return (
 
     <>
-      <NavBar/>
+    
         <div>
           
           <h1>COUNTRY: {hotelDetail?.country} </h1>

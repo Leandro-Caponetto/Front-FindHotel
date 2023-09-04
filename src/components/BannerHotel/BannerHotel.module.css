@@ -1,13 +1,18 @@
 .slider {
-  width: 75vw;
+  width: 85vw;
   height: auto;
   margin: auto;
   overflow: hidden;
   margin-top: 30px;
+ 
+}
+h1{
+  text-align: center ;
 }
 
 .slideTrack {
   display: flex;
+  text-align: center;
   animation: scroll 90s linear infinite;
   -webkit-animation: scroll 90s linear infinite;
   width: calc(200px * 14);

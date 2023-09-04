@@ -51,7 +51,7 @@ const StepDataInfo = () => {
           <p>--------------------------------------</p>
         </div>
       )}
-      <p><strong>{step1Data.nombre}</strong>  Thank you for choosing</p>
+      <p><strong>{step1Data.firstName}</strong>  Thank you for choosing</p>
       <img src={logo} alt="" />
     </div>
   );
