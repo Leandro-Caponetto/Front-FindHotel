@@ -34,6 +34,7 @@ const StepDataInfo = () => {
           <p><strong>Last Name:</strong>  {step1Data.lastName}</p>
           <p><strong>Email:</strong>  {step1Data.correo}</p>
           <p><strong>Guest:</strong>  {step1Data.guest}</p>
+
           <p>--------------------------------------</p>
           <p>Step 2 Data:</p>
           <p><strong>Address:</strong> {step2Data.address}</p>
@@ -42,6 +43,7 @@ const StepDataInfo = () => {
           <p><strong>CheckOut:</strong> {step2Data.checkOut}</p>
           <p><strong>Schedule: </strong> {step2Data.time}</p>
           <p><strong>Quantity: </strong> {step2Data.quantity}</p>
+
           <p>--------------------------------------</p>
           <p>Step 3 Data:</p>
           <p><strong>City:</strong>  {step3Data.city}</p>

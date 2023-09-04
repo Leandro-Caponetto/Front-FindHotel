@@ -3,7 +3,7 @@ import Dashboard from '../../components/Dashboard/Hotel/DashboarHotel'
 
 function HotelDashboard() {
   return (
-    <Dashboard/>
+    <Dashboard />
   )
 }
 export default HotelDashboard

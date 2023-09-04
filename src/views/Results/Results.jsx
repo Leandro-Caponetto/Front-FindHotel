@@ -35,9 +35,13 @@ const Results = () => {
     <div className={styles.container}>
      
       <div className={styles.conten}>
-        <SearchBox />
-        <FilterOrder data={destination} onChangeFilter={handleChange} />
-        <HotelList hotels={paginated} />
+        <div className={styles.leftBar}>
+          <FilterOrder data={destination} onChangeFilter={handleChange} />
+          <SearchBox />
+        </div>
+        <div>
+          <HotelList hotels={paginated} />
+        </div>
       </div>
       <div className={styles.Pages}>
         <Paginated Data={filteredHotels} onDataSlice={handlerPaginated} itemsPerPage={5} />

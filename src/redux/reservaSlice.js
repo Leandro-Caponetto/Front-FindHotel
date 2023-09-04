@@ -4,6 +4,7 @@ const initialState = {
   step1: {
     User_id:'64e825d14bd146895d387ed4',
     firstName: '',
+
     lastName: '',
     correo: '',
     guest: '',
@@ -17,6 +18,7 @@ const initialState = {
     checkOut: '2023-09-02',
     time: '',
     quantity: 1,
+
   },
   step3: {
     city: '',
@@ -28,6 +30,7 @@ const initialState = {
 
 const reservaSlice = createSlice({
   name: 'reserva ',
+
   initialState,
   reducers: {
     updateStep1: (state, action) => {

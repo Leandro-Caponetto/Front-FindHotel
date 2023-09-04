@@ -1,9 +1,10 @@
-import React , { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styles from "./hotelTrend.module.css";
 import axios from "axios";
+import { URL_FINDHOTEL } from "../../const/const";
 
 const HotelTrend = () => {
 
@@ -14,7 +15,7 @@ const HotelTrend = () => {
 
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://backendfindhotel-dev.fl0.io/trending/hotels');
+        const response = await axios.get(`${URL_FINDHOTEL}/trending/hotels`);
         setHotelData(response.data); // Update hotelData using the state setter
         console.log(response.data);
       } catch (error) {
@@ -27,13 +28,15 @@ const HotelTrend = () => {
 
 
   const settings = {
-    dots: true, // Muestra los indicadores (puntitos)
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4, // Cantidad de tarjetas visibles a la vez
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 2000,
+      dots: true, // Muestra los indicadores (puntitos)
+      arrows: false,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 4, // Cantidad de tarjetas visibles a la vez
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 2000,
+      centerMode: true,
     responsive: [
       {
         breakpoint: 768,

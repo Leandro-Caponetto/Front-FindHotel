@@ -11,6 +11,7 @@ import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 initMercadoPago("APP_USR-e2f3a313-4a9d-4110-bd77-ad6c50675664");
 import axios from "axios";
 import { FaStar } from "react-icons/fa";
+
 import InfoUser from "../../components/InfoUser/InfoUser";
 import {
   updateStep1,
@@ -20,6 +21,7 @@ import {
 } from "../../redux/reservaSlice";
 import StepDataInfo from "./SetDataInfo";
 import Swal from 'sweetalert2'
+
 
 
 const Reserva = () => {
@@ -90,6 +92,7 @@ const Reserva = () => {
       });
       
   }
+
   const {
     register,
     handleSubmit,
@@ -188,6 +191,7 @@ const Reserva = () => {
           </div>
         </div>
 
+
         <div className="hotel-details">
           <h1 className="hotel-location">{hotelDetail?.name}</h1>
           <p className="hotel-location">
@@ -207,6 +211,7 @@ const Reserva = () => {
               <strong>Type room:</strong> {hotelDetail?.room?.name}
             </h5>
           </div>
+
 
           <p className="hotel-price">{hotelDetail?.room?.price}</p>
         </div>
@@ -264,6 +269,7 @@ const Reserva = () => {
             )}
             {errors.firstName?.type === "minLength" && (
               <span>Name must be greater than 2 characters</span>
+
             )}
 
             <label>Last Name:</label>
@@ -523,6 +529,7 @@ const Reserva = () => {
               >
                 Back
               </button>
+
             )}
 
             {currentStep < steps.length ? (
@@ -589,6 +596,8 @@ const Reserva = () => {
 
       <StepDataInfo />
     </div>
+
+
 
         {/* #############################################################*/}
         <div className="content-card ">

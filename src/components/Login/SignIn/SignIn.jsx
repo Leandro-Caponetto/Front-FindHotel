@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -7,19 +8,19 @@ import ForgotPassword from '../ForgotPassword/ForgotPassword';
 import SocialNetworks from '../../SocialNetworks/SocialNetworks';
 import { InputPassword, InputText } from '../../Inputs';
 import { handlerLoginValidate } from '../../../services';
-import { signInWithGoogle } from '../../../services/firebase/firebaseAuth';
-
+import {
+  signIn,
+  signInWithGoogle,
+  signInWithTwitter,
+  signInWithFacebook
+} from '../../../services/firebase';
 
 const SignIn = ({ isActiveSignIn = false, onChangeSignIn }) => {
   const dispatch = useDispatch();
-  const [login, setLogin] = useState({ email: '', password: '' });
+  const [login, setLogin] = useState({ email: null, password: null });
   const [error, setError] = useState({});
   const [viewSignUp, setViewSignUp] = useState(false);
   const [viewForgotPass, setViewForgotPass] = useState(false);
-
-  const handlerLogin = (event) => {
-
-  }
 
   const handleInputChange = (inputField, inputValue) => {
     const currentState = { ...login, [inputField]: inputValue }
@@ -27,27 +28,50 @@ const SignIn = ({ isActiveSignIn = false, onChangeSignIn }) => {
     setError(handlerLoginValidate(currentState))
   };
 
-  // const handleSocialLogin = async (provider) => {
-  //   try {
-  //     const authProvider = new firebase.auth[`${provider}AuthProvider`]();
-  //     await firebase.auth().signInWithPopup(authProvider);
-  //     // El usuario ha iniciado sesión correctamente
-  //   } catch (error) {
-  //     // Manejar errores de autenticación aquí
-  //     console.error("Error al iniciar sesión:", error.message);
-  //   }
-  // };
+  const handlerLogin = async (Red) => {
+    let user, _tokenResponse;
 
-  const logInGoogle = async () => {
-    console.log('here')
-    const userCredential = await signInWithGoogle()
-    console.log(userCredential)
-  }
+    try {
+      switch (Red) {
+        case 'google':
+          ({ user, _tokenResponse } = await signInWithGoogle());
+          break;
+        case 'facebook':
+          ({ user, _tokenResponse } = await signInWithFacebook());
+          break;
+        case 'twitter':
+          ({ user, _tokenResponse } = await signInWithTwitter());
+          break;
+        default:
+          ({ user, _tokenResponse } = await signIn(login.email, login.password));
+          console.log(user)
+          return;
+      }
+      if (user.emailVerified) {
+        dispatch()
+      }
+      const idToken = await user.getIdToken();
+      const refreshToken = await user
+      console.log(refreshToken);
+      const userLogged = {
+        firstName: _tokenResponse.firstName || null,
+        lastName: _tokenResponse.lastName || null,
+        email: user.email || null,
+        image: user.photoURL || null,
+        provider: user.providerId || null,
+        accessToken: await user.getIdToken() || null,
+        refreshToken: user.refreshToken || null
+      };
+      console.log(userLogged)
 
+    } catch (error) {
+      console.error('Error al iniciar sesión:', error.message);
+    }
+  };
 
-  console.log(login)
   const handlerChangeSignUp = () => { setViewSignUp(!viewSignUp) }
   const handlerChangeForgotPass = () => { setViewForgotPass(!viewForgotPass) }
+
   return (
     <>
       < div className={`${styles.SignIn} ${isActiveSignIn ? styles.active : ''}`
@@ -80,10 +104,12 @@ const SignIn = ({ isActiveSignIn = false, onChangeSignIn }) => {
             <button className={styles.BtnLogIn} onClick={handlerLogin}>Login</button>
             <div className={styles.SocialNet}>
               <SocialNetworks redSocial={{ facebook: '' }} />
-              <span onClick={logInGoogle}>
+              <span onClick={() => { handlerLogin('google') }} >
                 <SocialNetworks redSocial={{ google: '' }} />
               </span>
-              <SocialNetworks redSocial={{ twitter: '' }} />
+              <span onClick={() => { handlerLogin('twitter') }}>
+                <SocialNetworks redSocial={{ twitter: '' }} />
+              </span>
             </div>
           </div>
           <div className={styles.Links}>
@@ -92,8 +118,8 @@ const SignIn = ({ isActiveSignIn = false, onChangeSignIn }) => {
           </div>
         </div>
       </div >
-        <SignUp viewSignUp={viewSignUp} onViewSignUp={handlerChangeSignUp} />
-        <ForgotPassword viewForgot={viewForgotPass} onViewForgot={handlerChangeForgotPass} />
+      <SignUp viewSignUp={viewSignUp} onViewSignUp={handlerChangeSignUp} />
+      <ForgotPassword viewForgot={viewForgotPass} onViewForgot={handlerChangeForgotPass} />
     </>
   )
 }

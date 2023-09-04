@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import {React, useEffect, useState} from "react";
+import { React, useEffect, useState } from "react";
 import { useParams, Link, NavLink } from "react-router-dom";
 import styles from "./Detail.module.css";
-import { FaStar  } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md"
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -11,47 +11,56 @@ import { useLocation } from "react-router-dom";
 
 import { setHotelReserva } from "../../redux/hotels";
 
+import { URL_FINDHOTEL } from "../../const/const";
+
 
 const Detail = () => {
   const dispatch = useDispatch()
   const {hotelId} = useParams()
 
+
   const [hotelDetail, setHotelDetail] = useState({})
 
 
-  const hotelsDetail = async (hotelId) =>  {
+  const hotelsDetail = async (hotelId) => {
     try {
-      const response = await axios.get(`https://backendfindhotel-dev.fl0.io/hotel/detail?id=${hotelId}`);
-      
+      const response = await axios.get(`${URL_FINDHOTEL}/hotel/detail?id=${hotelId}`);
+
       setHotelDetail(response.data)
       console.log(hotelDetail);
-      dispatch(setHotelReserva(response.data)); 
-     
+      dispatch(setHotelReserva(response.data));
+
     } catch (error) {
       console.error('Error fetching hotel data:', error);
     }
   }
-  
 
 
 
   console.log(hotelDetail)
-console.log(hotelId)
-useEffect(() => {
-  console.log("userEfect", hotelId)
-  
+  console.log(hotelId)
+  useEffect(() => {
+    console.log("userEfect", hotelId)
+
     hotelsDetail(hotelId)
   
     
   }, [dispatch,hotelId]);
-  
+
 
   console.log(hotelDetail)
 
   return (
 
     <>
-    
+
+      <NavBar />
+      <div>
+
+        <h1>COUNTRY: {hotelDetail?.country} </h1>
+      </div>
+
+      <div className={styles.detailContainer}>
         <div>
           
           <h1>COUNTRY: {hotelDetail?.country} </h1>
@@ -66,7 +75,8 @@ useEffect(() => {
             />
           </div>
 
-          <div className={styles.textConten}>
+
+        <div className={styles.textConten}>
           <h1 >{hotelDetail?.name}</h1>
           <div className={styles.text}>
            <h5>
@@ -87,17 +97,20 @@ useEffect(() => {
         <h5><strong>Room price:</strong>  $ {hotelDetail?.room?.price}</h5>
         {hotelDetail?.wifi ? <h5><strong>WiFi:</strong>  Available</h5> : null}
         {hotelDetail?.roomService ? <h5><strong>Room Service:</strong>  Available</h5> : null}
+
         </div>
         <div className={styles.btn}>
 
-        <Link className={styles.button} to="/results"> Back</Link>
-      
-        <NavLink className={styles.button} to={`/reserva`}> Reserve</NavLink>
+          <Link className={styles.button} to="/results"> Back</Link>
+
+          <NavLink className={styles.button} to={`/reserva`}> Reserve</NavLink>
         </div>
-      
-    </div>
+
+      </div>
+      </div>
+
     </>
-  );
-};
+  )
+}
 
 export default Detail;

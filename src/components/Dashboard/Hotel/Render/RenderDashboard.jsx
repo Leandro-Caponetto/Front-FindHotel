@@ -6,7 +6,7 @@ import Sales from '../Sales/Sales';
 import Room from '../Rooms/Rooms';
 
 // eslint-disable-next-line react/prop-types
-const RenderDashboard = ( {selectedView} ) => {
+const RenderDashboard = ({ selectedView }) => {
   const reservationsData = [
     { label: 'May', value: 0.5 },
     { label: 'June', value: 20 },
@@ -24,29 +24,29 @@ const RenderDashboard = ( {selectedView} ) => {
     case 'statistics':
       return (
         <div>
-      <h1 className={styles.title}>Welcome</h1>
-<h1 className={styles.h1}>These are your latest stats</h1>
-      <BarChart data={reservationsData} title="Reservations Last Month" />
-      <BarChart data={visitsData} title="Visits to Detail Pages" />
-      <BarChart  data={visitsData} title="Sales" />
-    </div>
+          <h1 className={styles.title}>Welcome</h1>
+          <h1 className={styles.h1}>These are your latest stats</h1>
+          <BarChart data={reservationsData} title="Reservations Last Month" />
+          <BarChart data={visitsData} title="Visits to Detail Pages" />
+          <BarChart data={visitsData} title="Sales" />
+        </div>
       );
     case 'sales':
       return (
         <div>
-          <Sales/>
+          <Sales />
         </div>
       );
     case 'hotel':
       return (
         <div>
-         <CreateHotel/>
+          <CreateHotel />
         </div>
       );
     case 'rooms':
       return (
         <div>
-        <Room/>
+          <Room />
         </div>
       );
     default:
