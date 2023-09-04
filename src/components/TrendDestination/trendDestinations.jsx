@@ -4,10 +4,20 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styles from "./trendDestinations.module.css";
 import axios from "axios";
+import { fetchData } from '../../redux/destinations';
+import { useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+
 import { URL_FINDHOTEL } from "../../const/const";
 
 
 const TrendDestinations = () => {
+
+  const dispatch = useDispatch();
+
+  const handleSearch = (country) => {
+      dispatch(fetchData(country))
+  }
 
   const [stateData, setStateData] = useState([]);
 
@@ -48,7 +58,8 @@ const TrendDestinations = () => {
         <Slider {...settings}>
           {stateData.map((d) => (
             <div className={styles.cardContainer} key={d.id}>
-              <div className={styles.card}>
+              <NavLink to='/results' onClick={() => handleSearch(d.country)}>
+              <div className={styles.card}  key={d.id}>
                 <img
                   className={styles.image}
                   src={d.image}
@@ -59,6 +70,7 @@ const TrendDestinations = () => {
                   <p>{d.state}</p>
                 </div>
               </div>
+              </NavLink>
             </div>
           ))}
         </Slider>

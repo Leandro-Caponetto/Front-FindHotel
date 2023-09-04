@@ -10,7 +10,8 @@
     flex-direction: column;
     gap: 20px;
     width: 800px;
-    height: 1773px;
+    height: auto;
+    margin-bottom: 100px;
   }
   
   .card {

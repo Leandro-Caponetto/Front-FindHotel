@@ -41,10 +41,9 @@ const Results = () => {
         </div>
         <div>
           <HotelList hotels={paginated} />
+          <Paginated Data={filteredHotels} onDataSlice={handlerPaginated} itemsPerPage={5} />
+
         </div>
-      </div>
-      <div className={styles.Pages}>
-        <Paginated Data={filteredHotels} onDataSlice={handlerPaginated} itemsPerPage={5} />
       </div>
     </div>
   );
