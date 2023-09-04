@@ -42,7 +42,7 @@ const TrendDestinations = () => {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Trending Destinations</h2>
+      <h1 className={styles.title}>Trending Destinations</h1>
 
       <div className={styles.carouselContainer}>
         <Slider {...settings}>

@@ -8,7 +8,7 @@ import { MdLocationOn } from "react-icons/md"
 import { useSelector, useDispatch } from 'react-redux';
 import axios from "axios";
 import { useLocation } from "react-router-dom";
-import NavBar from "../../components/NavBar/NavBar";
+
 import { setHotelReserva } from "../../redux/hotels";
 
 import { URL_FINDHOTEL } from "../../const/const";
@@ -43,15 +43,17 @@ const Detail = () => {
     console.log("userEfect", hotelId)
 
     hotelsDetail(hotelId)
+  
+    
+  }, [dispatch,hotelId]);
 
-
-  }, [dispatch, hotelId]);
 
   console.log(hotelDetail)
 
   return (
 
     <>
+
       <NavBar />
       <div>
 

@@ -64,9 +64,9 @@
   width: 120px;
   height: 120px;
   max-height: 250px;
-  /* Ajustado el alto máximo de la imagen */
+  margin-top: 10px;
   border-radius: 50%;
-  /* Border radius solo en la parte superior */
+  
   object-fit: cover;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 10px;

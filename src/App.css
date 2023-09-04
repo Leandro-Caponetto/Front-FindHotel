@@ -1,39 +1,77 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 
 
 .App {
   text-align: center;
   width: 100vw;
-  height: 100vh;
+  height: auto;
+  color: #333; /* Color de texto predeterminado en modo claro */
 }
 /* Inicio - Modificado */
-.App-header {  
+.App-header {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);  
+  font-size: calc(10px + 2vmin);
 }
 
 #Dark {
   background-color: #282c34;
   color: white;
 }
-#Dark a{
+
+#Dark a {
   color: white;
 }
 
 #Light {
-  background-color: #f2f4f6;
-  color:#0d3f67;
+  color: #0d3f67;
 }
 
-.list li{
-  display:inline-block;
-  padding-left:3px;
-  padding-right:3px;
+.list li {
+  display: inline-block;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+/* Estilo para el modo claro */
+.app {
+  background-color: #fff;
+  color: #333; /* Color de texto en modo claro */
+}
+
+/* Estilo para el modo oscuro */
+.app.dark-mode {
+  background-color: #333;
+  color: #fff; /* Cambia el color de todas las letras a blanco en modo oscuro */
+}
+
+
+.mode {
+  width: 50px;
+  background-color: #ccc;
+  border: 1px solid #000;
+  margin-left: 15px;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 24px;
+  display: flex;
+  justify-content: space-between; /* Coloca los íconos del sol y la luna en lados opuestos */
+  align-items: center;
+  padding: 0 10px; /* Añade espacio alrededor de los íconos */
+}
+
+.sun-icon,
+.moon-icon {
+  transition: transform 0.5s;
+}
+
+.dark-mode .sun-icon {
+  transform: translateX(20px); /* Mueve el sol hacia la derecha en modo oscuro */
+}
+
+.light-mode .moon-icon {
+  transform: translateX(-20px); /* Mueve la luna hacia la izquierda en modo claro */
 }
