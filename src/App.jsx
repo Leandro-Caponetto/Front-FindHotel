@@ -14,7 +14,7 @@ import UserDashboard from './components/UserDashboard/DashboardUser'
 import PostPago from "./components/PostPago/PostPago";
 import classnames from "classnames";
 import { FaSun, FaRegMoon } from "react-icons/fa";
-
+import NavBar from './components/NavBar/NavBar'
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -47,7 +47,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/results" element={<Results />} />
-        <Route path="/form" element={<FormCreate />} />
+        
         <Route path="/detail/:hotelId" element={<DetailHotel />} />
         <Route path="/hotel" element={
           <ProtectedRoutes>
