@@ -1,0 +1,12 @@
+.btn{
+    display: flex;
+    gap: 10px;
+}
+.can{
+    background: rgba(255, 0, 0, 0.662);
+}
+.card{
+    padding: 4px 4px;
+    box-shadow: 0 10px 17px #0000008a;
+    border-radius: 8px;
+}

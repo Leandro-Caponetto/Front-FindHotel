@@ -363,8 +363,9 @@
 
 }
 
-.start {
+.star {
   color: yellow;
+  filter: drop-shadow(0px 7px 10px #201f1ff0);
 }
 
 .form-container {
@@ -420,8 +421,8 @@
   height: auto;
 }
 .ticket {
-  background-color: #f4f2f26d;
-  background-image: url('../../assets/image/logo.png'); 
+  background-color: #f4f2f2;
+  background-image: url('../../assets/image/logo2.png'); 
   background-repeat:repeat-y;
   background-size: 250px; 
   

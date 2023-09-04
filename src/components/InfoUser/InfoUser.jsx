@@ -5,7 +5,7 @@ import styles from './InfoUser.module.css';
 const InfoUser = () => {
   return (
     <div className={styles.slider}>
-      <h1>Foro</h1>
+      <h1>Costomers Reviews</h1>
       <div className={styles.slideTrack}>
         {bannerData.comentarios.map((infoItem) => (
           <div className={styles.slide} key={infoItem.id}>

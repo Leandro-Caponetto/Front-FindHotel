@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { useDispatch } from "react-redux";
+import { URL_FINDHOTEL } from "../const/const";
 
 const initialState = {
   destination: [],
@@ -52,10 +53,10 @@ export const destinationSlice = createSlice({
 export const fetchData = (name) => async (dispatch) => {
   try {
     const response = await axios.get(
-      `https://backendfindhotel-dev.fl0.io/hotel?name=${name}`
+
+      `${URL_FINDHOTEL}/hotel?name=${name}`
     );
     const destino = response.data[0];
-    console.log(destino);
     dispatch(setDestination(destino));
   } catch (error) {
     console.log("error");

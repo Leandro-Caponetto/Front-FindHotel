@@ -15,7 +15,10 @@ import { RiHotelLine } from 'react-icons/ri';
 import { BsImage, BsFillPinMapFill, BsStarFill } from 'react-icons/bs';
 import { ImListNumbered } from 'react-icons/im';
 import { UploadSquare } from "../Upload";
-import { image } from "d3";
+
+import { URL_FINDHOTEL } from '../../const/const'
+import { image, style } from "d3";
+import {typeRoom} from "../../redux/hotels"
 
 const initState = {
   name: "",
@@ -34,15 +37,15 @@ const initState = {
   wifi: false,
 }
 
+
+
 const MultiStepForm = () => {
+  const dataRoom = useSelector((state) => state.hotels.typeRoom)
+  const userId = "64f06f359fb30a04b46c9100"
   const dispatch = useDispatch();
   const countries = useSelector((state) => state.countries.countries);
   const citys = useSelector((state) => state.countries.city);
   const [imageHotel, setImageHotel] = useState([])
-
-  useEffect(() => {
-    dispatch(fetchCountries()); // Llama a la acción para obtener los países al cargar el componente
-  }, [dispatch]);
 
   const [curCountry, setCurCountry] = useState("");
   const [step, setStep] = useState(1);
@@ -56,7 +59,13 @@ const MultiStepForm = () => {
 
   useEffect(() => {
     dispatch(fetchCity(curCountry));
+    console.log(curCountry)
   }, [dispatch, curCountry]);
+
+  useEffect(() =>{
+    dispatch(typeRoom(userId));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userId, dispatch]);
 
   useEffect(() => {
     //? Get Data from localStorage
@@ -184,13 +193,14 @@ const MultiStepForm = () => {
     event.preventDefault();
 
     const dataToSend = {
-      User_id: '',
+      User_id: userId,
       email: '',
       ...hotelData
     };
 
     axios
-      .post("https://backendfindhotel-dev.fl0.io/hotel", dataToSend)
+      // .post(`${URL_FINDHOTEL}/hotel`, dataToSend)}
+      .post("http://localhost:3001/hotel", dataToSend)
       .then(async (response) => {
         console.log("Response from server:", response.data);
         setHotelData(initState);
@@ -262,8 +272,6 @@ const MultiStepForm = () => {
                 <input className={styles.input} type="text" name="name" value={hotelData.name} onChange={handlerInputChange} />
                 {errors.name && <p className={styles.error}>{errors.name}</p>}
               </div>
-
-
 
 
               <div className={styles.inputContainer}>
@@ -338,8 +346,14 @@ const MultiStepForm = () => {
               <div className={styles.inputContainer}>
                 <label className={styles.atributtes}><MdBed className={styles.icon} /> Type Room: </label>
                 <select name="roomTypes" id="roomTypes" onChange={handlerInputChange} >
-                  <option value="none" selected disabled hidden>Select an Option</option>
-                  <option value="standar">Standar</option>
+                <option value="none" selected disabled hidden>  Select an Option </option>
+                  {dataRoom.map(({name, _id}, index) => {
+                    return (
+                      <option value={_id} key={index}> {name}</option>
+                    )
+                  })}
+                  {/* <option value="none" selected disabled hidden>Select an Option</option>
+                  <option value="standar">Standar</option> */}
                 </select>
               </div>
               {/* <InputSelect options={["standar"]} /> */}

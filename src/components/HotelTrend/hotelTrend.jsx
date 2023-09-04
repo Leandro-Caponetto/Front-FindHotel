@@ -1,4 +1,4 @@
-import React , { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -7,7 +7,7 @@ import axios from "axios";
 import { fetchData } from '../../redux/destinations';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-
+import { URL_FINDHOTEL } from "../../const/const";
 
 const HotelTrend = () => {
 
@@ -24,7 +24,7 @@ const HotelTrend = () => {
 
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://backendfindhotel-dev.fl0.io/trending/hotels');
+        const response = await axios.get(`${URL_FINDHOTEL}/trending/hotels`);
         setHotelData(response.data); // Update hotelData using the state setter
         console.log(response.data);
       } catch (error) {

@@ -8,7 +8,7 @@ import { fetchData } from '../../redux/destinations';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-
+import { URL_FINDHOTEL } from "../../const/const";
 
 
 const TrendDestinations = () => {
@@ -25,7 +25,8 @@ const TrendDestinations = () => {
 
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://backendfindhotel-dev.fl0.io/trending/state');
+
+        const response = await axios.get(`${URL_FINDHOTEL}/trending/state`);
         setStateData(response.data);
         console.log(response.data);
       } catch (error) {
@@ -51,7 +52,7 @@ const TrendDestinations = () => {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Trending Destinations</h2>
+      <h1 className={styles.title}>Trending Destinations</h1>
 
       <div className={styles.carouselContainer}>
         <Slider {...settings}>
