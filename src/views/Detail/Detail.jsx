@@ -54,7 +54,7 @@ const Detail = () => {
 
     <>
 
-      <NavBar />
+     
       <div>
 
         <h1>COUNTRY: {hotelDetail?.country} </h1>
