@@ -4,6 +4,7 @@ import styles from './Footer.module.css';
 import { NavLink } from 'react-router-dom';
 import SocialNetworks from '../SocialNetworks/SocialNetworks';
 
+
 const redesSociales = {
   facebook: 'https://www.facebook.com/profile.php?id=61550257965574',
   twitter: '',
@@ -16,7 +17,7 @@ const Footer = () => {
     <div className={styles.Container}>
       <div className={styles.box}>
       <div className={styles.LinksContact}>
-        <NavLink to=''>About</NavLink>
+        <NavLink to='/about'>About</NavLink>
         <NavLink to=''><label>Customer Care</label></NavLink>
         <NavLink to=''><label>Contact</label></NavLink>
       </div>
@@ -24,8 +25,9 @@ const Footer = () => {
       <div className={styles.RedSocial}>
         <SocialNetworks redSocial={redesSociales} size={40} gap={15} />
       </div>
-
+  
     <div className={styles.baseline}>
+     
       <label className={styles.Copyright}>
         Copyright © FindBook.com™. All rights reserved
       </label>
