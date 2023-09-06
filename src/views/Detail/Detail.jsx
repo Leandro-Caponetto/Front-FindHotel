@@ -33,7 +33,7 @@ const Detail = () => {
   const hotelsDetail = async (hotelId) => {
     try {
       const response = await axios.get(
-        `https://19c2-179-6-14-10.ngrok.io/hotel/detail?id=${hotelId}`
+        `https://backendfindhotel-dev.fl0.io/hotel/detail?id=${hotelId}`
       );
 
       setHotelDetail(response.data);
@@ -105,15 +105,15 @@ const Detail = () => {
             The services that you will have in your room are{" "}
             {hotelDetail?.servicesRoom}
           </h5>
-          <h5> Room information </h5>
+          <h2>- Room information -</h2>
           <div>
             <h5>
-            <MdHotel/><strong>Type room:</strong>
-              <select value={selectedRoom} defaultValue="Select room" onChange={handleRoomChange}>
-                <option value="Select room" disabled>Select Room</option>
+            <MdHotel/>{" "} <strong>Type room:</strong>
+              <select className={styles.selector} value={selectedRoom} defaultValue="Select room" onChange={handleRoomChange}>
+                <option  value="Select room" disabled>Select Room</option>
                 {hotelDetail?.room?.map((option) => (
                   
-                  <option key={option._id} value={option._id}>
+                  <option  key={option._id} value={option._id}>
                     {option.name}
                   </option>
                 ))}

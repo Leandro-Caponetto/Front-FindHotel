@@ -50,6 +50,7 @@ option{
 }
 
 
+
 .cardImage {
   width: 100%;
   height: 300px;
@@ -110,4 +111,49 @@ option{
 }
 .button:hover{
   opacity: 50%;
+}
+
+
+/* Estilos para el select */
+.selector {
+  width: 100px;
+  height: 30px;
+  margin-left: 10px;
+  color: #20c996;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  
+  box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Estilos para las opciones del select */
+.selector option {
+  
+  padding: 8px;
+  background-color: #fff;
+}
+
+/* Estilos para la opción deshabilitada */
+.selector option:disabled {
+  color: #999;
+}
+
+/* Estilos para el select cuando está enfocado */
+.selector:focus {
+  border-color: #20c996; 
+  box-shadow: 0 0 5px #20c99696; 
+  box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+h2{
+  font-weight: 500;
+  font-size: 20px;
+}
+
+/* Estilos para el select cuando se pasa el mouse sobre las opciones */
+.selector option:hover {
+  background-color: #f2f2f2;
+  box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
 }
