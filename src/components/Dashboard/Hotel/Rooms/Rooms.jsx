@@ -7,6 +7,7 @@ import { CgSmartHomeRefrigerator } from "react-icons/cg";
 import { IoMdWine } from "react-icons/io";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { URL_FINDHOTEL } from "../../../../const/const";
 
 const Room = () => {
   const userId = "64e8277eef72051c7494bca0";
@@ -41,7 +42,7 @@ const Room = () => {
   };
   const sendData = (roomData) => {
     axios
-      .post(`http://localhost:3001/roomType/${userId}`, roomData)
+      .post(`${URL_FINDHOTEL}/roomType/${userId}`, roomData)
       .then((response) => {
         console.log("Respuesta del servidor:", response.data);
       })

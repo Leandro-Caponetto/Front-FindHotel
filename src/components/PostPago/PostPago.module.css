@@ -1,22 +1,24 @@
+.container {
 
-
-.conteiner {
-  
   height: auto;
   margin-top: 50px;
   text-align: center;
 }
-h1 {
+
+.container h1 {
   font-size: 30px;
   font-weight: 700;
   margin-bottom: 30px;
 }
+
 .logo {
   width: 28% !important;
 }
-p {
+
+.container p {
   font-size: 15px;
 }
+
 .card {
   border: 1px solid #ccc;
   padding: 16px;
@@ -30,12 +32,15 @@ p {
   font-size: 18px;
   color: #333;
 }
+
 .post img {
-    border-radius: 8px;
+  border-radius: 8px;
 }
+
 .post p {
   margin: 8px 0;
 }
+
 .btn {
   padding: 15px 25px;
   border: unset;
@@ -75,11 +80,13 @@ p {
 .btn:hover::before {
   width: 100%;
 }
-.poli{
-    margin-top: 70px !important;
-    width: 700px;
-    margin: 10px auto;
+
+.poli {
+  margin-top: 70px !important;
+  width: 700px;
+  margin: 10px auto;
 }
+
 card {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -88,20 +95,20 @@ card {
   width: auto;
 }
 
-h1 {
+.container h1 {
   font-size: 24px;
   margin-bottom: 16px;
 }
 
-ul {
+.container ul {
   list-style-type: none;
   padding: 0;
 }
 
-li {
+.container li {
   margin-bottom: 12px;
 }
 
-strong {
+.container strong {
   font-weight: bold;
 }

@@ -5,8 +5,8 @@ import styles from './InputText.module.css';
 import { GiBroom } from 'react-icons/gi'
 import { handlerNames } from '../../../services';
 
-const InputText = ({ initInput, onChangeInput, errors, tag = '', buttonClear = false, namesFormat = false, style }) => {
-  const [state, setState] = useState(initInput || '')
+const InputText = ({ initInput = '', onChangeInput, errors, tag = '', buttonClear = false, namesFormat = false, style }) => {
+  const [state, setState] = useState(initInput)
 
   useEffect(() => {
     initInput !== '' && setState(initInput)
@@ -23,6 +23,7 @@ const InputText = ({ initInput, onChangeInput, errors, tag = '', buttonClear = f
     setState('')
     onChangeInput('')
   }
+
   return (
     <div className={styles.InputText}
       style={{ flexDirection: 'column', alignItems: 'center', gap: '30px', ...style }} >
@@ -32,7 +33,7 @@ const InputText = ({ initInput, onChangeInput, errors, tag = '', buttonClear = f
           style={{ width: '200px', height: '45px', ...style?.input }}
           type='text'
           autoComplete="off"
-          value={state}
+          value={state || ''}
           placeholder={`${tag}`}
           onChange={(event) => { handlerInputChange(event) }}
         />

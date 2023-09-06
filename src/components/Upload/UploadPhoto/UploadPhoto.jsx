@@ -2,9 +2,10 @@
 import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './UploadPhoto.module.css';
+import { AvatarSvg } from '../../Login/Avatar';
 import LoadSelectorBox from '../LoadSelectorBox/LoadSelectorBox';
 
-function UploadPhoto({ imageSrc, onChangeImage, defaultImage }) {
+function UploadPhoto({ imageSrc, onChangeImage, defaultImage, size = '200px', background = '#D9D9D9', avatarFill = '#3A6561' }) {
   const [imageUrl, setImageUrl] = useState(imageSrc || defaultImage || '');
   const [showUploadBox, setShowUploadBox] = useState(false)
 
@@ -19,13 +20,14 @@ function UploadPhoto({ imageSrc, onChangeImage, defaultImage }) {
 
   return (
     <div className={styles.UploadPhoto}>
-      <span className={styles.PhotoWrapper}>
-        <img className={styles.Photo} src={imageUrl} alt='uploadImage' />
+      <span className={styles.PhotoWrapper} style={{ background: { background } }}>
+        {imageUrl !== '' ? <img className={styles.Photo} src={imageUrl} alt='uploadImage' /> :
+          <AvatarSvg size={size} fill={avatarFill} />}
       </span>
       <div style={{ backgroundColor: 'red' }}>
         <button className={styles.Button} onClick={() => viewUploadBox()}></button>
-        <LoadSelectorBox viewUpload={showUploadBox} onChangeImage={handlerImageChange} onChangeBox={setShowUploadBox} />
       </div>
+      <LoadSelectorBox viewUpload={showUploadBox} onChangeImage={handlerImageChange} onChangeBox={setShowUploadBox} />
     </div>
   );
 }
@@ -33,6 +35,9 @@ function UploadPhoto({ imageSrc, onChangeImage, defaultImage }) {
 UploadPhoto.propTypes = {
   imageSrc: PropTypes.string,
   onChangeImage: PropTypes.string,
-  defaultImage: PropTypes.string
+  defaultImage: PropTypes.string,
+  avatarFill: PropTypes.string,
+  background: PropTypes.string,
+  size: PropTypes.string
 };
 export default UploadPhoto;

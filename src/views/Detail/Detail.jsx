@@ -20,6 +20,7 @@ import {
   updateStep2,
   
 } from "../../redux/reservaSlice";
+import { URL_FINDHOTEL } from "../../const/const";
 
 const Detail = () => {
   const dispatch = useDispatch();
@@ -33,8 +34,10 @@ const Detail = () => {
   const hotelsDetail = async (hotelId) => {
     try {
       const response = await axios.get(
-        `https://backendfindhotel-dev.fl0.io/hotel/detail?id=${hotelId}`
+        `${URL_FINDHOTEL}/hotel/detail?id=${hotelId}`
       );
+
+      console.log(response);
 
       setHotelDetail(response.data);
       console.log(hotelDetail);
