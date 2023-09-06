@@ -7,6 +7,9 @@ import EditableRow from './Editable/EditableRow';
 import DataReserve from './DataReserve/DataReserve'
 import PaymentMethod from './PaymentMethod/PaymentMethod'
 import Guest from './Guest/Guest';
+
+
+
 const RenderView = ( {selectedView} ) => {
  
   const initialData = [
