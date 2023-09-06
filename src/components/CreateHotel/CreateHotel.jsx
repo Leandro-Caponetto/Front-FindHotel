@@ -203,7 +203,7 @@ const MultiStepForm = () => {
 
     axios
       // .post(`${URL_FINDHOTEL}/hotel`, dataToSend)}
-      .post("http://localhost:3001/hotel", dataToSend)
+      .post(`${URL_FINDHOTEL}/hotel`, dataToSend)
       .then(async (response) => {
         console.log("Response from server:", response.data);
         setHotelData(initState);
