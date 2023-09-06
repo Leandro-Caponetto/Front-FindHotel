@@ -14,6 +14,23 @@
     box-shadow: 8px 14px 14px -7px rgba(0,0,0,0.44);
     
 }
+.title{
+  display: flex;
+  margin: 20px auto;
+  font-size: 30px;
+  color: #20c996;
+  justify-content: center;
+  
+}
+
+.leftBar{
+  display: 	flex;
+  flex-direction: column;
+  gap: 28px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+}
 
 
 
@@ -24,7 +41,13 @@
     box-sizing: border-box;
     font-family: cocogoose, sans-serif;
 }
+strong{
+  color: #20c996;
+}
 
+option{
+  width: 30px;
+}
 
 
 .cardImage {

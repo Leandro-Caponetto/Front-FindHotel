@@ -1,0 +1,63 @@
+
+{
+    "us": [
+      {
+        "_id": 1,
+        "img": "../../src/assets/image/118073199-removebg-preview.png",
+        "usuario": "Karol Castilla Cruz",
+        
+        "comentario": "What a discovery this hotel search page! Find the perfect hotel for my family vacation. The interface is very intuitive, I was able to filter the results by location, price and amenities. "
+      },
+      {
+        "_id": 2,
+        "img": "../../src/assets/image/104147241__1_-removebg-preview.png",
+        "usuario": "Leandro Caponetto",
+        "git": "https://github.com/Leandro-Caponetto?tab=repositories",
+        "link": "https://www.linkedin.com/in/leandro-caponetto-developer/",
+        "comentario": "I love exploring new places and this page made finding a hotel a doddle. The best part is the number of options it offers.finding a hotel a doddle.  "
+      },
+      {
+        "id": 3,
+        "img": "../../src/assets/image/81942715-removebg-preview.png",
+        "usuario": "Daniel F. Ochoa M",
+        
+        "comentario": "Wonderful find! I'm pretty picky about my hotel choices, but this page made my life easier. I was able to filter the results to find hotels with spas and room service. "
+      },
+      {
+        "id": 4,
+        "img": "../../src/assets/image/132086547-removebg-preview.png",
+        "usuario": "Jorge Luis Tolentino Hernandez",
+        
+        "comentario": "For a backpacker like me, this page is a good starting point. I was able to quickly compare cheap options and find accommodations that fit my budget. "
+      },
+      {
+        "id": 5,
+        "img": "../../src/assets/image/125808185-removebg-preview.png",
+        "usuario": "Luis Miguel Falcon",
+        
+        "comentario": "I have mixed feelings about this page. I appreciate the photos and reviews from other travelers, but it seems that some popular hotels are missing from their results."
+      },
+      {
+        "id": 6,
+        "img": "../../src/assets/image/1664033621112-removebg-preview.png",
+        "usuario": "Micaela Contreraz",
+        
+        "comentario": "Our experience using this page was generally satisfactory. We found a lovely family run hotel for our vacation. "
+      },
+      {
+        "id": 7,
+        "img": "../../src/assets/image/c2d4e9ce-b0ce-4524-8ec1-482a4362d8c0-removebg-preview.png",
+        "usuario": "Ana María Orozco",
+        
+        "comentario": "As a business traveler, the site made my search efficient and fast. I was able to find hotels with services like conference rooms and high-speed Wi-Fi access. "
+      },
+      {
+        "id": 8,
+        "img": "../../src/assets/image/1691093666754-removebg-preview.png",
+        "usuario": "Erick Leví Tamaríz Cortés",
+        
+        "comentario": "This page deserves all the stars! My partner and I were looking for a romantic getaway hotel and we found the perfect place."
+      }
+    ]
+}
+  

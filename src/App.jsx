@@ -15,6 +15,7 @@ import PostPago from "./components/PostPago/PostPago";
 import classnames from "classnames";
 import { FaSun, FaRegMoon } from "react-icons/fa";
 import NavBar from './components/NavBar/NavBar'
+import AboutView from './views/AboutView/AboutView'
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -57,7 +58,7 @@ function App() {
         <Route path="/reserva" element={<Reserv />} />
         <Route path="/postPago" element={<PostPago />} />
         <Route path='/user' element={<UserDashboard/>}/>
-
+        <Route path='/about' element={<AboutView/>}/>
 
       </Routes>
 

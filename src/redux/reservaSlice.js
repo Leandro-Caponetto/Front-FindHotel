@@ -10,8 +10,8 @@ const initialState = {
     guest: '',
   },
   step2: {
-    Hotel_id: "64e3bee4446b4b4eef196c92",
-    RoomType_id: '64f1605cff5f65baabd8e902',
+    Hotel_id: "",
+    RoomType_id: '',
     address: '',
     country: '',
     checkIn: '2023-09-01',
@@ -37,6 +37,7 @@ const reservaSlice = createSlice({
       state.step1 = { ...state.step1, ...action.payload };
     },
     updateStep2: (state, action) => {
+      console.log("updateStep2",action.payload)
       state.step2 = { ...state.step2, ...action.payload };
     },
     updateStep3: (state, action) => {
