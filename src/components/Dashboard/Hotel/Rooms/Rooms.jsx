@@ -10,60 +10,173 @@ import axios from "axios";
 
 const Room = () => {
   const userId = "64e8277eef72051c7494bca0";
-  const [rooms, setRooms] = useState(
-    [{ nameRoom: "", quantity: "", price: "", services: [] }],
-    
-  );
+  const [rooms, setRooms] = useState([
+    { nameRoom: "", quantity: "", busy: "", free: "", price: "", services: [] },
+  ]);
   const [noServiceSelected, setNoServiceSelected] = useState(false);
+  const [errorMessages, setErrorMessages] = useState({
+    nameRoom: "",
+    quantity: "",
+    busy: "",
+    free: "",
+    price: "",
+  });
 
   const handleInputChange = (index, event) => {
     const { name, value } = event.target;
     const newRooms = [...rooms];
+    if (name === "quantity" || name === "free" || name === "busy" || name === "price") {
+      // Verificar si el valor no es un número o es un número negativo
+      if (!Number.isInteger(Number(value)) || Number(value) < 0) {
+        setErrorMessages((prevMessages) => ({
+          ...prevMessages,
+          [name]: "Este campo debe ser un número entero no negativo.",
+        }));
+        return;
+      }
+    }
     newRooms[index][name] = value;
-    setRooms(newRooms);
-  };
 
+    if ((name === "free" || name === "busy") && newRooms[index].free !== "" && newRooms[index].busy !== "") {
+      const free = parseInt(newRooms[index].free) || 0;
+      const busy = parseInt(newRooms[index].busy) || 0;
+      const quantity = free + busy;
+  
+      if (quantity < 0) {
+        setErrorMessages((prevMessages) => ({
+          ...prevMessages,
+          quantity: "La suma de 'Free' y 'Busy' no puede ser negativa.",
+        }));
+      } else {
+        newRooms[index].quantity = quantity;
+        setErrorMessages((prevMessages) => ({
+          ...prevMessages,
+          quantity: "", 
+        }));
+      }
+    }
+  
+    setRooms(newRooms);
+  
+    if (value.trim() === "") {
+      setErrorMessages((prevMessages) => ({
+        ...prevMessages,
+        [name]: "This field is required",
+      }));
+    } else {
+      setErrorMessages((prevMessages) => ({
+        ...prevMessages,
+        [name]: "",
+      }));
+    }
+  };
   const handleCheckboxChange = (index, service) => {
     const newRooms = [...rooms];
     const selectedServices = newRooms[index].services;
-
-    if (selectedServices.includes(service)) {
-      newRooms[index].services = selectedServices.filter(s => s !== service);
+  
+    if (service === "no services") {
+      if (selectedServices.includes("no services")) {
+        // Si "No Services" ya estaba seleccionado, deseléctalo
+        newRooms[index].services = selectedServices.filter((s) => s !== "no services");
+        setNoServiceSelected(false);
+      } else {
+        // Si "No Services" no estaba seleccionado, selecciónalo y deselecciona los otros servicios
+        newRooms[index].services = ["no services"];
+        setNoServiceSelected(true);
+  
+        // También deselecciona los otros servicios
+        const otherServices = ["room service", "jacuzzi", "fridge", "bar", "heater", "air-conditioning"];
+        otherServices.forEach((otherService) => {
+          newRooms[index].services = newRooms[index].services.filter((s) => s !== otherService);
+        });
+      }
     } else {
-      newRooms[index].services = [...selectedServices, service];
+      // Si se selecciona cualquier otro servicio, asegúrate de que "No Services" esté deseleccionado
+      setNoServiceSelected(false);
+  
+      if (selectedServices.includes("no services")) {
+        // Si "No Services" estaba seleccionado anteriormente, quítalo
+        newRooms[index].services = selectedServices.filter((s) => s !== "no services");
+      }
+  
+      if (selectedServices.includes(service)) {
+        // Si el servicio ya está seleccionado, quítalo
+        newRooms[index].services = selectedServices.filter((s) => s !== service);
+      } else {
+        // Agrega el servicio seleccionado
+        newRooms[index].services = [...selectedServices, service];
+      }
     }
-
+  
     setRooms(newRooms);
-
-    if (service === "NoService") {
-      setNoServiceSelected(!noServiceSelected);
-    }
   };
-  const sendData = (roomData) => {
-    axios
-      .post(`http://localhost:3001/roomType/${userId}`, roomData)
-      .then((response) => {
-        console.log("Respuesta del servidor:", response.data);
-      })
-      .catch((error) => {
-        console.error("Error en la solicitud:", error);
-      });
-  };
+  // const sendData = (roomData) => {
+  //   axios
+  //     .post(`https://backendfindhotel-dev.fl0.io/roomType/${userId}`, roomData)
+  //     .then((response) => {
+  //       console.log("Respuesta del servidor:", response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error en la solicitud:", error);
+  //     });
+  // };
 
   const handleAddRoom = () => {
     const newRoom = {
       name: rooms[rooms.length - 1].nameRoom,
       stock: rooms[rooms.length - 1].quantity,
       price: rooms[rooms.length - 1].price,
-      services: rooms[rooms.length - 1].services,
-      isActive: true
+      busy: rooms[rooms.length - 1].busy,
+      free: rooms[rooms.length - 1].free,
+      services: noServiceSelected ? ["no services"] : rooms[rooms.length - 1].services,
+      isActive: true,
     };
- 
-    console.log("New Room:", newRoom);
-    setRooms([...rooms, newRoom]);
-    sendData(newRoom);
-  };
 
+    console.log("New Room:", newRoom);
+    if (!validateFields(newRoom)) {
+      return; // Si los campos no son válidos, no continúes con la solicitud POST
+    }
+    axios
+      .post(`https://backendfindhotel-dev.fl0.io/roomType/${userId}`, newRoom)
+      .then((response) => {
+        console.log("Respuesta del servidor:", response.data);
+
+        setRooms([...rooms, newRoom]);
+
+        Swal.fire({
+          title: "Room Created!",
+          text: "Your room has been created successfully.",
+          icon: "success",
+        });
+      })
+      .catch((error) => {
+        console.error("Error en la solicitud:", error);
+
+        Swal.fire({
+          title: "Error!",
+          text: "An error occurred while creating the room. All fields are required.",
+          icon: "error",
+        });
+      });
+  };
+  const validateFields = (room) => {
+    // Realiza la validación de campos aquí
+    if (!room.name || !room.stock || !room.price || !room.busy || !room.free) {
+      Swal.fire({
+        title: "Error!",
+        text: "All fields are required.",
+        icon: "error",
+      });
+      return false;
+    }
+    return true;
+  };
+  
+  
+  
+  
+  
+  
   const handleRemoveRoom = (index) => {
     if (rooms.length > 1) {
       Swal.fire({
@@ -95,7 +208,7 @@ const Room = () => {
       {rooms.map((room, index) => (
         <div key={index} className={styles.roomEntry}>
           <h2 className={styles.typeroom}>ROOM TYPE # {index + 1}</h2>
-          <label className={styles.label} htmlFor={`type${index}`}>
+          <label className={styles.label} htmlFor={`nameRoom${index}`}>
             Room Name:
           </label>
           <input
@@ -105,8 +218,42 @@ const Room = () => {
             name="nameRoom"
             value={rooms[index].nameRoom}
             onChange={(event) => handleInputChange(index, event)}
+            required
           />
-
+          {errorMessages.nameRoom && (
+            <p className={styles.error}>{errorMessages.nameRoom}</p>
+          )}
+          
+          <label className={styles.label} htmlFor={`free${index}`}>
+            Rooms Free:
+          </label>
+          <input
+            className={styles.input}
+            type="number"
+            id={`free${index}`}
+            name="free"
+            value={rooms[index].free}
+            onChange={(event) => handleInputChange(index, event)}
+            required
+          />
+          {errorMessages.free && (
+            <p className={styles.error}>{errorMessages.free}</p>
+          )}
+          <label className={styles.label} htmlFor={`busy${index}`}>
+            Rooms Busy:
+          </label>
+          <input
+            className={styles.input}
+            type="number"
+            id={`busy${index}`}
+            name="busy"
+            value={rooms[index].busy}
+            onChange={(event) => handleInputChange(index, event)}
+            required
+          />
+          {errorMessages.busy && (
+            <p className={styles.error}>{errorMessages.busy}</p>
+          )}
           <label className={styles.label} htmlFor={`quantity${index}`}>
             Stock:
           </label>
@@ -117,8 +264,12 @@ const Room = () => {
             name="quantity"
             value={rooms[index].quantity}
             onChange={(event) => handleInputChange(index, event)}
+            required
           />
-          <label className={styles.label} htmlFor={`quantity${index}`}>
+          {errorMessages.quantity && (
+            <p className={styles.error}>{errorMessages.quantity}</p>
+          )}
+          <label className={styles.label} htmlFor={`price${index}`}>
             Price:
           </label>
           <input
@@ -128,16 +279,20 @@ const Room = () => {
             name="price"
             value={rooms[index].price}
             onChange={(event) => handleInputChange(index, event)}
+            required
           />
+          {errorMessages.price && (
+            <p className={styles.error}>{errorMessages.price}</p>
+          )}
           <div>
             <label className={styles.label}>
               <RiProhibitedLine className={styles.icon} />{" "}
               <input
                 type="checkbox"
-                name="NoService"
-                checked={rooms[index].services.includes("NoService")}
-                value="NoService"
-                onChange={() => handleCheckboxChange(index, "NoService")}
+                name="no services"
+                checked={rooms[index].services.includes("no services")}
+                value="no services"
+                onChange={() => handleCheckboxChange(index, "no services")}
               />
               No Services are available
             </label>
@@ -145,11 +300,11 @@ const Room = () => {
               <MdOutlineDryCleaning className={styles.icon} />{" "}
               <input
                 type="checkbox"
-                name="RoomService"
-                checked={rooms[index].services.includes("RoomService")}
+                name="room service"
+                checked={rooms[index].services.includes("room service")}
                 disabled={noServiceSelected}
-                value="RoomService"
-                onChange={() => handleCheckboxChange(index, "RoomService")}
+                value="room service"
+                onChange={() => handleCheckboxChange(index, "room service")}
               />
               Room Service
             </label>

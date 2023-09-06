@@ -15,7 +15,8 @@ import { RiHotelLine } from 'react-icons/ri';
 import { BsImage, BsFillPinMapFill, BsStarFill } from 'react-icons/bs';
 import { ImListNumbered } from 'react-icons/im';
 import { UploadSquare } from "../Upload";
-
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 import { URL_FINDHOTEL } from '../../const/const'
 import { image, style } from "d3";
 import {typeRoom} from "../../redux/hotels"
@@ -46,7 +47,7 @@ const MultiStepForm = () => {
   const countries = useSelector((state) => state.countries.countries);
   const citys = useSelector((state) => state.countries.city);
   const [imageHotel, setImageHotel] = useState([])
-
+  const MySwal = withReactContent(Swal);
   const [curCountry, setCurCountry] = useState("");
   const [step, setStep] = useState(1);
 
@@ -200,7 +201,7 @@ const MultiStepForm = () => {
 
     axios
       // .post(`${URL_FINDHOTEL}/hotel`, dataToSend)}
-      .post("http://localhost:3001/hotel", dataToSend)
+      .post("https://backendfindhotel-dev.fl0.io/hotel", dataToSend)
       .then(async (response) => {
         console.log("Response from server:", response.data);
         setHotelData(initState);
@@ -219,7 +220,11 @@ const MultiStepForm = () => {
         // } catch (error) {
         //   console.error(error);
         // }
-
+        MySwal.fire({
+          icon: 'success',
+          title: 'Hotel Created Successfully',
+          text: 'Your hotel has been created successfully!',
+        });
         //? Clear localStorage
         localStorage.removeItem("hotelData");
       })
@@ -241,6 +246,7 @@ const MultiStepForm = () => {
         }
       });
   };
+
 
   const handlerInputChange = (event) => {
     const { name, value } = event.target;
