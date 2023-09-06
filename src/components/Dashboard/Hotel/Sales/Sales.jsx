@@ -34,7 +34,7 @@ function Sales() {
   const fetchHotelInfo = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/deals/hotel/${hotelId}`
+        `https://backendfindhotel-dev.fl0.io/deals/hotel/${hotelId}`
       );
       console.log("hola", response);
       const hotelData = response.data;
@@ -50,7 +50,7 @@ function Sales() {
   const fetchBookingReservations = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/deals/hotel/${hotelId}?status=booking`
+        `https://backendfindhotel-dev.fl0.io/deals/hotel/${hotelId}?status=booking`
       );
       const bookingDeals = response.data.dealsHotel.deals;
       if (bookingDeals.length === 0) {
@@ -66,7 +66,7 @@ function Sales() {
   const fetchFinishedReservations = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/deals/hotel/${hotelId}?status=finished`
+        `https://backendfindhotel-dev.fl0.io/deals/hotel/${hotelId}?status=finished`
       );
       const finishedDeals = response.data.dealsHotel.deals;
       if (finishedDeals.length === 0) {
@@ -83,7 +83,7 @@ function Sales() {
   const fetchCancelledReservations = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/deals/hotel/${hotelId}?status=cancelled`
+        `https://backendfindhotel-dev.fl0.io/deals/hotel/${hotelId}?status=cancelled`
       );
       const cancelledDeals = response.data.dealsHotel.deals;
       if (cancelledDeals.length === 0) {
@@ -100,7 +100,7 @@ function Sales() {
   const fetchAllReservations = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/deals/hotel/${hotelId}`
+        `https://backendfindhotel-dev.fl0.io/deals/hotel/${hotelId}`
       );
       const allDeals = response.data.dealsHotel.deals;
       if (allDeals.length === 0) {
@@ -117,7 +117,7 @@ function Sales() {
   const fetchActiveReservations = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/deals/hotel/${hotelId}?status=active`
+        `https://backendfindhotel-dev.fl0.io/deals/hotel/${hotelId}?status=active`
       );
       console.log(response.data);
       const deals = response.data.dealsHotel.deals;

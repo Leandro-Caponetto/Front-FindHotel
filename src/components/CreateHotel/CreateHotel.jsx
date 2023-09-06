@@ -15,7 +15,8 @@ import { RiHotelLine } from 'react-icons/ri';
 import { BsImage, BsFillPinMapFill, BsStarFill } from 'react-icons/bs';
 import { ImListNumbered } from 'react-icons/im';
 import { UploadSquare } from "../Upload";
-
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 import { URL_FINDHOTEL } from '../../const/const'
 import { image, style } from "d3";
 import {
@@ -49,7 +50,7 @@ const MultiStepForm = () => {
   console.log("🚀 ~ file: CreateHotel.jsx:49 ~ MultiStepForm ~ hotelList:", hotelList)
 
   const [imageHotel, setImageHotel] = useState([])
-
+  const MySwal = withReactContent(Swal);
   const [curCountry, setCurCountry] = useState("");
   const [step, setStep] = useState(1);
 
@@ -203,6 +204,7 @@ const MultiStepForm = () => {
 
     axios
       // .post(`${URL_FINDHOTEL}/hotel`, dataToSend)}
+
       .post(`${URL_FINDHOTEL}/hotel`, dataToSend)
       .then(async (response) => {
         console.log("Response from server:", response.data);
@@ -222,7 +224,11 @@ const MultiStepForm = () => {
         // } catch (error) {
         //   console.error(error);
         // }
-
+        MySwal.fire({
+          icon: 'success',
+          title: 'Hotel Created Successfully',
+          text: 'Your hotel has been created successfully!',
+        });
         //? Clear localStorage
         localStorage.removeItem("hotelData");
       })
@@ -245,6 +251,7 @@ const MultiStepForm = () => {
       });
   };
 
+
   const handlerDeleteRoom = (event, value) => {
     event.preventDefault()
     const currentState = { ...hotelData, room: hotelData.room.filter((room) => room !== value) }
@@ -252,6 +259,7 @@ const MultiStepForm = () => {
     localStorage.setItem('hotelData', JSON.stringify(currentState));
   }
   console.log(hotelData)
+
   const handlerInputChange = (event) => {
     const { name, value } = event.target;
     let currentState = {}
