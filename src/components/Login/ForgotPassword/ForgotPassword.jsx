@@ -74,9 +74,11 @@ const ForgotPassword = ({ viewForgot, onViewForgot }) => {
                 </div>
               )
             })}
-            <button type="submit" className={styles.submitButton}>
-              Restore Password
-            </button>
+            <div className={styles.BtnPass}>
+              <button type="submit" className={styles.submitButton}>
+                Restore Password
+              </button>
+            </div>
           </form>
         </div>
       </div>)}

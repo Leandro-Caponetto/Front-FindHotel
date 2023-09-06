@@ -42,40 +42,40 @@ const EditableRow = ({ index, rowData, onEdit, onDelete }) => {
           rowData.lastName
         )}
       </td>
-      
+
       <td>{isEditing ? (
-          <input
-            type="text"
-            value={editedRow.email}
-            onChange={(e) => setEditedRow({ ...editedRow, email: e.target.value })}
-          />
-        ) : (
-          rowData.email
-        )}</td>
+        <input
+          type="text"
+          value={editedRow.email}
+          onChange={(e) => setEditedRow({ ...editedRow, email: e.target.value })}
+        />
+      ) : (
+        rowData.email
+      )}</td>
       <td>{isEditing ? (
-          <input
-            type="tel"
-            value={editedRow.phome}
-            onChange={(e) => setEditedRow({ ...editedRow, phone: e.target.value })}
-          />
-        ) : (
-          rowData.phone
-        )}</td>
+        <input
+          type="tel"
+          value={editedRow.phome}
+          onChange={(e) => setEditedRow({ ...editedRow, phone: e.target.value })}
+        />
+      ) : (
+        rowData.phone
+      )}</td>
       <td>
         {isEditing ? (
           <div className={styles.btn}>
-            <button onClick={handleEdit}>
-               Save
+            <button className={styles.button} onClick={handleEdit}>
+              Save
             </button>
-            <button className={styles.trash} onClick={() => setIsEditing(false)}><FaTrash/> </button>
+            <button className={styles.trash} onClick={() => setIsEditing(false)}><FaTrash /> </button>
           </div>
         ) : (
           < div className={styles.btn}>
-            <button onClick={handleEdit}>
-              <FaEdit /> 
+            <button className={styles.button} onClick={handleEdit}>
+              <FaEdit />
             </button>
-            <button className={styles.trash} onClick={handleDelete}>
-              <FaTrash/>
+            <button className={`${styles.trash} ${styles.button}`} onClick={handleDelete}>
+              <FaTrash />
             </button>
           </div>
         )}

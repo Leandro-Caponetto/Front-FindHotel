@@ -41,7 +41,7 @@ function Paginated({ Data, onDataSlice, itemsXPage = 5 }) {
   return (
     <div className={styles.Paginated}>
       <div className={styles.Pages}>
-        {currentPage > 1 && <button className={styles.BtnPrev} onClick={handlerPrevPage} disabled={currentPage === 1}>
+        {currentPage > 1 && <button className={`${styles.BtnPrev} ${styles.button}`} onClick={handlerPrevPage} disabled={currentPage === 1}>
           {<FaArrowAltCircleLeft className={styles.Icon} size={40} />}
         </button>}
         {Array.from({ length: totalPages }, (_, index) => (
@@ -54,7 +54,7 @@ function Paginated({ Data, onDataSlice, itemsXPage = 5 }) {
 
           </button>
         ))}
-        {currentPage < totalPages && <button className={styles.BtnNext} onClick={handlerNextPage} disabled={currentPage === totalPages}>
+        {currentPage < totalPages && <button className={`${styles.BtnNext} ${styles.button}`} onClick={handlerNextPage} disabled={currentPage === totalPages}>
           {<FaArrowAltCircleRight className={styles.Icon} size={40} />}
         </button>}
       </div>

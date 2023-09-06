@@ -1,11 +1,13 @@
-.btn{
+.btn {
     display: flex;
     gap: 10px;
 }
-.can{
+
+.can {
     background: rgba(255, 0, 0, 0.662);
 }
-.card{
+
+.card {
     padding: 4px 4px;
     box-shadow: 0 10px 17px #0000008a;
     border-radius: 8px;
