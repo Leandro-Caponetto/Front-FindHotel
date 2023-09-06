@@ -16,8 +16,10 @@ const StepDataInfo = () => {
 
   return (
     <div className="step-data-info ticket">
+      
       <div className="ticket-header">
-        <h1>Reservation Ticket</h1>
+      
+        <h1> Reservation Ticket</h1>
         <p>Date: {new Date().toLocaleDateString()}</p>
       </div>
       <div className="ticket-content">

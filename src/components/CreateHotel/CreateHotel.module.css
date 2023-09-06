@@ -209,6 +209,50 @@
   align-content: space-around;
 }
 
+.HotelRooms {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+
+.SelectRoom {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+
+.SelectedRoom {
+  display: grid;
+  width: 100%;
+  justify-content: center;
+  align-items: stretch;
+  align-content: space-between;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 5px;
+  padding: 1%;
+  justify-items: center;
+}
+
+.SelectedRoom button {
+  width: 100%;
+  font-size: 15px;
+  border: 3px green solid;
+  background: lightblue;
+  color: blue;
+  margin: 0;
+  display: flow;
+  text-align: center;
+  padding: 5px 10px 5px 0px;
+}
+
 /* .container {
     display: flex;
     flex-direction: column;

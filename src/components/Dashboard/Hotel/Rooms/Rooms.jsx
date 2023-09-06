@@ -7,6 +7,7 @@ import { CgSmartHomeRefrigerator } from "react-icons/cg";
 import { IoMdWine } from "react-icons/io";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { URL_FINDHOTEL } from "../../../../const/const";
 
 const Room = () => {
   const userId = "64e8277eef72051c7494bca0";
@@ -137,7 +138,8 @@ const Room = () => {
       return; // Si los campos no son válidos, no continúes con la solicitud POST
     }
     axios
-      .post(`https://backendfindhotel-dev.fl0.io/roomType/${userId}`, newRoom)
+
+      .post(`${URL_FINDHOTEL}/roomType/${userId}`, roomData)
       .then((response) => {
         console.log("Respuesta del servidor:", response.data);
 

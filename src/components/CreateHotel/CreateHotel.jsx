@@ -8,7 +8,7 @@ import styles from "./CreateHotel.module.css";
 import { MdAllInclusive, MdFreeBreakfast, MdLunchDining, MdPool, MdBed, MdAttachMoney } from 'react-icons/md';
 import { GiBowlOfRice, GiMagicBroom, GiModernCity } from 'react-icons/gi';
 import { IoMdWine } from 'react-icons/io';
-import { FaUmbrellaBeach, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaHotel, FaUmbrellaBeach, FaMapMarkerAlt } from 'react-icons/fa';
 import { CgGym } from 'react-icons/cg';
 import { AiFillCar } from 'react-icons/ai';
 import { RiHotelLine } from 'react-icons/ri';
@@ -19,33 +19,36 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { URL_FINDHOTEL } from '../../const/const'
 import { image, style } from "d3";
-import {typeRoom} from "../../redux/hotels"
+import {
+  typeRoom,
+  userHotels as HotelUsers
+} from "../../redux/hotels"
 
 const initState = {
+  _id: "",
   name: "",
   country: "",
   city: "",
   address: "",
   category: "",
-  room: {
-    name: "",
-    stock: "",
-    price: "",
-  },
+  room: [],
   services: [],
   facilities: [],
   roomService: false,
   wifi: false,
 }
 
-
-
 const MultiStepForm = () => {
-  const dataRoom = useSelector((state) => state.hotels.typeRoom)
   const userId = "64f06f359fb30a04b46c9100"
   const dispatch = useDispatch();
+  const dataRoom = useSelector((state) => state.hotels.typeRoom)
   const countries = useSelector((state) => state.countries.countries);
   const citys = useSelector((state) => state.countries.city);
+  const userHotels = useSelector((state) => state.hotels.userHotels)
+
+  const hotelList = [{ _id: '', name: 'New Hotel!!' }, ...userHotels.map(({ hotel }) => { return hotel })]
+  console.log("🚀 ~ file: CreateHotel.jsx:49 ~ MultiStepForm ~ hotelList:", hotelList)
+
   const [imageHotel, setImageHotel] = useState([])
   const MySwal = withReactContent(Swal);
   const [curCountry, setCurCountry] = useState("");
@@ -59,23 +62,23 @@ const MultiStepForm = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(fetchCity(curCountry));
-    console.log(curCountry)
-  }, [dispatch, curCountry]);
+    dispatch(fetchCity(hotelData.country));
+  }, [dispatch, hotelData.country]);
 
-  useEffect(() =>{
+  useEffect(() => {
+    dispatch(HotelUsers(userId))
     dispatch(typeRoom(userId));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId, dispatch]);
 
   useEffect(() => {
     //? Get Data from localStorage
     const storedData = JSON.parse(localStorage.getItem("hotelData"));
     if (storedData) {
-      console.log(storedData);
-      setHotelData({ ...storedData });
+      if (hotelData._id === '') {
+        setHotelData({ ...storedData });
+      }
     }
-  }, []);
+  }, [hotelData._id]);
 
   const handleNext = () => {
     setStep(step + 1);
@@ -124,22 +127,22 @@ const MultiStepForm = () => {
     }
   };
 
-  const handleCountry = (event) => {
-    const { value } = event.target;
-    setCurCountry(value);
-    setHotelData((prevData) => ({
-      ...prevData,
-      country: value,
-    }));
-  };
+  // const handleCountry = (event) => {
+  //   const { value } = event.target;
+  //   setCurCountry(value);
+  //   setHotelData((prevData) => ({
+  //     ...prevData,
+  //     country: value,
+  //   }));
+  // };
 
-  const handleCity = (event) => {
-    const { value } = event.target;
-    setHotelData((prevData) => ({
-      ...prevData,
-      city: value,
-    }));
-  };
+  // const handleCity = (event) => {
+  //   const { value } = event.target;
+  //   setHotelData((prevData) => ({
+  //     ...prevData,
+  //     city: value,
+  //   }));
+  // };
 
   console.log(hotelData)
   const validate = () => {
@@ -173,17 +176,17 @@ const MultiStepForm = () => {
       newErrors.category = "Category is required";
     }
 
-    if (!hotelData.room.name) {
-      newErrors.roomName = "Room name is required";
-    }
+    // if (!hotelData.room.name) {
+    //   newErrors.roomName = "Room name is required";
+    // }
 
-    if (!hotelData.room.price) {
-      newErrors.roomPrice = "Room price is required";
-    }
+    // if (!hotelData.room.price) {
+    //   newErrors.roomPrice = "Room price is required";
+    // }
 
-    if (!hotelData.room.stock) {
-      newErrors.roomStock = "Room stock is required";
-    }
+    // if (!hotelData.room.stock) {
+    //   newErrors.roomStock = "Room stock is required";
+    // }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -201,7 +204,8 @@ const MultiStepForm = () => {
 
     axios
       // .post(`${URL_FINDHOTEL}/hotel`, dataToSend)}
-      .post("https://backendfindhotel-dev.fl0.io/hotel", dataToSend)
+
+      .post(`${URL_FINDHOTEL}/hotel`, dataToSend)
       .then(async (response) => {
         console.log("Response from server:", response.data);
         setHotelData(initState);
@@ -248,13 +252,32 @@ const MultiStepForm = () => {
   };
 
 
+  const handlerDeleteRoom = (event, value) => {
+    event.preventDefault()
+    const currentState = { ...hotelData, room: hotelData.room.filter((room) => room !== value) }
+    setHotelData(currentState);
+    localStorage.setItem('hotelData', JSON.stringify(currentState));
+  }
+  console.log(hotelData)
+
   const handlerInputChange = (event) => {
     const { name, value } = event.target;
     let currentState = {}
-    if (name === 'roomTypes' || name === 'stock' || name === 'price') {
-      let field = name === 'roomTypes' ? 'name' : name
-      currentState = { ...hotelData, room: { ...hotelData.room, [field]: value } }
-    } else { currentState = { ...hotelData, [name]: value } }
+    switch (name) {
+      case 'Hotels':
+        currentState = { ...hotelList.filter(({ _id }) => _id === value) }
+        break;
+      case 'room':
+        if (!hotelData?.room?.includes(value)) {
+          console.log(hotelData.room)
+          console.log(value)
+          currentState = { ...hotelData, room: [...hotelData.room, value] }
+          break;
+        }
+        return;
+      default:
+        currentState = { ...hotelData, [name]: value }
+    }
     setHotelData(currentState);
 
     //?Save On LocalStorage
@@ -262,8 +285,6 @@ const MultiStepForm = () => {
     console.log(hotelData)
   };
 
-  console.log(imageHotel)
-  console.log(hotelData)
   return (
     <div className={styles.registrationForm}>
       <h1 className={styles.heading}>REGISTER YOUR HOTEL</h1>
@@ -272,6 +293,17 @@ const MultiStepForm = () => {
           <div className={styles.div}>
             <Form.Group className={styles.FormGroup} controlId="step1">
               <Form.Label className={styles.formLabel}>Step 1: IMPORTANT INFORMATION </Form.Label>
+
+              <div className={styles.inputContainer}>
+                <label className={styles.atributtes}><FaHotel className={styles.icon} /> Hotels: </label>
+                <select name="Hotels" id="Hotels" onChange={handlerInputChange} >
+                  {hotelList.map(({ _id, name }, index) => {
+                    return (
+                      <option value={_id} key={index}> {name} </option>
+                    )
+                  })}
+                </select>
+              </div>
 
               <div className={styles.inputContainer}>
                 <label className={styles.atributtes}><RiHotelLine className={styles.icon} /> Name hotel:</label>
@@ -285,7 +317,7 @@ const MultiStepForm = () => {
                 <select
                   name="country"
                   id="country"
-                  onChange={handleCountry}
+                  onChange={handlerInputChange}
                 >
                   <option value="none" selected disabled hidden>
                     Select an Option
@@ -303,7 +335,7 @@ const MultiStepForm = () => {
 
               <div className={styles.inputContainer}>
                 <label className={styles.atributtes}><GiModernCity className={styles.icon} /> City:</label>
-                <select name="city" id="city" onChange={handleCity}>
+                <select name="city" id="city" onChange={handlerInputChange}>
                   <option value="none" selected disabled hidden>  Select an Option </option>
                   {citys.map((data, index) => {
                     return (
@@ -349,26 +381,46 @@ const MultiStepForm = () => {
                 />
                 {errors.category && <p className={styles.error}>{errors.category}</p>}
               </div>
-              <div className={styles.inputContainer}>
-                <label className={styles.atributtes}><MdBed className={styles.icon} /> Type Room: </label>
-                <select name="roomTypes" id="roomTypes" onChange={handlerInputChange} >
-                <option value="none" selected disabled hidden>  Select an Option </option>
-                  {dataRoom.map(({name, _id}, index) => {
-                    return (
-                      <option value={_id} key={index}> {name}</option>
-                    )
-                  })}
-                  {/* <option value="none" selected disabled hidden>Select an Option</option>
-                  <option value="standar">Standar</option> */}
-                </select>
-              </div>
-              {/* <InputSelect options={["standar"]} /> */}
 
+              {/*                        ROOM SELECTOR                               */}
               <div className={styles.inputContainer}>
+                <div className={styles.HotelRooms}>
+                  <div className={styles.SelectRoom}>
+                    <label className={styles.atributtes}><MdBed className={styles.icon} /> Type Room: </label>
+                    <select name="room" id="room" onChange={handlerInputChange} >
+                      <option value="none">  Select an Option </option>
+                      {dataRoom.map(({ name, _id }, index) => {
+                        return (
+                          !hotelData?.room?.includes(_id) ? <option value={_id} key={index}> {name} </option> : null
+                        )
+                      })
+                      }
+                    </select>
+                  </div>
+                  <div className={styles.SelectedRoom}>
+                    {hotelData?.room?.map((id, index) => {
+                      return (
+                        dataRoom?.map(({ name, _id }) => {
+                          return (
+                            _id === id ?
+                              (<button key={index} title={name}
+                                onClick={(event) => { handlerDeleteRoom(event, id) }}
+                              >
+                                {name}
+                              </button>) : null
+                          )
+                        }))
+                    })}
+
+                  </div>
+                </div>
+              </div>
+
+              {/* <div className={styles.inputContainer}>
                 <label className={styles.atributtes}><ImListNumbered className={styles.icon} /> Stock:</label>
                 <input className={styles.input} type="number" name="stock" value={hotelData.room.stock} onChange={handlerInputChange} min={1} />
                 {errors.address && <p className={styles.error}>{errors.address}</p>}
-              </div>
+              </div> */}
               {/* <div>
                 <label className={styles.label}></label>
                 <InputText
@@ -378,17 +430,17 @@ const MultiStepForm = () => {
                   style={{flexDirection:"row" ,  h3:{fontSize:"20px", fontFamily:"Georgia"}, input:{width:"100px"}}}
                 /> */}
 
-              <div className={styles.inputContainer}>
+              {/* <div className={styles.inputContainer}>
                 <label className={styles.atributtes}><MdAttachMoney className={styles.icon} /> Price:</label>
-                <input className={styles.input} type="number" name="price" value={hotelData.room.price} onChange={handlerInputChange} min={1} />
-                {/* <InputText
+                <input className={styles.input} type="number" name="price" value={hotelData.room.price} onChange={handlerInputChange} min={1} /> */}
+              {/* <InputText
                   tag={"Price"}
                   initInput={hotelData.price}
                   onChangeInput={(input) => handleInputChange("price", input)}
                   style={{flexDirection:"row" ,  h3:{fontSize:"20px", fontFamily:"Georgia"}, input:{width:"100px"}}}
                 /> */}
-                {/* <input type="number" name="roomStock" value={hotelData.roomStock} onChange={handleOnChange} /> */}
-              </div>
+              {/* <input type="number" name="roomStock" value={hotelData.roomStock} onChange={handleOnChange} /> */}
+              {/* </div> */}
             </Form.Group>
             <div className={styles.align}>
               <Button className={styles.button} onClick={handlePrevious}>Prev</Button>

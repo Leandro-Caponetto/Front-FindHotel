@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import axios from 'axios'
+import { URL_FINDHOTEL } from '../../../const/const';
 import PropTypes from 'prop-types';
 import styles from './SignUp.module.css';
+import logo from '../../../assets/image/logoBlack2.png'
 import SocialNetworks from '../../SocialNetworks/SocialNetworks';
 import { MdLock, MdEmail, MdPerson } from 'react-icons/md';
-import logo from '../../../assets/image/logoBlack2.png'
 import { Link } from "react-router-dom";
-import { createUser } from '../../../services/firebase/firebaseAuth';
+import { signUpValidate } from '../../../services';
+import { createUser } from '../../../services/firebase';
+
+import Swal from 'sweetalert2';
+
 
 const SignUp = ({ viewSignUp, onViewSignUp }) => {
   const [signUp, setSignUp] = useState({
@@ -26,14 +32,42 @@ const SignUp = ({ viewSignUp, onViewSignUp }) => {
 
   })
 
-  const handleSubmit = (event) => {
+  const handlerSignUp = async (event) => {
     event.preventDefault();
+    try {
+      const { status, user } = await createUser(
+        signUp.email,
+        signUp.password,
+        signUp.firstName,
+        signUp.lastName
+      )
+
+      if (status === 200) {
+        axios.post(`${URL_FINDHOTEL}/user/auth/sign-up`, {
+          user: user,
+          firstName: signUp.firstName,
+          lastName: signUp.lastName
+        })
+      } else if (status == 400) {
+        Swal.fire({
+          title: 'User Registered',
+          text: 'The user is already registered',
+          icon: 'error',
+          confirmButtonText: 'OK',
+        })
+        return
+      }
+    } catch (error) {
+      console.log(error)
+    }
 
   };
 
   const handlerInputChange = (event) => {
     const { name, value } = event.target
-    setSignUp({ ...signUp, [name]: value })
+    const currentValue = { ...signUp, [name]: value }
+    setSignUp(currentValue)
+    setError(signUpValidate(currentValue))
   }
 
   const handlerCloseBox = () => { onViewSignUp(false); };
@@ -42,8 +76,6 @@ const SignUp = ({ viewSignUp, onViewSignUp }) => {
     if (event.target.classList.contains(styles.SignUpContainer)) handlerCloseBox();
 
   };
-
-  console.log(signUp)
   return (
     <>
       {viewSignUp && (<div className={styles.SignUpContainer} onClick={handlerExternalClick}>
@@ -56,38 +88,34 @@ const SignUp = ({ viewSignUp, onViewSignUp }) => {
 
             {Object.keys(signUp).map((key, index) => {
               return (
-                <div className={styles.inputGroup} key={index}>
-                  {['firstName', 'lastName'].includes(key) ? <MdPerson className={styles.inputIcon} /> :
-                    ['password', 'confirmPassword'].includes(key) ? <MdLock className={styles.inputIcon} /> :
-                      <MdEmail className={styles.inputIcon} />}
-                  <input
-                    type={['password', 'confirmPassword'].includes(key) ? 'password' : 'text'}
-                    placeholder={
-                      {
-                        firstName: 'First Name',
-                        lastName: 'Last Name',
-                        email: 'Email',
-                        password: 'Password',
-                        confirmPassword: 'Confirm Password'
-                      }[key]
-                    }
-                    name={key}
-                    value={signUp[key]}
-                    onChange={(event) => { handlerInputChange(event) }}
-                    className={styles.inputField}
-                  />
-                  {error[key] && <p className={styles.errorText}>{error[key]}</p>}
-                </div>
-              )
+                <span className={styles.GroupInput} key={index}>
+                  <div className={styles.inputGroup}>
+                    {['firstName', 'lastName'].includes(key) ? <MdPerson className={styles.inputIcon} /> :
+                      ['password', 'confirmPassword'].includes(key) ? <MdLock className={styles.inputIcon} /> :
+                        <MdEmail className={styles.inputIcon} />}
+                    <input
+                      type={['password', 'confirmPassword'].includes(key) ? 'password' : 'text'}
+                      placeholder={
+                        {
+                          firstName: 'First Name',
+                          lastName: 'Last Name',
+                          email: 'Email',
+                          password: 'Password',
+                          confirmPassword: 'Confirm Password'
+                        }[key]
+                      }
+                      name={key}
+                      value={signUp[key]}
+                      onChange={(event) => { handlerInputChange(event) }}
+                      className={styles.inputField}
+                    />
+                  </div>
+                  {error[key] && <div className={styles.errorText}>{error[key]}</div>}
+                </span>)
             })}
 
             <div className={styles.BtnSignUp}>
-              <div className={styles.SocialNet}>
-                <SocialNetworks redSocial={{ facebook: '' }} color={' rgb(44, 194, 180)'} gap={5} />
-                <SocialNetworks redSocial={{ google: '' }} color={' rgb(44, 194, 180)'} gap={5} />
-                <SocialNetworks redSocial={{ twitter: '' }} color={' rgb(44, 194, 180)'} gap={5} />
-              </div>
-              <button type="submit" className={styles.submitButton}>
+              <button type="submit" className={styles.submitButton} onClick={handlerSignUp}>
                 Register
               </button>
             </div>

@@ -25,7 +25,6 @@
 }
 
 
-
 .LinksContact {
     margin-top: 30px;
     display: flex;
@@ -37,6 +36,7 @@
     align-items: center;
     flex-wrap: nowrap;
 }
+
 
 .LinksContact a {
     color: white;
