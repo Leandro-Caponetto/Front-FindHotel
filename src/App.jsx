@@ -5,6 +5,7 @@ import { Route, Routes, useLocation } from 'react-router-dom'
 import Home from './views/Home/Home'
 import Results from './views/Results/Results'
 // import FormCreate from './views/FormCreate/FormCreate'
+import NavBar from './components/NavBar/NavBar'
 import Footer from './components/Footer/Footer'
 import DetailHotel from './views/Detail/Detail'
 import Reserv from './views/Reserv/Reserv'
@@ -12,6 +13,7 @@ import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes'
 import Hotel from './views/Hotel/Hotel'
 import UserDashboard from './components/UserDashboard/DashboardUser'
 import PostPago from "./components/PostPago/PostPago";
+import DashboardAdmin from './components/DashboardAdmin/DashboardAdmin'
 import classnames from "classnames";
 import { FaSun, FaRegMoon } from "react-icons/fa";
 
@@ -47,7 +49,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/results" element={<Results />} />
-        <Route path="/form" element={<FormCreate />} />
         <Route path="/detail/:hotelId" element={<DetailHotel />} />
         <Route path="/hotel" element={
           <ProtectedRoutes>
@@ -57,6 +58,7 @@ function App() {
         <Route path="/reserva" element={<Reserv />} />
         <Route path="/postPago" element={<PostPago />} />
         <Route path='/user' element={<UserDashboard/>}/>
+        <Route path='/admin' element={<DashboardAdmin/>}/>
 
 
       </Routes>
