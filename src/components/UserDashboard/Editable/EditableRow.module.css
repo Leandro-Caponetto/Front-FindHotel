@@ -1,46 +1,47 @@
 /* Agrega estilos específicos a la tabla */
 .table {
-    width: 100%;
-    border-collapse: collapse;
-    border-spacing: 0;
-    border: 1px solid #ccc;
-  }
-  
-  .table th,
-  .table td {
-    padding: 8px;
-    border-bottom: 1px solid #ccc;
-    text-align: left;
-  }
-  
-  /* Estilos para los botones con iconos */
-  .btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 4px 4px;
-   
-    margin-right: 4px;
-    cursor: pointer;
-    gap: 10px;
-    color: #fff;
-  }
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 1px solid #ccc;
+}
 
-  button{
-    display: flex;
-    background-color: #20c997;
-    padding: 6px 6px;
-    color: #fff;
-    border-radius: 8px;
-    text-align: center;
-    font-size: 15px;
-  }
- .trash{
+.table th,
+.table td {
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+  text-align: left;
+}
+
+/* Estilos para los botones con iconos */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 4px;
+
+  margin-right: 4px;
+  cursor: pointer;
+  gap: 10px;
+  color: #fff;
+}
+
+.button {
+  display: flex;
+  background-color: #20c997;
+  padding: 6px 6px;
+  color: #fff;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 15px;
+}
+
+.trash {
   background: red;
   color: #fff;
- }
-  button:hover {
-    background-color: #20c9966a;
-    border-radius: 8px;
-  }
-  
+}
+
+.button:hover {
+  background-color: #20c9966a;
+  border-radius: 8px;
+}

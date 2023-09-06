@@ -1,49 +1,116 @@
 import axios from 'axios';
 import { createSlice } from "@reduxjs/toolkit";
-import { URL_FINDHOTEL } from "../const/const";
+import {
+    URL_FINDHOTEL,
+    SESSION_NAME,
+} from "../const/const";
+import { setCookieSession, readCookieSession, removeCookieSession } from '../services';
+import { logOut } from '../services/firebase';
 
 const initialState = {
-    isLog: false,
-    User_id: '',
-    name: '',
-    email: '',
-    image: '',
-    rol: null
+    user: {},
+    login: {
+        view: false,
+        status: true
+    },
+
 };
 
 export const userSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
-        setUser: (state, action) => {
-            const { User_id, firstName, lastName, email, image, rol } = action.payload;
-            state.User_id = User_id;
-            state.name = `${firstName} ${lastName}`;
-            state.email = email;
-            state.image = image;
-            state.rol = rol;
+        setLogIn: (state, action) => {
+            state.user = action.payload;
+            state.login = {
+                view: false,
+                status: false
+            }
         },
-        signOut: (state, action) => {
-            state.User_id = '';
-            state.name = '';
-            state.email = '';
-            state.image = '';
-            state.rol = null;
+        setLogOut: (state, action) => {
+            state.user = {}
+            state.login = state.login = {
+                view: false,
+                status: true
+            }
+        },
+        setViewLogin: (state, action) => {
+            state.login.view = !state.login.view
+        },
+        setStatusLogin: (state, action) => {
+            state.login.status = action.payload
         }
     },
 });
-
-export const { setUser, signOut } = userSlice.actions;
-
 // Async action to sign in
-export const signIn = (email) => async (dispatch) => {
+export const signIn = (userCredentials) => async (dispatch) => {
     try {
-        const response = await axios.get(`${URL_FINDHOTEL}/user/sign-in?email=${email}`);
-        const data = response.data;
-        dispatch(setUser(data));
+        console.log(Object.keys(userCredentials))
+        const { data, status } = await axios.post(`${URL_FINDHOTEL}/user/auth/sign-in`, userCredentials)
+        if (status === 200) {
+            const { _id, expires, ...user } = data
+            setCookieSession(SESSION_NAME, data)
+            dispatch(setLogIn(user));
+        } else {
+            console.error('Error when closing session')
+        }
+        // if (data) {
+        //     // let paths = []
+        //     // switch (data.rol) {
+        //     //     case 'admin':
+        //     //         paths = USER_ADMIN
+        //     //         break
+        //     //     case 'hotel':
+        //     //         paths = USER_HOTEL
+        //     //         break
+        //     //     case 'user':
+        //     //         paths = USER_CUSTOM
+        //     //         break
+        //     //     default:
+        //     //         paths = USER
+        //     // }
+
+        // }
+
     } catch (error) {
-        console.log("Error:", error);
+        // Captura cualquier error que pueda ocurrir durante la solicitud
+        console.error('Error:', error);
     }
 };
+
+export const signOut = () => async (dispatch) => {
+    try {
+        const { _id } = readCookieSession(SESSION_NAME)
+        console.log("🚀 ~ file: user.js:84 ~ signOut ~ _id:", _id)
+
+        const { status } = await axios.post(`${URL_FINDHOTEL}/user/auth/sign-out`, { ID: _id })
+        if (status === 200) {
+            logOut()
+            dispatch(setLogOut());
+            removeCookieSession()
+            window.location.href = '/';
+        }
+        else {
+            console.error('Error when closing session')
+        }
+    }
+    catch (error) {
+        console.error('Error:', error);
+    }
+
+}
+
+export const viewFormLog = () => (dispatch) => {
+    const cookies = readCookieSession()
+    if (cookies) {
+        dispatch(setStatusLogin(false))
+        dispatch(setViewLogin())
+    } else {
+        dispatch(setStatusLogin(true))
+        dispatch(setViewLogin())
+    }
+}
+
+export const { setLogIn, setLogOut, setStatusLogin, setViewLogin } = userSlice.actions;
 
 export default userSlice.reducer;
