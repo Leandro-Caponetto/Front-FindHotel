@@ -18,7 +18,6 @@ const DashboardAdmin = () => {
             <nav className={styles.navbar}>
                 <div className={styles.logoNavbar}><FaBuilding /></div>
                 <Link to="/"><div className={styles.title}><img className={styles.logo} src={logo} alt="Logo" /></div></Link>
-                <div><h2>Admin</h2></div>
             </nav>
             <div className={styles.container}>
                 <aside className={styles.sidebar}>
@@ -33,24 +32,24 @@ const DashboardAdmin = () => {
                         <li onClick={() => handleViewChange('sales')}>
                             <span className={styles.span}>
                                 <MdAttachMoney className={styles.icon} />
-                                Sales
+                                Admin
                                 <MdNavigateNext className={styles.iconNext} />
                             </span>
                         </li>
-                        <li onClick={() => handleViewChange('hotel')}>
+                        {/* <li onClick={() => handleViewChange('hotel')}>
                             <span className={styles.span}>
                                 <FaBuilding className={styles.icon} />
                                 Hotel
                                 <MdNavigateNext className={styles.iconNext} />
                             </span>
-                        </li>
-                        <li onClick={() => handleViewChange('rooms')}>
+                        </li> */}
+                        {/* <li onClick={() => handleViewChange('rooms')}>
                             <span className={styles.span}>
                                 <FaBed className={styles.icon} />
                                 Rooms
                                 <MdNavigateNext className={styles.iconNext} />
                             </span>
-                        </li>
+                        </li> */}
                     </ul>
                 </aside>
                 <main className={styles.content}>

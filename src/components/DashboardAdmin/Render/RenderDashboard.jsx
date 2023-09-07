@@ -43,12 +43,7 @@ const RenderDashboard = ({ selectedView }) => {
           <CreateHotel />
         </div>
       );
-    case 'rooms':
-      return (
-        <div>
-          <Room />
-        </div>
-      );
+
     default:
       return null;
   }
