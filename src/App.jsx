@@ -16,7 +16,7 @@ import PostPago from "./components/PostPago/PostPago";
 import DashboardAdmin from './components/DashboardAdmin/DashboardAdmin'
 import classnames from "classnames";
 import { FaSun, FaRegMoon } from "react-icons/fa";
-import NavBar from './components/NavBar/NavBar'
+
 import AboutView from './views/AboutView/AboutView'
 import { useSelector } from 'react-redux'
 
@@ -65,7 +65,7 @@ function App() {
         <Route path="/reserva" element={<Reserv />} />
         <Route path="/postPago" element={<PostPago />} />
 
-        <Route path='/admin' element={<DashboardAdmin/>}/>
+        <Route path='/admin' element={<DashboardAdmin />} />
 
         <Route path='/user' element={<UserDashboard />} />
         <Route path='/about' element={<AboutView />} />
