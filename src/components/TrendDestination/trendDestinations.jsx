@@ -16,7 +16,7 @@ const TrendDestinations = () => {
   const dispatch = useDispatch();
 
   const handleSearch = (country) => {
-      dispatch(fetchData(country))
+    dispatch(fetchData(country))
   }
 
   const [stateData, setStateData] = useState([]);
@@ -59,17 +59,17 @@ const TrendDestinations = () => {
           {stateData.map((d) => (
             <div className={styles.cardContainer} key={d.id}>
               <NavLink to='/results' onClick={() => handleSearch(d.country)}>
-              <div className={styles.card}  key={d.id}>
-                <img
-                  className={styles.image}
-                  src={d.image}
-                  alt={`Imagen de ${d.country}, ${d.state}`}
-                />
-                <div className={styles.info}>
-                  <h3>{d.country}</h3>
-                  <p>{d.state}</p>
+                <div className={styles.card} key={d.id}>
+                  <img
+                    className={styles.image}
+                    src={d.image}
+                    alt={`Imagen de ${d.country}, ${d.state}`}
+                  />
+                  <div className={styles.info}>
+                    <h3>{d.country}</h3>
+                    <p>{d.state}</p>
+                  </div>
                 </div>
-              </div>
               </NavLink>
             </div>
           ))}

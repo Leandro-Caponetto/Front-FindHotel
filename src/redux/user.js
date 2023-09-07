@@ -1,7 +1,6 @@
-import axios from 'axios';
+import axiosInstance from '../utils/axiosInstance.js';
 import { createSlice } from "@reduxjs/toolkit";
 import {
-    URL_FINDHOTEL,
     SESSION_NAME,
 } from "../const/const";
 import { setCookieSession, readCookieSession, removeCookieSession } from '../services';
@@ -45,8 +44,7 @@ export const userSlice = createSlice({
 // Async action to sign in
 export const signIn = (userCredentials) => async (dispatch) => {
     try {
-        console.log(Object.keys(userCredentials))
-        const { data, status } = await axios.post(`${URL_FINDHOTEL}/user/auth/sign-in`, userCredentials)
+        const { data, status } = await axiosInstance.post(`/user/auth/sign-in`, userCredentials)
         if (status === 200) {
             const { _id, expires, ...user } = data
             setCookieSession(SESSION_NAME, data)
@@ -83,7 +81,7 @@ export const signOut = () => async (dispatch) => {
         const { _id } = readCookieSession(SESSION_NAME)
         console.log("🚀 ~ file: user.js:84 ~ signOut ~ _id:", _id)
 
-        const { status } = await axios.post(`${URL_FINDHOTEL}/user/auth/sign-out`, { ID: _id })
+        const { status } = await axiosInstance.post(`/user/auth/sign-out`)
         if (status === 200) {
             logOut()
             dispatch(setLogOut());

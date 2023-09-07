@@ -1,5 +1,5 @@
 /* eslint-disable no-case-declarations */
-import axios from 'axios'
+import axiosInstance from '../../../utils/axiosInstance';
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -25,7 +25,7 @@ const SignIn = ({ isActiveSignIn = false, onChangeSignIn }) => {
   const dispatch = useDispatch();
   const [login, setLogin] = useState({ email: null, password: null });
   const [error, setError] = useState({});
-  const [viewSignUp, setViewSignUp] = useState(false);
+  const [showSignUp, setShowSignUp] = useState(false);
   const [viewForgotPass, setViewForgotPass] = useState(false);
 
   const handleInputChange = (inputField, inputValue) => {
@@ -55,7 +55,7 @@ const SignIn = ({ isActiveSignIn = false, onChangeSignIn }) => {
           await logOut();
           ({ _tokenResponse } = await signIn(login.email, login.password));
           if (_tokenResponse && !_tokenResponse.emailVerified) {
-            await axios.post(`${URL_FINDHOTEL}/verify-email/:${_tokenResponse.email}`)
+            await axiosInstance.post(`/verify-email/:${_tokenResponse.email}`)
             Swal.fire(
               'Confirm Email',
               'An email confirmation email has been sent',
@@ -80,7 +80,7 @@ const SignIn = ({ isActiveSignIn = false, onChangeSignIn }) => {
     }
   };
 
-  const handlerChangeSignUp = () => { setViewSignUp(!viewSignUp) }
+  const handlerChangeSignUp = () => { setShowSignUp(!showSignUp) }
   const handlerChangeForgotPass = () => { setViewForgotPass(!viewForgotPass) }
 
   return (
@@ -136,7 +136,7 @@ const SignIn = ({ isActiveSignIn = false, onChangeSignIn }) => {
           </div>
         </div>
       </div >
-      <SignUp viewSignUp={viewSignUp} onViewSignUp={handlerChangeSignUp} />
+      <SignUp viewSignUp={showSignUp} onViewSignUp={handlerChangeSignUp} />
       <ForgotPassword viewForgot={viewForgotPass} onViewForgot={handlerChangeForgotPass} />
     </>
   )

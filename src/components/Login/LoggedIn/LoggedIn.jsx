@@ -7,16 +7,20 @@ import { signOut } from '../../../redux/user';
 import { MdPerson } from 'react-icons/md';
 import { FaHotel, FaUserTie } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
+import { readCookieSession } from '../../../services';
 
 const LoggedIn = ({ isActiveLoggedIn = false, onChangeLoggedIn }) => {
   const dispatch = useDispatch()
-  const user = useSelector((state) => state.user.user)
-  console.log(isActiveLoggedIn)
-  console.log(user)
+  const [user, setUser] = useState({}) +
 
-  useEffect(() => {
-    Object.keys(user).length > 0 && user?.image !== null ? onChangeLoggedIn(user?.image) : onChangeLoggedIn('')
-  }, [user, onChangeLoggedIn])
+    useEffect(() => {
+      const cookie = readCookieSession()
+      if (cookie) {
+        const { _id, ...data } = cookie
+        setUser(data)
+      }
+    }, [setUser]);
+
 
   const handlerLogOut = () => {
     dispatch(signOut())
@@ -28,7 +32,9 @@ const LoggedIn = ({ isActiveLoggedIn = false, onChangeLoggedIn }) => {
         <div className={styles.LoggedInHeader}>
           <label htmlFor="">{user?.role}</label>
           <div className={styles.Photo}>
-            <UploadPhoto imageSrc={user?.image !== null ? user?.image : ''} size={'100%'} />
+            <UploadPhoto imageSrc={
+              (user?.image === '' || user?.image === null || user?.image === undefined) ? '' :
+                user.image} size={'100%'} />
           </div>
         </div>
 
@@ -57,7 +63,7 @@ const LoggedIn = ({ isActiveLoggedIn = false, onChangeLoggedIn }) => {
 
 LoggedIn.propTypes = {
   isActiveLoggedIn: PropTypes.bool,
-  onChangeLoggedIn: PropTypes.bool,
+  onChangeLoggedIn: PropTypes.func,
 };
 
 export default LoggedIn;
