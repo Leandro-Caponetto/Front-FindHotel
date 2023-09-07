@@ -10,7 +10,7 @@ import LoggedIn from '../LoggedIn/LoggedIn';
 import Cookies from 'js-cookie';
 import { SESSION_NAME } from '../../../const/const';
 import { viewFormLog } from '../../../redux/user';
-import { getCookieSession } from '../../../services';
+import { getCookieSession, readCookieSession } from '../../../services';
 
 const LogIn = ({ imageSrc, onChangeImage, defaultImage, style = { size: '80px' }, sizeAvatar = '30' }) => {
   const dispatch = useDispatch();
@@ -18,25 +18,33 @@ const LogIn = ({ imageSrc, onChangeImage, defaultImage, style = { size: '80px' }
   const login = useSelector(state => state.user.login)
   const [imageUrl, setImageUrl] = useState(imageSrc || defaultImage || '');
 
+  useEffect(() => {
+    const cookie = readCookieSession()
+    if (cookie) {
+      const { _id, ...data } = cookie
+      setImageUrl(data?.image)
+    }
+  }, [setImageUrl, user]);
+
   const handlerClickLogin = () => {
     dispatch(viewFormLog())
   }
 
-  console.log(imageUrl)
   const handlerChangeLogin = (image) => {
     setImageUrl(image);
   }
 
   return (
-    <div className={styles.LogIn} title='login'>
-      <span className={styles.PhotoWrapper} style={{
+    <div className={styles.LogIn} >
+      <span className={styles.PhotoWrapper} title='login' style={{
         width: `${style.size}`, height: `${style.size}`
       }} onClick={handlerClickLogin}>
-        {user?.image !== '' ? <img className={styles.Photo} src={imageUrl} alt='uploadImage' /> :
-          <AvatarSvg wsize={'200px'} fill={'#3A6561'} stroke={'#3A6561'} />}
+        {(imageUrl === '' || imageUrl === null || imageUrl === undefined) ?
+          <AvatarSvg wsize={'200px'} fill={'#3A6561'} stroke={'#3A6561'} /> :
+          <img className={styles.Photo} src={imageUrl} alt='uploadImage' />}
       </span>
       {login.view && <SignIn isActiveSignIn={login.status} />}
-      {login.view && < LoggedIn isActiveLoggedIn={!login.status} onChangeLoggedIn={handlerChangeLogin} />}
+      {login.view && < LoggedIn isActiveLoggedIn={!login.status} />}
     </div>
   )
 }
