@@ -112,7 +112,7 @@ const Detail = () => {
             <h5>
               <MdHotel />{" "} <strong>Type room:</strong>
               <select className={styles.selector} value={selectedRoom} defaultValue="Select room" onChange={handleRoomChange}>
-                <option value="Select room" disabled>Select Room</option>
+                <option value="Select room">Select Room</option>
                 {hotelDetail?.room?.map((option) => (
 
                   <option key={option._id} value={option._id}>
