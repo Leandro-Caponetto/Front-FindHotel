@@ -3,7 +3,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styles from "./trendDestinations.module.css";
-import axios from "axios";
+import axiosInstance from "../../utils/axiosInstance";
 import { fetchData } from '../../redux/destinations';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
@@ -16,7 +16,7 @@ const TrendDestinations = () => {
   const dispatch = useDispatch();
 
   const handleSearch = (country) => {
-      dispatch(fetchData(country))
+    dispatch(fetchData(country))
   }
 
   const [stateData, setStateData] = useState([]);
@@ -26,7 +26,7 @@ const TrendDestinations = () => {
     const fetchData = async () => {
       try {
 
-        const response = await axios.get(`${URL_FINDHOTEL}/trending/state`);
+        const response = await axiosInstance.get(`/trending/state`);
         setStateData(response.data);
         console.log(response.data);
       } catch (error) {
@@ -59,17 +59,17 @@ const TrendDestinations = () => {
           {stateData.map((d) => (
             <div className={styles.cardContainer} key={d.id}>
               <NavLink to='/results' onClick={() => handleSearch(d.country)}>
-              <div className={styles.card}  key={d.id}>
-                <img
-                  className={styles.image}
-                  src={d.image}
-                  alt={`Imagen de ${d.country}, ${d.state}`}
-                />
-                <div className={styles.info}>
-                  <h3>{d.country}</h3>
-                  <p>{d.state}</p>
+                <div className={styles.card} key={d.id}>
+                  <img
+                    className={styles.image}
+                    src={d.image}
+                    alt={`Imagen de ${d.country}, ${d.state}`}
+                  />
+                  <div className={styles.info}>
+                    <h3>{d.country}</h3>
+                    <p>{d.state}</p>
+                  </div>
                 </div>
-              </div>
               </NavLink>
             </div>
           ))}

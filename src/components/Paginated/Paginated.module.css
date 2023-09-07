@@ -12,7 +12,7 @@
 }
 
 
-button {
+.button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -35,11 +35,11 @@ button {
     text-align: center;
 }
 
-button:hover {
+.button:hover {
     background-color: rgba(44, 194, 179, 0.414);
 }
 
-button.Active {
+.button.Active {
     background-color: rgb(44, 194, 180);
     color: white;
     border-color: rgb(44, 194, 180);

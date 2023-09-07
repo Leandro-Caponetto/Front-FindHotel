@@ -3,7 +3,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styles from "./hotelTrend.module.css";
-import axios from "axios";
+import axiosInstance from "../../utils/axiosInstance";
 import { fetchData } from '../../redux/destinations';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
@@ -14,7 +14,7 @@ const HotelTrend = () => {
   const dispatch = useDispatch();
 
   const handleSearch = (country) => {
-      dispatch(fetchData(country))
+    dispatch(fetchData(country))
   }
 
 
@@ -24,7 +24,7 @@ const HotelTrend = () => {
 
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${URL_FINDHOTEL}/trending/hotels`);
+        const response = await axiosInstance.get(`/trending/hotels`);
         setHotelData(response.data); // Update hotelData using the state setter
         console.log(response.data);
       } catch (error) {
@@ -37,15 +37,15 @@ const HotelTrend = () => {
 
 
   const settings = {
-      dots: true, // Muestra los indicadores (puntitos)
-      arrows: false,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 4, // Cantidad de tarjetas visibles a la vez
-      slidesToScroll: 1,
-      autoplay: true,
-      autoplaySpeed: 2000,
-      centerMode: true,
+    dots: true, // Muestra los indicadores (puntitos)
+    arrows: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4, // Cantidad de tarjetas visibles a la vez
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    centerMode: true,
     responsive: [
       {
         breakpoint: 768,
@@ -78,20 +78,20 @@ const HotelTrend = () => {
           {hotelData.map((d) => (
             <div className={styles.cardContainer} key={d.id}>
               <NavLink to='/results' onClick={() => handleSearch(d.country)}>
-              <div className={styles.card}>
-                <img
-                  className={styles.image}
-                  src={d.image}
+                <div className={styles.card}>
+                  <img
+                    className={styles.image}
+                    src={d.image}
 
-                  alt={`Imagen de ${d.city}, ${d.country}`}
-                  loading="lazy"
-                />
-                <div className={styles.info}>
-                  <h3>{d.name}</h3>
-                  <p>{d.country}</p>
+                    alt={`Imagen de ${d.city}, ${d.country}`}
+                    loading="lazy"
+                  />
+                  <div className={styles.info}>
+                    <h3>{d.name}</h3>
+                    <p>{d.country}</p>
 
+                  </div>
                 </div>
-              </div>
               </NavLink>
             </div>
           ))}

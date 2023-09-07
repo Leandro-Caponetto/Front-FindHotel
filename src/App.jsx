@@ -16,13 +16,18 @@ import PostPago from "./components/PostPago/PostPago";
 import DashboardAdmin from './components/DashboardAdmin/DashboardAdmin'
 import classnames from "classnames";
 import { FaSun, FaRegMoon } from "react-icons/fa";
-
+import NavBar from './components/NavBar/NavBar'
+import AboutView from './views/AboutView/AboutView'
+import { useSelector } from 'react-redux'
 
 function App() {
+  const user = useSelector(state => state.user.user)
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
   const location = useLocation();
   const { pathname } = location;
+
+
 
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
@@ -49,16 +54,21 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/results" element={<Results />} />
+
         <Route path="/detail/:hotelId" element={<DetailHotel />} />
+
         <Route path="/hotel" element={
-          <ProtectedRoutes>
-            <Hotel />
-          </ProtectedRoutes>
-        } />        
+          // <Route element={<ProtectedRoutes />}>
+          <Hotel />
+          // </Route>
+        } />
         <Route path="/reserva" element={<Reserv />} />
         <Route path="/postPago" element={<PostPago />} />
-        <Route path='/user' element={<UserDashboard/>}/>
+
         <Route path='/admin' element={<DashboardAdmin/>}/>
+
+        <Route path='/user' element={<UserDashboard />} />
+        <Route path='/about' element={<AboutView />} />
 
 
       </Routes>

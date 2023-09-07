@@ -6,7 +6,6 @@ import {
     GoogleAuthProvider,
     FacebookAuthProvider,
     TwitterAuthProvider,
-    onAuthStateChanged,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     sendPasswordResetEmail as sendPasswordReset,
@@ -19,18 +18,29 @@ const twitterProvider = new TwitterAuthProvider();
 
 const auth = getAuth(firebase);
 
-const createUser = async (email, password, name) => {
+
+const createUser = async (email, password) => {
     try {
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password, name);
-        return userCredential
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        return { status: 200, user: userCredential.user };
+
     } catch (error) {
-        return error.message
+
+        return { status: 400, user: {} };
     }
 }
 
+
 const signIn = async (email, password) => {
-    return await signInWithEmailAndPassword(auth, email, password);
+    try {
+        return await signInWithEmailAndPassword(auth, email, password)
+    } catch (error) {
+        return { user: null }
+    }
 };
+const logOut = async () => {
+    return await signOut(auth);
+}
 
 const signInWithGoogle = async () => {
     return await signInWithPopup(auth, googleProvider)
@@ -42,11 +52,6 @@ const signInWithFacebook = () => {
 const signInWithTwitter = () => {
     return signInWithPopup(auth, twitterProvider)
 }
-
-const logOut = async () => {
-    return await signOut(auth);
-}
-
 
 const resetPassword = async (email) => {
     await sendPasswordReset(auth, email);

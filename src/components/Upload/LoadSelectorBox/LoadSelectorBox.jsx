@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from './LoadSelectorBox.module.css';
+import { MdClose } from 'react-icons/md'
 
 const LoadSelectorBox = ({ viewUpload, onChangeImage, onChangeBox }) => {
   const fileInputRef = useRef(null);
@@ -35,39 +36,34 @@ const LoadSelectorBox = ({ viewUpload, onChangeImage, onChangeBox }) => {
     onChangeBox(false);
   };
   return (
-    <div className={styles.LoadSelectorBox}>
-      <>
-        {viewUpload && (
-          <div className={styles.UploadBox} onClick={handlerExternalClick}>
-            <div className={styles.Box}>
-              <h2>Upload Photo</h2>
-              <button className={styles.BtnClose} onClick={handlerCloseBox}>
-                Close
-              </button>
-              <div>
-                <form onSubmit={handleUrlSubmit}>
-                  <label>
-                    Image URL:
-                    <input type='text' ref={urlInputRef} />
-                  </label>
-                  <button type='submit'>Load from URL</button>
-                  <label>
-                    Choose a file:
-                    <input
-                      ref={fileInputRef}
-                      type='file'
-                      accept='image/*'
-                      onChange={handleFileChange}
-                    />
-                  </label>
-                </form>
-              </div>
+
+    <>
+      {viewUpload && (<div className={styles.LoadSelectorBox}>
+        <div className={styles.UploadBox} onClick={handlerExternalClick}>
+          <div className={styles.Box}>
+            <div className={styles.HeaderLoadFile}>
+              <span className={styles.BtnClose} onClick={handlerCloseBox}>
+                <MdClose className={styles.BtnClose} size={30} />
+              </span>
+            </div>
+            <div>
+              <form onSubmit={handleUrlSubmit}>
+                <label>
+                  Choose a file:
+                  <input
+                    ref={fileInputRef}
+                    type='file'
+                    accept='image/*'
+                    onChange={handleFileChange}
+                  />
+                </label>
+              </form>
             </div>
           </div>
-        )}
-      </>
-      );
-    </div>
+        </div>
+      </div >
+      )}
+    </>
   )
 }
 

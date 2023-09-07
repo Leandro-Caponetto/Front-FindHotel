@@ -5,7 +5,7 @@ import styles from './InputNumber.module.css';
 import { GiBroom } from 'react-icons/gi'
 
 const InputNumber = ({ initInput, onChangeInput, errors, tag = '', buttonClear = false, style }) => {
-  const [state, setState] = useState(initInput || 0)
+  const [state, setState] = useState()
 
   useEffect(() => {
     initInput !== '' && setState(initInput)
@@ -30,7 +30,7 @@ const InputNumber = ({ initInput, onChangeInput, errors, tag = '', buttonClear =
           style={{ width: '200px', height: '45px', ...style?.input }}
           type='number'
           autoComplete="off"
-          value={state}
+          value={state || 0}
           placeholder={`${tag}`}
 
           onChange={(event) => { handlerInputChange(event) }}

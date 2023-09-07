@@ -42,6 +42,28 @@ const EditableRow = ({ index, rowData, onEdit, onDelete }) => {
           rowData.lastName
         )}
       </td>
+      <td>
+        {isEditing ? (
+          <input
+            type="text"
+            value={editedRow.country}
+            onChange={(e) => setEditedRow({ ...editedRow, country: e.target.value })}
+          />
+        ) : (
+          rowData.country
+        )}
+      </td>
+      <td>
+        {isEditing ? (
+          <input
+            type="number"
+            value={editedRow.age}
+            onChange={(e) => setEditedRow({ ...editedRow, age: e.target.value })}
+          />
+        ) : (
+          rowData.age
+        )}
+      </td>
       
       <td>{isEditing ? (
           <input

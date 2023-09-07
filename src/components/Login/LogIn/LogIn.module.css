@@ -11,13 +11,14 @@
     position: relative;
     border-radius: 50%;
     overflow: hidden;
-    border: 5px solid#101010;
+    border: 5px solid#3A6561;
     flex-direction: column;
     flex-wrap: wrap;
     align-content: space-around;
     justify-content: center;
     align-items: center;
     z-index: 2;
+    cursor: pointer;
 }
 
 
@@ -30,5 +31,5 @@
 .Icon {
     display: flex;
     align-items: center;
-    background-color: #2CC2B4;
+    background-color: #3A6561;
 }

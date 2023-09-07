@@ -1,5 +1,5 @@
 import styles from './DashboardUser.module.css';
-import { FaRegCalendar,FaRegAddressCard,  FaCreditCard,FaUserAlt, FaUsersCog, FaPen, FaPlus } from 'react-icons/fa';
+import { FaRegCalendar, FaRegAddressCard, FaCreditCard, FaUserAlt, FaUsersCog, FaPen, FaPlus } from 'react-icons/fa';
 import { MdNavigateNext, MdAttachMoney } from 'react-icons/md';
 import { useState } from 'react';
 import RenderView from './RenderDashboard';
@@ -23,20 +23,20 @@ const Dashboard = () => {
     <div className={styles.dashboard}>
       <nav className={styles.navbar}>
         <div className={styles.logoNavbar}>{selectedFile ? (
-        <img src={URL.createObjectURL(selectedFile)} alt="Selected" />
-      ) : (
-        <FaUserAlt className="icon" />
-      )}
-      <label className={styles.uploadButton}>
-        {selectedFile ? <FaPen/> : <FaPlus/>}
-        <input type="file" name="foto" onChange={handleFileChange} />
-      </label></div>
-        <Link to = "/">
-        
-        <div className={styles.lo}><img className={styles.logo} src={logo} alt="Logo" /></div></Link>
+          <img src={URL.createObjectURL(selectedFile)} alt="Selected" />
+        ) : (
+          <FaUserAlt className="icon" />
+        )}
+          <label className={styles.uploadButton}>
+            {selectedFile ? <FaPen /> : <FaPlus />}
+            <input type="file" name="foto" onChange={handleFileChange} />
+          </label></div>
+        <Link to="/">
+
+          <div className={styles.lo}><img className={styles.logo} src={logo} alt="Logo" /></div></Link>
       </nav>
       <div className={styles.container}>
-                
+
         <aside className={styles.sidebar}>
           <ul className={styles.menu}>
             <li onClick={() => handleViewChange('statistics')}>
