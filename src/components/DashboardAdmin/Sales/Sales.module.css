@@ -1,0 +1,49 @@
+.menu {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .menu li {
+    padding: 10px 20px;
+    cursor: pointer;
+    border-bottom: 1px solid rgb(44, 194, 180);
+    transition: background-color 0.3s;
+    font-family: cocogoose;
+    
+  }
+  
+  .menu li.active {
+    border-color: rgb(0, 0, 0);
+    border-bottom: 3px solid rgb(44, 194, 180);
+    color: rgb(1, 1, 1);
+  }
+  
+  .content {
+    margin-top: 20px;
+  }
+  .text{
+    font-family: cocogoose;
+    font-size: 40px;
+    color: rgb(44, 194, 180);
+    display: flex;
+    justify-content: center;
+  }
+
+  .hotel {
+    background-color: #999;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ddd;
+    width: 500px;
+  }
+  
+  .user {
+    background-color: #e0e0e0;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #999;
+    width: 500px;
+
+  }
