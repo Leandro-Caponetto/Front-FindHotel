@@ -18,7 +18,9 @@
     border-radius: 8px;
   }
 
-
+.in{
+    width: 100px;
+}
 .todo{
     margin-bottom: 80px;
 }

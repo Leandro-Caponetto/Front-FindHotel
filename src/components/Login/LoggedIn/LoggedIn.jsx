@@ -2,16 +2,27 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from './LoggedIn.module.css';
-import { UploadPhoto } from '../../Upload'
+import LoggedInPhoto from '../LoggedInPhoto/LoggedInPhoto'
 import { signOut } from '../../../redux/user';
 import { MdPerson } from 'react-icons/md';
 import { FaHotel, FaUserTie } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
+import { AvatarSvg } from '../Avatar';
 import { readCookieSession } from '../../../services';
 
 const LoggedIn = ({ isActiveLoggedIn = false, onChangeLoggedIn }) => {
   const dispatch = useDispatch()
   const [user, setUser] = useState({})
+
+  const [imageUrl, setImageUrl] = useState('');
+
+  useEffect(() => {
+    const cookie = readCookieSession()
+    if (cookie) {
+      const { _id, ...data } = cookie
+      setImageUrl(data?.image)
+    }
+  }, [setImageUrl, user]);
 
   useEffect(() => {
     const cookie = readCookieSession()
@@ -21,20 +32,19 @@ const LoggedIn = ({ isActiveLoggedIn = false, onChangeLoggedIn }) => {
     }
   }, [setUser]);
 
-
+  console.log(imageUrl)
   const handlerLogOut = () => {
     dispatch(signOut())
   }
-
   return (
     <>
       <div className={`${styles.LoggedIn} ${isActiveLoggedIn ? styles.active : ''}`}>
         <div className={styles.LoggedInHeader}>
           <label htmlFor="">{user?.role}</label>
           <div className={styles.Photo}>
-            <UploadPhoto imageSrc={
-              (user?.image === '' || user?.image === null || user?.image === undefined) ? '' :
-                user.image} size={'100%'} />
+            <LoggedInPhoto imageSrc={
+              (imageUrl === '' || imageUrl === null || imageUrl === undefined) ? '' :
+                imageUrl} size={'100%'} />
           </div>
         </div>
 
