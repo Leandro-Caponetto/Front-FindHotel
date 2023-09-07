@@ -64,7 +64,7 @@ function App() {
         <Route path="/reserva" element={<Reserv />} />
         <Route path="/postPago" element={<PostPago />} />
 
-        <Route path='/admin' element={<DashboardAdmin/>}/>
+        <Route path='/admin' element={<DashboardAdmin />} />
 
         <Route path='/user' element={<UserDashboard />} />
         <Route path='/about' element={<AboutView />} />
