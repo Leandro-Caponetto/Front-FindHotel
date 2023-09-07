@@ -1,6 +1,6 @@
 import React from "react";
 import { createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import axiosInstance from "../utils/axiosInstance";
 import { URL_FINDHOTEL } from "../const/const";
 
 
@@ -32,13 +32,13 @@ export const hotelsSlice = createSlice({
 
 
 export const typeRoom = (userId) => async (dispatch) => {
-    const { data } = await axios.get(`https://backendfindhotel-dev.fl0.io/roomType/user/${userId}`)
+    const { data } = await axiosInstance.get(`/roomType/user/${userId}`)
     dispatch(setTypeRoom(data))
 }
 
 
 export const userHotels = (userId) => async (dispatch) => {
-    const { data } = await axios.get(`${URL_FINDHOTEL}hotelRoom/user/${userId}`)
+    const { data } = await axiosInstance.get(`/hotelRoom/user/${userId}`)
     console.log("🚀 ~ file: hotels.js:38 ~ userHotels ~ data:", data)
     dispatch(setUserHotels(data))
 }

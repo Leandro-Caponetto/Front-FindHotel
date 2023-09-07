@@ -1,7 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-import { useDispatch } from "react-redux";
-import { URL_FINDHOTEL } from "../const/const";
+import axiosInstance from "../utils/axiosInstance";
 
 const initialState = {
   destination: [],
@@ -52,9 +50,9 @@ export const destinationSlice = createSlice({
 
 export const fetchData = (name) => async (dispatch) => {
   try {
-    const {data}= await axios.get(
+    const { data } = await axiosInstance.get(
 
-      `${URL_FINDHOTEL}/hotel?name=${name}`
+      `/hotel?name=${name}`
     );
     console.log(data);
     const destino = data;

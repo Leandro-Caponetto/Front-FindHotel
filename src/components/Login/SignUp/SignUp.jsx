@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import axios from 'axios'
 import { URL_FINDHOTEL } from '../../../const/const';
 import PropTypes from 'prop-types';
 import styles from './SignUp.module.css';
 import logo from '../../../assets/image/logoBlack2.png'
-import SocialNetworks from '../../SocialNetworks/SocialNetworks';
 import { MdLock, MdEmail, MdPerson } from 'react-icons/md';
 import { Link } from "react-router-dom";
 import { signUpValidate } from '../../../services';
 import { createUser } from '../../../services/firebase';
-
 import Swal from 'sweetalert2';
+import axiosInstance from '../../../utils/axiosInstance';
 
 
 const SignUp = ({ viewSignUp, onViewSignUp }) => {
@@ -38,12 +36,10 @@ const SignUp = ({ viewSignUp, onViewSignUp }) => {
       const { status, user } = await createUser(
         signUp.email,
         signUp.password,
-        signUp.firstName,
-        signUp.lastName
       )
 
       if (status === 200) {
-        axios.post(`${URL_FINDHOTEL}/user/auth/sign-up`, {
+        axiosInstance.post(`/user/auth/sign-up`, {
           user: user,
           firstName: signUp.firstName,
           lastName: signUp.lastName

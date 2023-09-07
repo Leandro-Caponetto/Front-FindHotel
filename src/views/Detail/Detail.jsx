@@ -9,16 +9,16 @@ import { FaHotel } from "react-icons/fa";
 import { setTypeRoomDetail } from "../../redux/hotels";
 
 import { useSelector, useDispatch } from "react-redux";
-import axios from "axios";
+import axiosInstance from "../../utils/axiosInstance";
 import { useLocation } from "react-router-dom";
 // import MapComponent from "../../components/MapComponent/MapComponent"; 
 
 import { setHotelReserva } from "../../redux/hotels";
 
 import {
-  
+
   updateStep2,
-  
+
 } from "../../redux/reservaSlice";
 import { URL_FINDHOTEL } from "../../const/const";
 
@@ -27,14 +27,13 @@ const Detail = () => {
   const { hotelId } = useParams();
   const [selectedRoom, setSelectedRoom] = useState("");
 
-  
+
 
   const [hotelDetail, setHotelDetail] = useState({});
 
   const hotelsDetail = async (hotelId) => {
     try {
-      const response = await axios.get(
-        `${URL_FINDHOTEL}/hotel/detail?id=${hotelId}`
+      const response = await axiosInstance.get(`/hotel/detail?id=${hotelId}`
       );
 
       console.log(response);
@@ -42,18 +41,18 @@ const Detail = () => {
       setHotelDetail(response.data);
       console.log(hotelDetail);
       dispatch(setHotelReserva(response.data));
-     
+
     } catch (error) {
       console.error("Error fetching hotel data:", error);
     }
   };
   const handleRoomChange = (e) => {
     setSelectedRoom(e.target.value);
-    console.log("option.id",e.target.value)
+    console.log("option.id", e.target.value)
     const roonPrice = hotelDetail?.room?.find(value => value._id === e.target.value)?.price
     const roonName = hotelDetail?.room?.find(value => value._id === e.target.value)?.name
-    dispatch(updateStep2({RoomType_id:e.target.value}))
-    dispatch(setTypeRoomDetail({price:roonPrice, name: roonName }))
+    dispatch(updateStep2({ RoomType_id: e.target.value }))
+    dispatch(setTypeRoomDetail({ price: roonPrice, name: roonName }))
   };
 
   console.log(hotelDetail);
@@ -68,9 +67,9 @@ const Detail = () => {
 
   return (
     <>
-    
+
       <div >
-        <FaHotel className={styles.title}/>
+        <FaHotel className={styles.title} />
         <h1>COUNTRY: {hotelDetail?.country} </h1>
 
       </div>
@@ -81,7 +80,7 @@ const Detail = () => {
       /> */}
 
       <div className={styles.detailContainer}>
-     
+
         <div>
           <img
             className={styles.cardImage}
@@ -94,7 +93,7 @@ const Detail = () => {
           <h1>{hotelDetail?.name}</h1>
           <div className={styles.text}>
             <h5>
-              <MdLocationOn/> We are located in {hotelDetail?.state},{" "}
+              <MdLocationOn /> We are located in {hotelDetail?.state},{" "}
               {hotelDetail?.country}, {hotelDetail?.address}
             </h5>
           </div>
@@ -111,31 +110,31 @@ const Detail = () => {
           <h2>- Room information -</h2>
           <div>
             <h5>
-            <MdHotel/>{" "} <strong>Type room:</strong>
+              <MdHotel />{" "} <strong>Type room:</strong>
               <select className={styles.selector} value={selectedRoom} defaultValue="Select room" onChange={handleRoomChange}>
-                <option  value="Select room" disabled>Select Room</option>
+                <option value="Select room" disabled>Select Room</option>
                 {hotelDetail?.room?.map((option) => (
-                  
-                  <option  key={option._id} value={option._id}>
+
+                  <option key={option._id} value={option._id}>
                     {option.name}
                   </option>
                 ))}
               </select>
             </h5>
 
-            
+
           </div>
           <h5>
-          <MdOutlinePriceChange/>  <strong>Room price:</strong> $ {hotelDetail?.room?.find(value => value._id === selectedRoom)?.price}
+            <MdOutlinePriceChange />  <strong>Room price:</strong> $ {hotelDetail?.room?.find(value => value._id === selectedRoom)?.price}
           </h5>
           {hotelDetail?.wifi ? (
             <h5>
-             <MdWifi/> <strong>WiFi:</strong> Available
+              <MdWifi /> <strong>WiFi:</strong> Available
             </h5>
           ) : null}
           {hotelDetail?.roomService ? (
             <h5>
-             <MdRoomService/> <strong>Room Service:</strong> Available
+              <MdRoomService /> <strong>Room Service:</strong> Available
             </h5>
           ) : null}
         </div>
@@ -149,12 +148,12 @@ const Detail = () => {
             {" "}
             Reserve
           </NavLink>
-          
-     
+
+
         </div>
-       
+
       </div>
-      
+
     </>
   );
 };

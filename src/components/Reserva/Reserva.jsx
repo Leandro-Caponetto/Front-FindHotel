@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Reserva.css";
 import { TiTick } from "react-icons/ti";
 
@@ -9,7 +9,6 @@ import { useForm } from "react-hook-form";
 import Loader from "../Loader/Loader";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 initMercadoPago("APP_USR-e2f3a313-4a9d-4110-bd77-ad6c50675664");
-import axios from "axios";
 import { FaStar } from "react-icons/fa";
 
 import InfoUser from "../../components/InfoUser/InfoUser";
@@ -21,6 +20,8 @@ import {
 } from "../../redux/reservaSlice";
 import StepDataInfo from "./SetDataInfo";
 import Swal from "sweetalert2";
+import axiosInstance from "../../utils/axiosInstance";
+import { readCookieSession } from "../../services";
 
 const Reserva = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -28,7 +29,15 @@ const Reserva = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [complete, setComplete] = useState(false);
   const [id, setId] = useState(null);
+  const [user, setUser] = useState({});
   const [removeLoader, setRemoveLoader] = useState(false);
+
+  useEffect(() => {
+    const cookie = readCookieSession()
+    if (cookie) {
+      setUser({ ...cookie })
+    }
+  }, [])
 
   const step1Data = useSelector((state) => state.reserva.step1);
   const step2Data = useSelector((state) => state.reserva.step2);
@@ -71,8 +80,8 @@ const Reserva = () => {
     };
     console.log("datos", datos);
     id === null &&
-      axios
-        .post("https://backendfindhotel-dev.fl0.io/payment/create-order", datos)
+      axiosInstance
+        .post("/payment/create-order", datos)
         .then(({ data }) => {
           console.log(data.id);
           setId(data.id);
@@ -199,9 +208,8 @@ const Reserva = () => {
               {steps?.map((step, i) => (
                 <div
                   key={i}
-                  className={`step-item ${currentStep === i + 1 && "active"} ${
-                    (i + 1 < currentStep || complete) && "complete"
-                  } `}
+                  className={`step-item ${currentStep === i + 1 && "active"} ${(i + 1 < currentStep || complete) && "complete"
+                    } `}
                 >
                   <div className="step">
                     {i + 1 < currentStep || complete ? (
@@ -523,7 +531,7 @@ const Reserva = () => {
                       } else if (currentStep === 2) {
                         updateStep2Data({
                           Hotel_id: hotelDetail._id,
-                          
+
                           address: watch("address"),
                           country: watch("country"),
                           checkIn: watch("checkIn"),
@@ -567,10 +575,10 @@ const Reserva = () => {
               </div>
             )}
           </form>
-            <div className="dataInfo">
+          <div className="dataInfo">
 
-          <StepDataInfo />
-            </div>
+            <StepDataInfo />
+          </div>
         </div>
 
         {/* #############################################################*/}

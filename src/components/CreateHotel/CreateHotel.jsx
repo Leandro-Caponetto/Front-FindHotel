@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
-import axios from "axios";
+import axiosInstance from '../../utils/axiosInstance'
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCountries, fetchCity } from "../../redux/countries";
@@ -23,6 +23,7 @@ import {
   typeRoom,
   userHotels as HotelUsers
 } from "../../redux/hotels"
+import { readCookieSession } from "../../services";
 
 const initState = {
   _id: "",
@@ -41,6 +42,7 @@ const initState = {
 const MultiStepForm = () => {
   const userId = "64f06f359fb30a04b46c9100"
   const dispatch = useDispatch();
+  const [user, setUser] = useState({})
   const dataRoom = useSelector((state) => state.hotels.typeRoom)
   const countries = useSelector((state) => state.countries.countries);
   const citys = useSelector((state) => state.countries.city);
@@ -56,6 +58,13 @@ const MultiStepForm = () => {
 
   const [errors, setErrors] = useState({});
   const [hotelData, setHotelData] = useState(initState)
+
+  useEffect(() => {
+    const cookies = readCookieSession()
+    if (cookies) {
+      setUser({ ...cookies })
+    }
+  }, [])
 
   useEffect(() => {
     dispatch(fetchCountries()); // Llama a la acción para obtener los países al cargar el componente
@@ -197,15 +206,12 @@ const MultiStepForm = () => {
     event.preventDefault();
 
     const dataToSend = {
-      User_id: userId,
-      email: '',
+      User_id: user.User_id,
+      email: user.email,
       ...hotelData
     };
 
-    axios
-      // .post(`${URL_FINDHOTEL}/hotel`, dataToSend)}
-
-      .post(`${URL_FINDHOTEL}/hotel`, dataToSend)
+    axiosInstance.post(`/hotel`, dataToSend)
       .then(async (response) => {
         console.log("Response from server:", response.data);
         setHotelData(initState);

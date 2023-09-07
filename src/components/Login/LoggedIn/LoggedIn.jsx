@@ -11,15 +11,15 @@ import { readCookieSession } from '../../../services';
 
 const LoggedIn = ({ isActiveLoggedIn = false, onChangeLoggedIn }) => {
   const dispatch = useDispatch()
-  const [user, setUser] = useState({}) +
+  const [user, setUser] = useState({})
 
-    useEffect(() => {
-      const cookie = readCookieSession()
-      if (cookie) {
-        const { _id, ...data } = cookie
-        setUser(data)
-      }
-    }, [setUser]);
+  useEffect(() => {
+    const cookie = readCookieSession()
+    if (cookie) {
+      const { _id, ...data } = cookie
+      setUser(data)
+    }
+  }, [setUser]);
 
 
   const handlerLogOut = () => {

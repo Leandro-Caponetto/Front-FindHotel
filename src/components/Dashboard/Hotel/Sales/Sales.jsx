@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import styles from "./Sales.module.css";
-import axios from "axios";
+import axiosInstance from '../../../../utils/axiosInstance'
 
 function Sales() {
   const [selectedTab, setSelectedTab] = useState(1);
@@ -33,8 +33,7 @@ function Sales() {
 
   const fetchHotelInfo = async () => {
     try {
-      const response = await axios.get(
-        `https://backendfindhotel-dev.fl0.io/deals/hotel/${hotelId}`
+      const response = await axiosInstance.get(`/deals/hotel/${hotelId}`
       );
       console.log("hola", response);
       const hotelData = response.data;
@@ -49,8 +48,7 @@ function Sales() {
   };
   const fetchBookingReservations = async () => {
     try {
-      const response = await axios.get(
-        `https://backendfindhotel-dev.fl0.io/deals/hotel/${hotelId}?status=booking`
+      const response = await axiosInstance.get(`/deals/hotel/${hotelId}?status=booking`
       );
       const bookingDeals = response.data.dealsHotel.deals;
       if (bookingDeals.length === 0) {
@@ -65,8 +63,7 @@ function Sales() {
   };
   const fetchFinishedReservations = async () => {
     try {
-      const response = await axios.get(
-        `https://backendfindhotel-dev.fl0.io/deals/hotel/${hotelId}?status=finished`
+      const response = await axiosInstance.get(`/deals/hotel/${hotelId}?status=finished`
       );
       const finishedDeals = response.data.dealsHotel.deals;
       if (finishedDeals.length === 0) {
@@ -82,8 +79,7 @@ function Sales() {
 
   const fetchCancelledReservations = async () => {
     try {
-      const response = await axios.get(
-        `https://backendfindhotel-dev.fl0.io/deals/hotel/${hotelId}?status=cancelled`
+      const response = await axiosInstance.get(`/deals/hotel/${hotelId}?status=cancelled`
       );
       const cancelledDeals = response.data.dealsHotel.deals;
       if (cancelledDeals.length === 0) {
@@ -99,8 +95,7 @@ function Sales() {
 
   const fetchAllReservations = async () => {
     try {
-      const response = await axios.get(
-        `https://backendfindhotel-dev.fl0.io/deals/hotel/${hotelId}`
+      const response = await axiosInstance.get(`/deals/hotel/${hotelId}`
       );
       const allDeals = response.data.dealsHotel.deals;
       if (allDeals.length === 0) {
@@ -116,8 +111,7 @@ function Sales() {
 
   const fetchActiveReservations = async () => {
     try {
-      const response = await axios.get(
-        `https://backendfindhotel-dev.fl0.io/deals/hotel/${hotelId}?status=active`
+      const response = await axiosInstance.get(`/deals/hotel/${hotelId}?status=active`
       );
       console.log(response.data);
       const deals = response.data.dealsHotel.deals;
@@ -225,35 +219,35 @@ function Sales() {
           </div>
         )}
 
-{selectedTab === 2 && (
-  <div>
-    <p className={styles.p}>Reservas en estado pendiente de pago en el hotel {hotelName}</p>
-    <ul>
-      {noBookingReservations ? (
-        <p className={styles.dontExist}>No hay reservas con estado Booking</p>
-      ) : (
-        bookingReservations.map((deal) => (
-          <li key={deal._id} className={styles.card}>
-            <p className={styles.cardID}>ID de usuario: {deal.user._id}</p>
-            <div className={styles.imageContainer}>
-              <img
-                src={deal.user.image || "https://img.freepik.com/vector-premium/vector-icono-imagen-predeterminado-pagina-imagen-faltante-diseno-sitio-web-o-aplicacion-movil-no-hay-foto-disponible_87543-11093.jpg"}
-                alt="Imagen de usuario"
-              />
-            </div>
-            <p className={styles.cardText}>Email: {deal.user.email}</p>
+        {selectedTab === 2 && (
+          <div>
+            <p className={styles.p}>Reservas en estado pendiente de pago en el hotel {hotelName}</p>
+            <ul>
+              {noBookingReservations ? (
+                <p className={styles.dontExist}>No hay reservas con estado Booking</p>
+              ) : (
+                bookingReservations.map((deal) => (
+                  <li key={deal._id} className={styles.card}>
+                    <p className={styles.cardID}>ID de usuario: {deal.user._id}</p>
+                    <div className={styles.imageContainer}>
+                      <img
+                        src={deal.user.image || "https://img.freepik.com/vector-premium/vector-icono-imagen-predeterminado-pagina-imagen-faltante-diseno-sitio-web-o-aplicacion-movil-no-hay-foto-disponible_87543-11093.jpg"}
+                        alt="Imagen de usuario"
+                      />
+                    </div>
+                    <p className={styles.cardText}>Email: {deal.user.email}</p>
                     <p className={styles.cardText}>Estado: {deal.status}</p>
                     <p className={styles.cardText}>Teléfono: {deal.user.phone}</p>
                     <p className={styles.cardText}>Tipo de Habitación: {deal.roomType.name}</p>
                     <p className={styles.cardText}>Check-In: {deal.checkIn}</p>
                     <p className={styles.cardText}>Check-Out: {deal.checkOut}</p>
                     <p className={styles.cardText}>Precio: {deal.roomType.price} USD</p>
-          </li>
-        ))
-      )}
-    </ul>
-  </div>
-)}
+                  </li>
+                ))
+              )}
+            </ul>
+          </div>
+        )}
 
         {selectedTab === 3 && (
           <div>
