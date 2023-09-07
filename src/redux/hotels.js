@@ -39,7 +39,6 @@ export const typeRoom = (userId) => async (dispatch) => {
 
 export const userHotels = (userId) => async (dispatch) => {
     const { data } = await axiosInstance.get(`/hotelRoom/user/${userId}`)
-    console.log("🚀 ~ file: hotels.js:38 ~ userHotels ~ data:", data)
     dispatch(setUserHotels(data))
 }
 

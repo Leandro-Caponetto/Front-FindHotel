@@ -40,9 +40,9 @@ const initState = {
 }
 
 const MultiStepForm = () => {
-  const userId = "64f06f359fb30a04b46c9100"
+  // const userId = "64f06f359fb30a04b46c9100"
   const dispatch = useDispatch();
-  const [user, setUser] = useState({})
+  const [userId, setUserId] = useState('')
   const dataRoom = useSelector((state) => state.hotels.typeRoom)
   const countries = useSelector((state) => state.countries.countries);
   const citys = useSelector((state) => state.countries.city);
@@ -62,7 +62,7 @@ const MultiStepForm = () => {
   useEffect(() => {
     const cookies = readCookieSession()
     if (cookies) {
-      setUser({ ...cookies })
+      setUserId(cookies.User_id)
     }
   }, [])
 
@@ -206,8 +206,8 @@ const MultiStepForm = () => {
     event.preventDefault();
 
     const dataToSend = {
-      User_id: user.User_id,
-      email: user.email,
+      User_id: userId,
+      // email: user.email,
       ...hotelData
     };
 

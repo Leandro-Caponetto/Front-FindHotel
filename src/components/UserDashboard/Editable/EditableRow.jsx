@@ -42,39 +42,61 @@ const EditableRow = ({ index, rowData, onEdit, onDelete }) => {
           rowData.lastName
         )}
       </td>
-
+      <td>
+        {isEditing ? (
+          <input
+            type="text"
+            value={editedRow.country}
+            onChange={(e) => setEditedRow({ ...editedRow, country: e.target.value })}
+          />
+        ) : (
+          rowData.country
+        )}
+      </td>
+      <td>
+        {isEditing ? (
+          <input
+            type="number"
+            value={editedRow.age}
+            onChange={(e) => setEditedRow({ ...editedRow, age: e.target.value })}
+          />
+        ) : (
+          rowData.age
+        )}
+      </td>
+      
       <td>{isEditing ? (
-        <input
-          type="text"
-          value={editedRow.email}
-          onChange={(e) => setEditedRow({ ...editedRow, email: e.target.value })}
-        />
-      ) : (
-        rowData.email
-      )}</td>
+          <input
+            type="text"
+            value={editedRow.email}
+            onChange={(e) => setEditedRow({ ...editedRow, email: e.target.value })}
+          />
+        ) : (
+          rowData.email
+        )}</td>
       <td>{isEditing ? (
-        <input
-          type="tel"
-          value={editedRow.phome}
-          onChange={(e) => setEditedRow({ ...editedRow, phone: e.target.value })}
-        />
-      ) : (
-        rowData.phone
-      )}</td>
+          <input
+            type="tel"
+            value={editedRow.phome}
+            onChange={(e) => setEditedRow({ ...editedRow, phone: e.target.value })}
+          />
+        ) : (
+          rowData.phone
+        )}</td>
       <td>
         {isEditing ? (
           <div className={styles.btn}>
-            <button className={styles.button} onClick={handleEdit}>
+            <button onClick={handleEdit}>
               <FaEdit /> Save
             </button>
-            <button className={`${styles.trash}  ${styles.button}`} onClick={() => setIsEditing(false)}>Cancel</button>
+            <button className={styles.trash} onClick={() => setIsEditing(false)}>Cancel</button>
           </div>
         ) : (
           < div className={styles.btn}>
-            <button className={styles.button} onClick={handleEdit}>
+            <button onClick={handleEdit}>
               <FaEdit /> Edit
             </button>
-            <button className={`${styles.trash} ${styles.button}`} onClick={handleDelete}>
+            <button className={styles.trash} onClick={handleDelete}>
               <FaTrash /> Delete
             </button>
           </div>

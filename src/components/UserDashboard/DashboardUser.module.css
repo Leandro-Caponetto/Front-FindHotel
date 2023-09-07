@@ -2,18 +2,17 @@
   display: flex;
   flex-direction: column;
   background-color: #f5f7fb;
-  overflow: hidden;
+  overflow:hidden;
 }
 
 
-.logo {
+.logo{
   width: 200px;
   margin: 0 auto;
   margin-left: 100px;
   padding: 0 5px;
   filter: drop-shadow(1px 15px 10px #201f1f62);
 }
-
 .navbar {
   display: flex;
   align-items: center;
@@ -23,8 +22,7 @@
   color: white;
   border: none;
 }
-
-.lo {
+.lo{
   display: flex;
   justify-content: center;
   width: 100%;
@@ -36,12 +34,11 @@
 }
 
 .title {
-
+  
   font-size: 1.25rem;
   margin-left: 20px;
   font-family: cocogoose;
 }
-
 .container {
   display: flex;
   flex-grow: 1;
@@ -94,11 +91,10 @@
   color: #333;
 }
 
-.logoNavbar {
+.logoNavbar{
   font-size: 50px;
   margin-left: 100px;
 }
-
 .menuItem {
   display: flex;
   justify-content: space-between;
@@ -109,29 +105,26 @@
   font-size: 30px;
   color: white;
 }
-
-.uploadButton {
+.uploadButton{
   font-size: 20px;
   position: relative;
-  bottom: 35px;
+  bottom:35px;
   left: 30px;
   cursor: pointer;
 }
-
-.uploadButton:hover {
-
-
+.uploadButton:hover{
+  
+  
   color: #34495e;
 }
 
-.span {
+.span{
   font-family: cocogoose;
   display: flex;
   color: white;
   align-items: center;
   justify-content: space-between;
 }
-
 /* styles.css */
 /* styles.css */
 .logoNavbar {
@@ -147,15 +140,45 @@
   margin-bottom: 10px;
   margin-top: 20px;
 }
-
+ 
 .logoNavbar .icon {
   font-size: 30px;
   margin-bottom: 10px;
-
-
+  
+  
 }
 
 .logoNavbar input[type="file"] {
-  display: none;
-  /* Para ocultar el input por defecto */
+  display: none; /* Para ocultar el input por defecto */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
