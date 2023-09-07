@@ -29,13 +29,14 @@ const Reserva = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [complete, setComplete] = useState(false);
   const [id, setId] = useState(null);
-  const [user, setUser] = useState({});
+  const [userId, setUserId] = useState("");
   const [removeLoader, setRemoveLoader] = useState(false);
 
   useEffect(() => {
     const cookie = readCookieSession()
     if (cookie) {
-      setUser({ ...cookie })
+      const {User_id} = cookie
+      setUserId(User_id)
     }
   }, [])
 

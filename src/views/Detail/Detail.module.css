@@ -119,8 +119,8 @@ option{
   width: 100px;
   height: 30px;
   margin-left: 10px;
-  color: #20c996;
-  padding: 10px;
+  
+  
   border: 1px solid #ccc;
   border-radius: 4px;
   
@@ -132,7 +132,7 @@ option{
 /* Estilos para las opciones del select */
 .selector option {
   
-  padding: 8px;
+  
   background-color: #fff;
 }
 
