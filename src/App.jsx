@@ -16,7 +16,6 @@ import PostPago from "./components/PostPago/PostPago";
 import DashboardAdmin from './components/DashboardAdmin/DashboardAdmin'
 import classnames from "classnames";
 import { FaSun, FaRegMoon } from "react-icons/fa";
-import NavBar from './components/NavBar/NavBar'
 import AboutView from './views/AboutView/AboutView'
 import { useSelector } from 'react-redux'
 
