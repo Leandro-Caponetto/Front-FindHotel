@@ -3,7 +3,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styles from "./trendDestinations.module.css";
-import axios from "axios";
+import axiosInstance from "../../utils/axiosInstance";
 import { fetchData } from '../../redux/destinations';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
@@ -26,7 +26,7 @@ const TrendDestinations = () => {
     const fetchData = async () => {
       try {
 
-        const response = await axios.get(`${URL_FINDHOTEL}/trending/state`);
+        const response = await axiosInstance.get(`/trending/state`);
         setStateData(response.data);
         console.log(response.data);
       } catch (error) {

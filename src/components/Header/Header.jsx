@@ -1,13 +1,9 @@
 import styles from './Header.module.css'
 import React, { useEffect, useState } from "react";
-import { IoIosArrowForward } from 'react-icons/io';
 import { InputText, InputNumber, InputDate } from '../Inputs';
-import axios from "axios";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchData, setDestination } from '../../redux/destinations';
 import { NavLink } from 'react-router-dom';
-import { handlerNames } from '../../services';
-import { UploadPhoto } from '../Upload';
 
 
 const Header = () => {
