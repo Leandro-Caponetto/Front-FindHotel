@@ -19,6 +19,12 @@ const NavBar = (props) => {
           <Link to="/hotel" className={styles.navbar_button}>
             Hotel
           </Link>
+          <Link to="/admin" className={styles.navbar_button}>
+            Admin
+          </Link>
+          <Link to="/user" className={styles.navbar_button}>
+            User
+          </Link>
           {/* <Link to="/register" className={styles.navbar_button}>
             Register
           </Link>
